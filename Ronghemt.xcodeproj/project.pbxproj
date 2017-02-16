@@ -12,6 +12,7 @@
 		20C49BDD1E55872B00196534 /* NTESHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BD71E55872B00196534 /* NTESHTTPClient.m */; };
 		20C49BDE1E55872B00196534 /* NTESHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BDA1E55872B00196534 /* NTESHTTPSessionManager.m */; };
 		20C49BDF1E55872B00196534 /* NTESHTTPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BDC1E55872B00196534 /* NTESHTTPTask.m */; };
+		20C49BE21E558D6000196534 /* MCFNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BE11E558D6000196534 /* MCFNetworkManager.m */; };
 		279354781E542B48004ECB95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 279354771E542B48004ECB95 /* main.m */; };
 		2793547B1E542B48004ECB95 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2793547A1E542B48004ECB95 /* AppDelegate.m */; };
 		2793547E1E542B48004ECB95 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2793547D1E542B48004ECB95 /* ViewController.m */; };
@@ -59,6 +60,8 @@
 		20C49BDA1E55872B00196534 /* NTESHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESHTTPSessionManager.m; sourceTree = "<group>"; };
 		20C49BDB1E55872B00196534 /* NTESHTTPTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESHTTPTask.h; sourceTree = "<group>"; };
 		20C49BDC1E55872B00196534 /* NTESHTTPTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESHTTPTask.m; sourceTree = "<group>"; };
+		20C49BE01E558D6000196534 /* MCFNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFNetworkManager.h; sourceTree = "<group>"; };
+		20C49BE11E558D6000196534 /* MCFNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFNetworkManager.m; sourceTree = "<group>"; };
 		279354731E542B48004ECB95 /* Ronghemt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ronghemt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		279354771E542B48004ECB95 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		279354791E542B48004ECB95 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -181,6 +184,8 @@
 			isa = PBXGroup;
 			children = (
 				20C49BD51E55872B00196534 /* NTESClient */,
+				20C49BE01E558D6000196534 /* MCFNetworkManager.h */,
+				20C49BE11E558D6000196534 /* MCFNetworkManager.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -577,6 +582,7 @@
 				20C49BD31E5575DD00196534 /* BaseViewController.m in Sources */,
 				2793547B1E542B48004ECB95 /* AppDelegate.m in Sources */,
 				279354781E542B48004ECB95 /* main.m in Sources */,
+				20C49BE21E558D6000196534 /* MCFNetworkManager.m in Sources */,
 				20C49BC41E554B7300196534 /* constants.m in Sources */,
 				20C49BDF1E55872B00196534 /* NTESHTTPTask.m in Sources */,
 				20C49BDE1E55872B00196534 /* NTESHTTPSessionManager.m in Sources */,
