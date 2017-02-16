@@ -1,0 +1,853 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		20C49BC41E554B7300196534 /* constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BC31E554B7300196534 /* constants.m */; };
+		20C49BD31E5575DD00196534 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BD21E5575DD00196534 /* BaseViewController.m */; };
+		20C49BDD1E55872B00196534 /* NTESHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BD71E55872B00196534 /* NTESHTTPClient.m */; };
+		20C49BDE1E55872B00196534 /* NTESHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BDA1E55872B00196534 /* NTESHTTPSessionManager.m */; };
+		20C49BDF1E55872B00196534 /* NTESHTTPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BDC1E55872B00196534 /* NTESHTTPTask.m */; };
+		279354781E542B48004ECB95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 279354771E542B48004ECB95 /* main.m */; };
+		2793547B1E542B48004ECB95 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2793547A1E542B48004ECB95 /* AppDelegate.m */; };
+		2793547E1E542B48004ECB95 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2793547D1E542B48004ECB95 /* ViewController.m */; };
+		279354811E542B48004ECB95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2793547F1E542B48004ECB95 /* Main.storyboard */; };
+		279354831E542B48004ECB95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 279354821E542B48004ECB95 /* Assets.xcassets */; };
+		279354861E542B48004ECB95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 279354841E542B48004ECB95 /* LaunchScreen.storyboard */; };
+		279354911E542B49004ECB95 /* RonghemtTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 279354901E542B49004ECB95 /* RonghemtTests.m */; };
+		2793549C1E542B49004ECB95 /* RonghemtUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2793549B1E542B49004ECB95 /* RonghemtUITests.m */; };
+		2E92C1EC3212D72CAEE759A0 /* libPods-RonghemtTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146B43B991486ABA4925F885 /* libPods-RonghemtTests.a */; };
+		9D1A74F83907BB8AA6166C49 /* libPods-Ronghemt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA4C197D961D7EDB6E7CC64 /* libPods-Ronghemt.a */; };
+		BF98427A5E7AC13985FCCD88 /* libPods-RonghemtUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8BBA6ED6E743DA964334F06 /* libPods-RonghemtUITests.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2793548D1E542B49004ECB95 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2793546B1E542B48004ECB95 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 279354721E542B48004ECB95;
+			remoteInfo = Ronghemt;
+		};
+		279354981E542B49004ECB95 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2793546B1E542B48004ECB95 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 279354721E542B48004ECB95;
+			remoteInfo = Ronghemt;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0FA4C197D961D7EDB6E7CC64 /* libPods-Ronghemt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Ronghemt.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		146B43B991486ABA4925F885 /* libPods-RonghemtTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RonghemtTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		194F9056FFCAD09B08EC3EBD /* Pods-RonghemtTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RonghemtTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RonghemtTests/Pods-RonghemtTests.release.xcconfig"; sourceTree = "<group>"; };
+		20C49BC11E554ACF00196534 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		20C49BC21E554B7300196534 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
+		20C49BC31E554B7300196534 /* constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = constants.m; sourceTree = "<group>"; };
+		20C49BC51E554B8E00196534 /* macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macros.h; sourceTree = "<group>"; };
+		20C49BD11E5575DD00196534 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		20C49BD21E5575DD00196534 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		20C49BD61E55872B00196534 /* NTESHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESHTTPClient.h; sourceTree = "<group>"; };
+		20C49BD71E55872B00196534 /* NTESHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESHTTPClient.m; sourceTree = "<group>"; };
+		20C49BD81E55872B00196534 /* NTESHTTPConfigProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESHTTPConfigProtocol.h; sourceTree = "<group>"; };
+		20C49BD91E55872B00196534 /* NTESHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESHTTPSessionManager.h; sourceTree = "<group>"; };
+		20C49BDA1E55872B00196534 /* NTESHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESHTTPSessionManager.m; sourceTree = "<group>"; };
+		20C49BDB1E55872B00196534 /* NTESHTTPTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESHTTPTask.h; sourceTree = "<group>"; };
+		20C49BDC1E55872B00196534 /* NTESHTTPTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESHTTPTask.m; sourceTree = "<group>"; };
+		279354731E542B48004ECB95 /* Ronghemt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ronghemt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		279354771E542B48004ECB95 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		279354791E542B48004ECB95 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2793547A1E542B48004ECB95 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2793547C1E542B48004ECB95 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		2793547D1E542B48004ECB95 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		279354801E542B48004ECB95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		279354821E542B48004ECB95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		279354851E542B48004ECB95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		279354871E542B48004ECB95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2793548C1E542B49004ECB95 /* RonghemtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RonghemtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		279354901E542B49004ECB95 /* RonghemtTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RonghemtTests.m; sourceTree = "<group>"; };
+		279354921E542B49004ECB95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		279354971E542B49004ECB95 /* RonghemtUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RonghemtUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2793549B1E542B49004ECB95 /* RonghemtUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RonghemtUITests.m; sourceTree = "<group>"; };
+		2793549D1E542B49004ECB95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5496572B7573DAC2D9531060 /* Pods-Ronghemt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ronghemt.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ronghemt/Pods-Ronghemt.release.xcconfig"; sourceTree = "<group>"; };
+		735699F453A67766BFDC59E9 /* Pods-RonghemtTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RonghemtTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RonghemtTests/Pods-RonghemtTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A70F91065B5183728AB7B93E /* Pods-Ronghemt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ronghemt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ronghemt/Pods-Ronghemt.debug.xcconfig"; sourceTree = "<group>"; };
+		B8BBA6ED6E743DA964334F06 /* libPods-RonghemtUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RonghemtUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3386855164E888176F36BDA /* Pods-RonghemtUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RonghemtUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RonghemtUITests/Pods-RonghemtUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E9488705236EC82D8AC15D8A /* Pods-RonghemtUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RonghemtUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RonghemtUITests/Pods-RonghemtUITests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		279354701E542B48004ECB95 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D1A74F83907BB8AA6166C49 /* libPods-Ronghemt.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		279354891E542B49004ECB95 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E92C1EC3212D72CAEE759A0 /* libPods-RonghemtTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		279354941E542B49004ECB95 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF98427A5E7AC13985FCCD88 /* libPods-RonghemtUITests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		20C49BC81E554CE800196534 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				20C49BCF1E5574FC00196534 /* Controller */,
+				20C49BCC1E555AFE00196534 /* Manager */,
+				20C49BCE1E555AFE00196534 /* Vendor */,
+				20C49BC91E554D3D00196534 /* Category&Util */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		20C49BC91E554D3D00196534 /* Category&Util */ = {
+			isa = PBXGroup;
+			children = (
+				20C49BCA1E554D3D00196534 /* Categorys */,
+				20C49BCB1E554D3D00196534 /* Utilities */,
+			);
+			path = "Category&Util";
+			sourceTree = "<group>";
+		};
+		20C49BCA1E554D3D00196534 /* Categorys */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Categorys;
+			sourceTree = "<group>";
+		};
+		20C49BCB1E554D3D00196534 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		20C49BCC1E555AFE00196534 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				20C49BD41E55821C00196534 /* Network */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		20C49BCE1E555AFE00196534 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		20C49BCF1E5574FC00196534 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				20C49BD01E5575B800196534 /* Common */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		20C49BD01E5575B800196534 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				20C49BD11E5575DD00196534 /* BaseViewController.h */,
+				20C49BD21E5575DD00196534 /* BaseViewController.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		20C49BD41E55821C00196534 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				20C49BD51E55872B00196534 /* NTESClient */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		20C49BD51E55872B00196534 /* NTESClient */ = {
+			isa = PBXGroup;
+			children = (
+				20C49BD61E55872B00196534 /* NTESHTTPClient.h */,
+				20C49BD71E55872B00196534 /* NTESHTTPClient.m */,
+				20C49BD81E55872B00196534 /* NTESHTTPConfigProtocol.h */,
+				20C49BD91E55872B00196534 /* NTESHTTPSessionManager.h */,
+				20C49BDA1E55872B00196534 /* NTESHTTPSessionManager.m */,
+				20C49BDB1E55872B00196534 /* NTESHTTPTask.h */,
+				20C49BDC1E55872B00196534 /* NTESHTTPTask.m */,
+			);
+			path = NTESClient;
+			sourceTree = "<group>";
+		};
+		2793546A1E542B48004ECB95 = {
+			isa = PBXGroup;
+			children = (
+				20C49BC81E554CE800196534 /* Classes */,
+				279354751E542B48004ECB95 /* Ronghemt */,
+				2793548F1E542B49004ECB95 /* RonghemtTests */,
+				2793549A1E542B49004ECB95 /* RonghemtUITests */,
+				279354741E542B48004ECB95 /* Products */,
+				527122A8298F1BC5F28A2447 /* Pods */,
+				9805EE74688EF47AE6D4553A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		279354741E542B48004ECB95 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				279354731E542B48004ECB95 /* Ronghemt.app */,
+				2793548C1E542B49004ECB95 /* RonghemtTests.xctest */,
+				279354971E542B49004ECB95 /* RonghemtUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		279354751E542B48004ECB95 /* Ronghemt */ = {
+			isa = PBXGroup;
+			children = (
+				279354791E542B48004ECB95 /* AppDelegate.h */,
+				2793547A1E542B48004ECB95 /* AppDelegate.m */,
+				2793547C1E542B48004ECB95 /* ViewController.h */,
+				2793547D1E542B48004ECB95 /* ViewController.m */,
+				2793547F1E542B48004ECB95 /* Main.storyboard */,
+				279354821E542B48004ECB95 /* Assets.xcassets */,
+				279354841E542B48004ECB95 /* LaunchScreen.storyboard */,
+				279354871E542B48004ECB95 /* Info.plist */,
+				279354761E542B48004ECB95 /* Supporting Files */,
+				20C49BC11E554ACF00196534 /* PrefixHeader.pch */,
+				20C49BC51E554B8E00196534 /* macros.h */,
+				20C49BC21E554B7300196534 /* constants.h */,
+				20C49BC31E554B7300196534 /* constants.m */,
+			);
+			path = Ronghemt;
+			sourceTree = "<group>";
+		};
+		279354761E542B48004ECB95 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				279354771E542B48004ECB95 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2793548F1E542B49004ECB95 /* RonghemtTests */ = {
+			isa = PBXGroup;
+			children = (
+				279354901E542B49004ECB95 /* RonghemtTests.m */,
+				279354921E542B49004ECB95 /* Info.plist */,
+			);
+			path = RonghemtTests;
+			sourceTree = "<group>";
+		};
+		2793549A1E542B49004ECB95 /* RonghemtUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2793549B1E542B49004ECB95 /* RonghemtUITests.m */,
+				2793549D1E542B49004ECB95 /* Info.plist */,
+			);
+			path = RonghemtUITests;
+			sourceTree = "<group>";
+		};
+		527122A8298F1BC5F28A2447 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A70F91065B5183728AB7B93E /* Pods-Ronghemt.debug.xcconfig */,
+				5496572B7573DAC2D9531060 /* Pods-Ronghemt.release.xcconfig */,
+				735699F453A67766BFDC59E9 /* Pods-RonghemtTests.debug.xcconfig */,
+				194F9056FFCAD09B08EC3EBD /* Pods-RonghemtTests.release.xcconfig */,
+				E9488705236EC82D8AC15D8A /* Pods-RonghemtUITests.debug.xcconfig */,
+				E3386855164E888176F36BDA /* Pods-RonghemtUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9805EE74688EF47AE6D4553A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0FA4C197D961D7EDB6E7CC64 /* libPods-Ronghemt.a */,
+				146B43B991486ABA4925F885 /* libPods-RonghemtTests.a */,
+				B8BBA6ED6E743DA964334F06 /* libPods-RonghemtUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		279354721E542B48004ECB95 /* Ronghemt */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 279354A01E542B49004ECB95 /* Build configuration list for PBXNativeTarget "Ronghemt" */;
+			buildPhases = (
+				E85E675BC8D2D24663EEFC20 /* [CP] Check Pods Manifest.lock */,
+				2793546F1E542B48004ECB95 /* Sources */,
+				279354701E542B48004ECB95 /* Frameworks */,
+				279354711E542B48004ECB95 /* Resources */,
+				25F79E7D76F4BE86D5C88397 /* [CP] Embed Pods Frameworks */,
+				F01B929A3AD9A6CD8F876817 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Ronghemt;
+			productName = Ronghemt;
+			productReference = 279354731E542B48004ECB95 /* Ronghemt.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2793548B1E542B49004ECB95 /* RonghemtTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 279354A31E542B49004ECB95 /* Build configuration list for PBXNativeTarget "RonghemtTests" */;
+			buildPhases = (
+				2B48351DE2ADEA0683AA82ED /* [CP] Check Pods Manifest.lock */,
+				279354881E542B49004ECB95 /* Sources */,
+				279354891E542B49004ECB95 /* Frameworks */,
+				2793548A1E542B49004ECB95 /* Resources */,
+				D8438A5AC013F16ED299E331 /* [CP] Embed Pods Frameworks */,
+				4012E9DC19B8DB0EAEEDE2FB /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2793548E1E542B49004ECB95 /* PBXTargetDependency */,
+			);
+			name = RonghemtTests;
+			productName = RonghemtTests;
+			productReference = 2793548C1E542B49004ECB95 /* RonghemtTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		279354961E542B49004ECB95 /* RonghemtUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 279354A61E542B49004ECB95 /* Build configuration list for PBXNativeTarget "RonghemtUITests" */;
+			buildPhases = (
+				AEA9B7E65E21CA932FDD1649 /* [CP] Check Pods Manifest.lock */,
+				279354931E542B49004ECB95 /* Sources */,
+				279354941E542B49004ECB95 /* Frameworks */,
+				279354951E542B49004ECB95 /* Resources */,
+				693BCA875880D4FA7948E945 /* [CP] Embed Pods Frameworks */,
+				EAB56D201F181B3D49C70A26 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				279354991E542B49004ECB95 /* PBXTargetDependency */,
+			);
+			name = RonghemtUITests;
+			productName = RonghemtUITests;
+			productReference = 279354971E542B49004ECB95 /* RonghemtUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2793546B1E542B48004ECB95 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = HLSS;
+				TargetAttributes = {
+					279354721E542B48004ECB95 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = B82Z6RQ4T3;
+						ProvisioningStyle = Automatic;
+					};
+					2793548B1E542B49004ECB95 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 279354721E542B48004ECB95;
+					};
+					279354961E542B49004ECB95 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 279354721E542B48004ECB95;
+					};
+				};
+			};
+			buildConfigurationList = 2793546E1E542B48004ECB95 /* Build configuration list for PBXProject "Ronghemt" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2793546A1E542B48004ECB95;
+			productRefGroup = 279354741E542B48004ECB95 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				279354721E542B48004ECB95 /* Ronghemt */,
+				2793548B1E542B49004ECB95 /* RonghemtTests */,
+				279354961E542B49004ECB95 /* RonghemtUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		279354711E542B48004ECB95 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				279354861E542B48004ECB95 /* LaunchScreen.storyboard in Resources */,
+				279354831E542B48004ECB95 /* Assets.xcassets in Resources */,
+				279354811E542B48004ECB95 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2793548A1E542B49004ECB95 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		279354951E542B49004ECB95 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		25F79E7D76F4BE86D5C88397 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ronghemt/Pods-Ronghemt-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2B48351DE2ADEA0683AA82ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4012E9DC19B8DB0EAEEDE2FB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RonghemtTests/Pods-RonghemtTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		693BCA875880D4FA7948E945 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RonghemtUITests/Pods-RonghemtUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AEA9B7E65E21CA932FDD1649 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D8438A5AC013F16ED299E331 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RonghemtTests/Pods-RonghemtTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E85E675BC8D2D24663EEFC20 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EAB56D201F181B3D49C70A26 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RonghemtUITests/Pods-RonghemtUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F01B929A3AD9A6CD8F876817 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ronghemt/Pods-Ronghemt-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2793546F1E542B48004ECB95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20C49BDD1E55872B00196534 /* NTESHTTPClient.m in Sources */,
+				2793547E1E542B48004ECB95 /* ViewController.m in Sources */,
+				20C49BD31E5575DD00196534 /* BaseViewController.m in Sources */,
+				2793547B1E542B48004ECB95 /* AppDelegate.m in Sources */,
+				279354781E542B48004ECB95 /* main.m in Sources */,
+				20C49BC41E554B7300196534 /* constants.m in Sources */,
+				20C49BDF1E55872B00196534 /* NTESHTTPTask.m in Sources */,
+				20C49BDE1E55872B00196534 /* NTESHTTPSessionManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		279354881E542B49004ECB95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				279354911E542B49004ECB95 /* RonghemtTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		279354931E542B49004ECB95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2793549C1E542B49004ECB95 /* RonghemtUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2793548E1E542B49004ECB95 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 279354721E542B48004ECB95 /* Ronghemt */;
+			targetProxy = 2793548D1E542B49004ECB95 /* PBXContainerItemProxy */;
+		};
+		279354991E542B49004ECB95 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 279354721E542B48004ECB95 /* Ronghemt */;
+			targetProxy = 279354981E542B49004ECB95 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2793547F1E542B48004ECB95 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				279354801E542B48004ECB95 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		279354841E542B48004ECB95 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				279354851E542B48004ECB95 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2793549E1E542B49004ECB95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2793549F1E542B49004ECB95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		279354A11E542B49004ECB95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A70F91065B5183728AB7B93E /* Pods-Ronghemt.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = B82Z6RQ4T3;
+				INFOPLIST_FILE = Ronghemt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hlss.Ronghemt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		279354A21E542B49004ECB95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5496572B7573DAC2D9531060 /* Pods-Ronghemt.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = B82Z6RQ4T3;
+				INFOPLIST_FILE = Ronghemt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hlss.Ronghemt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		279354A41E542B49004ECB95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 735699F453A67766BFDC59E9 /* Pods-RonghemtTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = RonghemtTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hlss.RonghemtTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ronghemt.app/Ronghemt";
+			};
+			name = Debug;
+		};
+		279354A51E542B49004ECB95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 194F9056FFCAD09B08EC3EBD /* Pods-RonghemtTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = RonghemtTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hlss.RonghemtTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ronghemt.app/Ronghemt";
+			};
+			name = Release;
+		};
+		279354A71E542B49004ECB95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9488705236EC82D8AC15D8A /* Pods-RonghemtUITests.debug.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = RonghemtUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hlss.RonghemtUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Ronghemt;
+			};
+			name = Debug;
+		};
+		279354A81E542B49004ECB95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3386855164E888176F36BDA /* Pods-RonghemtUITests.release.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = RonghemtUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hlss.RonghemtUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Ronghemt;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2793546E1E542B48004ECB95 /* Build configuration list for PBXProject "Ronghemt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2793549E1E542B49004ECB95 /* Debug */,
+				2793549F1E542B49004ECB95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		279354A01E542B49004ECB95 /* Build configuration list for PBXNativeTarget "Ronghemt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				279354A11E542B49004ECB95 /* Debug */,
+				279354A21E542B49004ECB95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		279354A31E542B49004ECB95 /* Build configuration list for PBXNativeTarget "RonghemtTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				279354A41E542B49004ECB95 /* Debug */,
+				279354A51E542B49004ECB95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		279354A61E542B49004ECB95 /* Build configuration list for PBXNativeTarget "RonghemtUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				279354A71E542B49004ECB95 /* Debug */,
+				279354A81E542B49004ECB95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2793546B1E542B48004ECB95 /* Project object */;
+}
