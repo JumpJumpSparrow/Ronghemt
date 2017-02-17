@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		201425D21E568C0C00A1535E /* MCFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 201425D11E568C0C00A1535E /* MCFNavigationController.m */; };
+		20C19AD41E56E57A0010CAF5 /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19AD31E56E57A0010CAF5 /* RootTabBarController.m */; };
+		20C19AE11E56EBB10010CAF5 /* MCFTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19AE01E56EBB10010CAF5 /* MCFTabBar.m */; };
 		20C49BC41E554B7300196534 /* constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BC31E554B7300196534 /* constants.m */; };
 		20C49BD31E5575DD00196534 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BD21E5575DD00196534 /* BaseViewController.m */; };
 		20C49BDD1E55872B00196534 /* NTESHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BD71E55872B00196534 /* NTESHTTPClient.m */; };
 		20C49BDE1E55872B00196534 /* NTESHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BDA1E55872B00196534 /* NTESHTTPSessionManager.m */; };
 		20C49BDF1E55872B00196534 /* NTESHTTPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BDC1E55872B00196534 /* NTESHTTPTask.m */; };
 		20C49BE21E558D6000196534 /* MCFNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BE11E558D6000196534 /* MCFNetworkManager.m */; };
+		20C49BE51E5599ED00196534 /* MCFConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BE41E5599ED00196534 /* MCFConfigure.m */; };
 		279354781E542B48004ECB95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 279354771E542B48004ECB95 /* main.m */; };
 		2793547B1E542B48004ECB95 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2793547A1E542B48004ECB95 /* AppDelegate.m */; };
 		2793547E1E542B48004ECB95 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2793547D1E542B48004ECB95 /* ViewController.m */; };
@@ -47,6 +51,12 @@
 		0FA4C197D961D7EDB6E7CC64 /* libPods-Ronghemt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Ronghemt.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		146B43B991486ABA4925F885 /* libPods-RonghemtTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RonghemtTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		194F9056FFCAD09B08EC3EBD /* Pods-RonghemtTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RonghemtTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RonghemtTests/Pods-RonghemtTests.release.xcconfig"; sourceTree = "<group>"; };
+		201425D01E568C0C00A1535E /* MCFNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFNavigationController.h; sourceTree = "<group>"; };
+		201425D11E568C0C00A1535E /* MCFNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFNavigationController.m; sourceTree = "<group>"; };
+		20C19AD21E56E57A0010CAF5 /* RootTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarController.h; sourceTree = "<group>"; };
+		20C19AD31E56E57A0010CAF5 /* RootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarController.m; sourceTree = "<group>"; };
+		20C19ADF1E56EBB10010CAF5 /* MCFTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFTabBar.h; sourceTree = "<group>"; };
+		20C19AE01E56EBB10010CAF5 /* MCFTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFTabBar.m; sourceTree = "<group>"; };
 		20C49BC11E554ACF00196534 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		20C49BC21E554B7300196534 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		20C49BC31E554B7300196534 /* constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = constants.m; sourceTree = "<group>"; };
@@ -62,6 +72,8 @@
 		20C49BDC1E55872B00196534 /* NTESHTTPTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESHTTPTask.m; sourceTree = "<group>"; };
 		20C49BE01E558D6000196534 /* MCFNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFNetworkManager.h; sourceTree = "<group>"; };
 		20C49BE11E558D6000196534 /* MCFNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFNetworkManager.m; sourceTree = "<group>"; };
+		20C49BE31E5599ED00196534 /* MCFConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFConfigure.h; sourceTree = "<group>"; };
+		20C49BE41E5599ED00196534 /* MCFConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFConfigure.m; sourceTree = "<group>"; };
 		279354731E542B48004ECB95 /* Ronghemt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ronghemt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		279354771E542B48004ECB95 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		279354791E542B48004ECB95 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -114,6 +126,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20C19AD51E56E6030010CAF5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				20C19ADF1E56EBB10010CAF5 /* MCFTabBar.h */,
+				20C19AE01E56EBB10010CAF5 /* MCFTabBar.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		20C49BC81E554CE800196534 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +187,7 @@
 		20C49BCF1E5574FC00196534 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				20C19AD51E56E6030010CAF5 /* View */,
 				20C49BD01E5575B800196534 /* Common */,
 			);
 			path = Controller;
@@ -174,8 +196,12 @@
 		20C49BD01E5575B800196534 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				20C19AD21E56E57A0010CAF5 /* RootTabBarController.h */,
+				20C19AD31E56E57A0010CAF5 /* RootTabBarController.m */,
 				20C49BD11E5575DD00196534 /* BaseViewController.h */,
 				20C49BD21E5575DD00196534 /* BaseViewController.m */,
+				201425D01E568C0C00A1535E /* MCFNavigationController.h */,
+				201425D11E568C0C00A1535E /* MCFNavigationController.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -183,9 +209,9 @@
 		20C49BD41E55821C00196534 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				20C49BD51E55872B00196534 /* NTESClient */,
 				20C49BE01E558D6000196534 /* MCFNetworkManager.h */,
 				20C49BE11E558D6000196534 /* MCFNetworkManager.m */,
+				20C49BD51E55872B00196534 /* NTESClient */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -243,6 +269,8 @@
 				20C49BC51E554B8E00196534 /* macros.h */,
 				20C49BC21E554B7300196534 /* constants.h */,
 				20C49BC31E554B7300196534 /* constants.m */,
+				20C49BE31E5599ED00196534 /* MCFConfigure.h */,
+				20C49BE41E5599ED00196534 /* MCFConfigure.m */,
 			);
 			path = Ronghemt;
 			sourceTree = "<group>";
@@ -586,6 +614,10 @@
 				20C49BC41E554B7300196534 /* constants.m in Sources */,
 				20C49BDF1E55872B00196534 /* NTESHTTPTask.m in Sources */,
 				20C49BDE1E55872B00196534 /* NTESHTTPSessionManager.m in Sources */,
+				20C19AD41E56E57A0010CAF5 /* RootTabBarController.m in Sources */,
+				20C19AE11E56EBB10010CAF5 /* MCFTabBar.m in Sources */,
+				201425D21E568C0C00A1535E /* MCFNavigationController.m in Sources */,
+				20C49BE51E5599ED00196534 /* MCFConfigure.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -739,6 +771,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = B82Z6RQ4T3;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Ronghemt/PrefixHeader.pch";
 				INFOPLIST_FILE = Ronghemt/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -755,6 +789,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = B82Z6RQ4T3;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Ronghemt/PrefixHeader.pch";
 				INFOPLIST_FILE = Ronghemt/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

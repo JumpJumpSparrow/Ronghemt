@@ -14,5 +14,5 @@
 
 #import "macros.h"
 #import "constants.h"
-
+#import "MCFConfigure.h"
 #endif /* PrefixHeader_pch */

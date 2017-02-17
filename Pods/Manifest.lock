@@ -17,8 +17,8 @@ PODS:
   - MBProgressHUD (1.0.0)
   - MJExtension (3.0.13)
   - MJRefresh (3.1.12)
+  - RDVTabBarController (1.1.9)
   - WMPageController (2.2.1)
-  - YPTabBarController (2.2.3)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
@@ -28,8 +28,8 @@ DEPENDENCIES:
   - MBProgressHUD (~> 1.0.0)
   - MJExtension (~> 3.0.13)
   - MJRefresh (~> 3.1.12)
+  - RDVTabBarController
   - WMPageController (~> 2.2.1)
-  - YPTabBarController (~> 2.2.3)
   - YYKit (~> 1.0.9)
 
 SPEC CHECKSUMS:
@@ -37,10 +37,10 @@ SPEC CHECKSUMS:
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  RDVTabBarController: 67794f7a7a37f8e32f046f85ac67d06ab92d624a
   WMPageController: 181bcc9b1fb7c9c3466bff66012552953a547d28
-  YPTabBarController: 2e0e97b2d9d4b28b722ecb57700b7cd4d1b38a47
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 2fa443b7693c4c588e1d456d7b9b4df66c37f836
+PODFILE CHECKSUM: faef0c3309d3fe3a9ec6d6f709246e63ad6b041e
 
 COCOAPODS: 1.2.0
