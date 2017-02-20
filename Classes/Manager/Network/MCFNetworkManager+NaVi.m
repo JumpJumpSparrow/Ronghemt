@@ -10,12 +10,21 @@
 
 @implementation MCFNetworkManager (NaVi)
 
-+ (void)requestNaviTypeSuccess:(void (^)(NSArray *))sucess failure:(void (^)(NSString *))failure {
++ (void)requestNaviTypeSuccess:(void (^)(NSArray *))sucess failure:(void (^)(NSError *))failure {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [[MCFNetworkManager sharedManager] GET: [MCFConfigure cfg].NaviType
                                  parameters:nil success:^(NSUInteger taskId, id responseObject) {
-                                     NSLog(@"%@", responseObject);
+                                     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+                                     NSArray *tabBarItems = [responseObject objectForKey:@"navigationList"];
+                                     NSArray *objcItems = [MCFNaviModel mj_objectArrayWithKeyValuesArray:tabBarItems];
+                                     if (sucess) {
+                                         sucess(objcItems);
+                                     }
                                  } failure:^(NSUInteger taskId, NSError *error) {
-                                     
+                                     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+                                     if (failure) {
+                                         failure(error);
+                                     }
                                  }];
 }
 @end

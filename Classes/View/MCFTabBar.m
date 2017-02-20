@@ -23,10 +23,6 @@
         if ([btn isKindOfClass:class]) {
             if (btn.center.x == self.center.x) {
                 self.middleButton = btn;
-                CGRect frame = btn.frame;
-                frame.origin.y -= 30;
-                frame.size.height += 30;
-                btn.frame = frame;
                 [self bringSubviewToFront:btn];
             }
         }

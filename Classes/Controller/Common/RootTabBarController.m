@@ -11,14 +11,22 @@
 #import "MCFNavigationController.h"
 #import "MCFTabBar.h"
 #import "MCFNetworkManager+NaVi.h"
+#import "MCFTools.h"
+#import "MCFHomeViewController.h"
+#import "VideoViewController.h"
+#import "ServiceViewController.h"
+#import "LifeViewController.h"
 
 @interface RootTabBarController ()
 
+@property (nonatomic, strong) NSArray *naviItems;
+@property (nonatomic, strong) NSArray *childControllers;
 @end
 
 @implementation RootTabBarController
 
 - (instancetype)init {
+    
     self = [super init];
     if (self) {
         [self installControllers];
@@ -31,6 +39,7 @@
     [super viewDidLoad];
     
     MCFTabBar *tabBar = [[MCFTabBar alloc] init];
+    tabBar.translucent = NO;
     [self setValue:tabBar forKey:@"tabBar"];
     
     [self loadNavi];
@@ -39,28 +48,50 @@
 - (void)loadNavi {
     [MCFNetworkManager requestNaviTypeSuccess:^(NSArray *channels) {
         
-    } failure:^(NSString *tips) {
+        self.naviItems = channels;
         
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self reloadData];
+        });
+        
+    } failure:^(NSError *error) {
+        [MCFTools showAlert:@"网络错误，请退出重试" to:self completion:NULL];
     }];
 }
 
-- (void)installControllers {
-    BaseViewController *firstVc = [[BaseViewController alloc] init];
-    MCFNavigationController *firstNaviVC = [[MCFNavigationController alloc] initWithRootViewController:firstVc];
+- (void)reloadData {
+    MCFHomeViewController *firstVc = [self.childControllers objectAtIndex:0];
+    [firstVc loadChannels:self.naviItems[0]];
     
-    BaseViewController *videoVC = [[BaseViewController alloc] init];
+    VideoViewController *videoVC = [self.childControllers objectAtIndex:1];
+    [videoVC loadChannels:self.naviItems[1]];
+    
+    ServiceViewController *serviceVC = [self.childControllers objectAtIndex:2];
+    MCFNaviModel *naviModel = self.naviItems[2];
+    [serviceVC loadRequest:naviModel.navigationUrl];
+    
+    LifeViewController *lifeVc = [self.childControllers objectAtIndex:3];
+    [lifeVc loadChannels:self.naviItems[3]];
+}
+
+- (void)installControllers {
+    MCFHomeViewController *homeVc = [[MCFHomeViewController alloc] init];
+    MCFNavigationController *homeNaviVC = [[MCFNavigationController alloc] initWithRootViewController:homeVc];
+    
+    VideoViewController *videoVC = [[VideoViewController alloc] init];
     MCFNavigationController *videoNaviVC = [[MCFNavigationController alloc] initWithRootViewController:videoVC];
     
-    BaseViewController *serviceVC = [[BaseViewController alloc] init];
+    ServiceViewController *serviceVC = [[ServiceViewController alloc] init];
     MCFNavigationController *serviceNavi = [[MCFNavigationController alloc] initWithRootViewController:serviceVC];
     
-    BaseViewController *lifeVC = [[BaseViewController alloc] init];
+    LifeViewController *lifeVC = [[LifeViewController alloc] init];
     MCFNavigationController *lifeNaviVC = [[MCFNavigationController alloc] initWithRootViewController:lifeVC];
     
     BaseViewController *mineVC = [[BaseViewController alloc] init];
     MCFNavigationController *mineNaviVC = [[MCFNavigationController alloc] initWithRootViewController:mineVC];
     
-    self.viewControllers = @[firstNaviVC, videoNaviVC, serviceNavi, lifeNaviVC, mineNaviVC];
+    self.viewControllers = @[homeNaviVC, videoNaviVC, serviceNavi, lifeNaviVC, mineNaviVC];
+    self.childControllers = @[homeVc, videoVC, serviceVC, lifeVC, mineVC];
 }
 
 - (void)customTabBar {

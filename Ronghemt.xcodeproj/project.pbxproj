@@ -20,6 +20,16 @@
 		20C49BDF1E55872B00196534 /* NTESHTTPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BDC1E55872B00196534 /* NTESHTTPTask.m */; };
 		20C49BE21E558D6000196534 /* MCFNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BE11E558D6000196534 /* MCFNetworkManager.m */; };
 		20C49BE51E5599ED00196534 /* MCFConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BE41E5599ED00196534 /* MCFConfigure.m */; };
+		20DFD1B01E5A883D00D13921 /* MCFHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1AF1E5A883D00D13921 /* MCFHomeViewController.m */; };
+		20DFD1B31E5A932D00D13921 /* MCFAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1B21E5A932D00D13921 /* MCFAlertController.m */; };
+		20DFD1BC1E5A973300D13921 /* MCFTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1BB1E5A973300D13921 /* MCFTools.m */; };
+		20DFD1BF1E5AAF9900D13921 /* BaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1BE1E5AAF9900D13921 /* BaseWebViewController.m */; };
+		20DFD1C61E5AC5AE00D13921 /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1C51E5AC5AE00D13921 /* VideoViewController.m */; };
+		20DFD1C91E5AD30800D13921 /* ServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1C81E5AD30800D13921 /* ServiceViewController.m */; };
+		20DFD1CC1E5AD6C000D13921 /* LifeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1CB1E5AD6C000D13921 /* LifeViewController.m */; };
+		20DFD1CF1E5AD92100D13921 /* MCFNetworkManager+User.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1CE1E5AD92100D13921 /* MCFNetworkManager+User.m */; };
+		20DFD1D21E5AD9BB00D13921 /* MCFUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1D11E5AD9BB00D13921 /* MCFUserModel.m */; };
+		20DFD1D51E5ADC5800D13921 /* RegisterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1D41E5ADC5800D13921 /* RegisterModel.m */; };
 		279354781E542B48004ECB95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 279354771E542B48004ECB95 /* main.m */; };
 		2793547B1E542B48004ECB95 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2793547A1E542B48004ECB95 /* AppDelegate.m */; };
 		2793547E1E542B48004ECB95 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2793547D1E542B48004ECB95 /* ViewController.m */; };
@@ -83,6 +93,26 @@
 		20C49BE11E558D6000196534 /* MCFNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFNetworkManager.m; sourceTree = "<group>"; };
 		20C49BE31E5599ED00196534 /* MCFConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFConfigure.h; sourceTree = "<group>"; };
 		20C49BE41E5599ED00196534 /* MCFConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFConfigure.m; sourceTree = "<group>"; };
+		20DFD1AE1E5A883D00D13921 /* MCFHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFHomeViewController.h; sourceTree = "<group>"; };
+		20DFD1AF1E5A883D00D13921 /* MCFHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFHomeViewController.m; sourceTree = "<group>"; };
+		20DFD1B11E5A932D00D13921 /* MCFAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFAlertController.h; sourceTree = "<group>"; };
+		20DFD1B21E5A932D00D13921 /* MCFAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFAlertController.m; sourceTree = "<group>"; };
+		20DFD1BA1E5A973300D13921 /* MCFTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFTools.h; sourceTree = "<group>"; };
+		20DFD1BB1E5A973300D13921 /* MCFTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFTools.m; sourceTree = "<group>"; };
+		20DFD1BD1E5AAF9900D13921 /* BaseWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseWebViewController.h; sourceTree = "<group>"; };
+		20DFD1BE1E5AAF9900D13921 /* BaseWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWebViewController.m; sourceTree = "<group>"; };
+		20DFD1C41E5AC5AE00D13921 /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
+		20DFD1C51E5AC5AE00D13921 /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
+		20DFD1C71E5AD30800D13921 /* ServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceViewController.h; sourceTree = "<group>"; };
+		20DFD1C81E5AD30800D13921 /* ServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceViewController.m; sourceTree = "<group>"; };
+		20DFD1CA1E5AD6C000D13921 /* LifeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifeViewController.h; sourceTree = "<group>"; };
+		20DFD1CB1E5AD6C000D13921 /* LifeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LifeViewController.m; sourceTree = "<group>"; };
+		20DFD1CD1E5AD92100D13921 /* MCFNetworkManager+User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MCFNetworkManager+User.h"; sourceTree = "<group>"; };
+		20DFD1CE1E5AD92100D13921 /* MCFNetworkManager+User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MCFNetworkManager+User.m"; sourceTree = "<group>"; };
+		20DFD1D01E5AD9BB00D13921 /* MCFUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFUserModel.h; sourceTree = "<group>"; };
+		20DFD1D11E5AD9BB00D13921 /* MCFUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFUserModel.m; sourceTree = "<group>"; };
+		20DFD1D31E5ADC5800D13921 /* RegisterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterModel.h; sourceTree = "<group>"; };
+		20DFD1D41E5ADC5800D13921 /* RegisterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterModel.m; sourceTree = "<group>"; };
 		279354731E542B48004ECB95 /* Ronghemt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ronghemt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		279354771E542B48004ECB95 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		279354791E542B48004ECB95 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -142,6 +172,10 @@
 				20C19AEE1E56FDF10010CAF5 /* MCFBaseModel.m */,
 				20C19AF01E56FE4B0010CAF5 /* MCFNaviModel.h */,
 				20C19AF11E56FE4B0010CAF5 /* MCFNaviModel.m */,
+				20DFD1D01E5AD9BB00D13921 /* MCFUserModel.h */,
+				20DFD1D11E5AD9BB00D13921 /* MCFUserModel.m */,
+				20DFD1D31E5ADC5800D13921 /* RegisterModel.h */,
+				20DFD1D41E5ADC5800D13921 /* RegisterModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -187,6 +221,10 @@
 		20C49BCB1E554D3D00196534 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				20DFD1B11E5A932D00D13921 /* MCFAlertController.h */,
+				20DFD1B21E5A932D00D13921 /* MCFAlertController.m */,
+				20DFD1BA1E5A973300D13921 /* MCFTools.h */,
+				20DFD1BB1E5A973300D13921 /* MCFTools.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -209,6 +247,11 @@
 		20C49BCF1E5574FC00196534 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				20DFD1C11E5AC57F00D13921 /* Life */,
+				20DFD1C21E5AC57F00D13921 /* Mine */,
+				20DFD1C31E5AC57F00D13921 /* Video */,
+				20DFD1AD1E5A881200D13921 /* Home */,
+				20DFD1C01E5ABD8F00D13921 /* Service */,
 				20C49BD01E5575B800196534 /* Common */,
 			);
 			path = Controller;
@@ -223,6 +266,8 @@
 				20C49BD21E5575DD00196534 /* BaseViewController.m */,
 				201425D01E568C0C00A1535E /* MCFNavigationController.h */,
 				201425D11E568C0C00A1535E /* MCFNavigationController.m */,
+				20DFD1BD1E5AAF9900D13921 /* BaseWebViewController.h */,
+				20DFD1BE1E5AAF9900D13921 /* BaseWebViewController.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -230,6 +275,8 @@
 		20C49BD41E55821C00196534 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				20DFD1CD1E5AD92100D13921 /* MCFNetworkManager+User.h */,
+				20DFD1CE1E5AD92100D13921 /* MCFNetworkManager+User.m */,
 				20C19AE21E56FB400010CAF5 /* MCFNetworkManager+NaVi.h */,
 				20C19AE31E56FB400010CAF5 /* MCFNetworkManager+NaVi.m */,
 				20C49BE01E558D6000196534 /* MCFNetworkManager.h */,
@@ -251,6 +298,49 @@
 				20C49BDC1E55872B00196534 /* NTESHTTPTask.m */,
 			);
 			path = NTESClient;
+			sourceTree = "<group>";
+		};
+		20DFD1AD1E5A881200D13921 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				20DFD1AE1E5A883D00D13921 /* MCFHomeViewController.h */,
+				20DFD1AF1E5A883D00D13921 /* MCFHomeViewController.m */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		20DFD1C01E5ABD8F00D13921 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				20DFD1C71E5AD30800D13921 /* ServiceViewController.h */,
+				20DFD1C81E5AD30800D13921 /* ServiceViewController.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		20DFD1C11E5AC57F00D13921 /* Life */ = {
+			isa = PBXGroup;
+			children = (
+				20DFD1CA1E5AD6C000D13921 /* LifeViewController.h */,
+				20DFD1CB1E5AD6C000D13921 /* LifeViewController.m */,
+			);
+			path = Life;
+			sourceTree = "<group>";
+		};
+		20DFD1C21E5AC57F00D13921 /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
+		20DFD1C31E5AC57F00D13921 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				20DFD1C41E5AC5AE00D13921 /* VideoViewController.h */,
+				20DFD1C51E5AC5AE00D13921 /* VideoViewController.m */,
+			);
+			path = Video;
 			sourceTree = "<group>";
 		};
 		2793546A1E542B48004ECB95 = {
@@ -637,12 +727,22 @@
 				279354781E542B48004ECB95 /* main.m in Sources */,
 				20C19AE41E56FB400010CAF5 /* MCFNetworkManager+NaVi.m in Sources */,
 				20C49BE21E558D6000196534 /* MCFNetworkManager.m in Sources */,
+				20DFD1B31E5A932D00D13921 /* MCFAlertController.m in Sources */,
+				20DFD1D21E5AD9BB00D13921 /* MCFUserModel.m in Sources */,
 				20C49BC41E554B7300196534 /* constants.m in Sources */,
+				20DFD1C61E5AC5AE00D13921 /* VideoViewController.m in Sources */,
 				20C49BDF1E55872B00196534 /* NTESHTTPTask.m in Sources */,
 				20C49BDE1E55872B00196534 /* NTESHTTPSessionManager.m in Sources */,
+				20DFD1C91E5AD30800D13921 /* ServiceViewController.m in Sources */,
+				20DFD1B01E5A883D00D13921 /* MCFHomeViewController.m in Sources */,
+				20DFD1CF1E5AD92100D13921 /* MCFNetworkManager+User.m in Sources */,
 				20C19AD41E56E57A0010CAF5 /* RootTabBarController.m in Sources */,
 				201425D21E568C0C00A1535E /* MCFNavigationController.m in Sources */,
+				20DFD1CC1E5AD6C000D13921 /* LifeViewController.m in Sources */,
 				20C19AF21E56FE4B0010CAF5 /* MCFNaviModel.m in Sources */,
+				20DFD1BC1E5A973300D13921 /* MCFTools.m in Sources */,
+				20DFD1BF1E5AAF9900D13921 /* BaseWebViewController.m in Sources */,
+				20DFD1D51E5ADC5800D13921 /* RegisterModel.m in Sources */,
 				20C49BE51E5599ED00196534 /* MCFConfigure.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

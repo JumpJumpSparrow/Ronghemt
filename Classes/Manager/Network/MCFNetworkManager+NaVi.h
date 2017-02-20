@@ -7,9 +7,10 @@
 //
 
 #import "MCFNetworkManager.h"
+#import "MCFNaviModel.h"
 
 @interface MCFNetworkManager (NaVi)
 
-+ (void)requestNaviTypeSuccess:(void(^)(NSArray *channels))sucess failure:(void(^)(NSString *tips))failure;
++ (void)requestNaviTypeSuccess:(void(^)(NSArray *channels))sucess failure:(void(^)(NSError *error))failure;
 
 @end
