@@ -10,6 +10,8 @@
 #import "BaseViewController.h"
 #import "MCFNavigationController.h"
 #import "MCFTabBar.h"
+#import "MCFNetworkManager+NaVi.h"
+
 @interface RootTabBarController ()
 
 @end
@@ -30,6 +32,16 @@
     
     MCFTabBar *tabBar = [[MCFTabBar alloc] init];
     [self setValue:tabBar forKey:@"tabBar"];
+    
+    [self loadNavi];
+}
+
+- (void)loadNavi {
+    [MCFNetworkManager requestNaviTypeSuccess:^(NSArray *channels) {
+        
+    } failure:^(NSString *tips) {
+        
+    }];
 }
 
 - (void)installControllers {

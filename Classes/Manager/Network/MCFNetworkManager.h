@@ -7,7 +7,7 @@
 //
 
 #import "NTESHTTPClient.h"
-
+#import "MCFConfigure.h"
 @interface MCFNetworkManager : NTESHTTPClient
 
 @end

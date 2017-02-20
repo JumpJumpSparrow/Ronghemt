@@ -49,7 +49,8 @@
         }
         
         // added by zxz 2016.7.13 (for wechat text/plain)
-        [_sessionManager setAcceptableContentTypes:[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/plain", nil]];
+        // added by mcf 2017.2.17 (for html text/html)
+        [_sessionManager setAcceptableContentTypes:[NSSet setWithObjects:@"application/json", @"text/html", @"text/json", @"text/javascript", @"text/plain", nil]];
         
         if ([self.config respondsToSelector:@selector(sessionHeaderFields)]) {
             [_sessionManager setDefaultHeaderFields:[self.config sessionHeaderFields]];

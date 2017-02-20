@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		201425D21E568C0C00A1535E /* MCFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 201425D11E568C0C00A1535E /* MCFNavigationController.m */; };
 		20C19AD41E56E57A0010CAF5 /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19AD31E56E57A0010CAF5 /* RootTabBarController.m */; };
-		20C19AE11E56EBB10010CAF5 /* MCFTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19AE01E56EBB10010CAF5 /* MCFTabBar.m */; };
+		20C19AE41E56FB400010CAF5 /* MCFNetworkManager+NaVi.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19AE31E56FB400010CAF5 /* MCFNetworkManager+NaVi.m */; };
+		20C19AE91E56FBE90010CAF5 /* MCFTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19AE81E56FBE90010CAF5 /* MCFTabBar.m */; };
+		20C19AEF1E56FDF10010CAF5 /* MCFBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19AEE1E56FDF10010CAF5 /* MCFBaseModel.m */; };
+		20C19AF21E56FE4B0010CAF5 /* MCFNaviModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19AF11E56FE4B0010CAF5 /* MCFNaviModel.m */; };
 		20C49BC41E554B7300196534 /* constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BC31E554B7300196534 /* constants.m */; };
 		20C49BD31E5575DD00196534 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BD21E5575DD00196534 /* BaseViewController.m */; };
 		20C49BDD1E55872B00196534 /* NTESHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BD71E55872B00196534 /* NTESHTTPClient.m */; };
@@ -55,8 +58,14 @@
 		201425D11E568C0C00A1535E /* MCFNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFNavigationController.m; sourceTree = "<group>"; };
 		20C19AD21E56E57A0010CAF5 /* RootTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarController.h; sourceTree = "<group>"; };
 		20C19AD31E56E57A0010CAF5 /* RootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarController.m; sourceTree = "<group>"; };
-		20C19ADF1E56EBB10010CAF5 /* MCFTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFTabBar.h; sourceTree = "<group>"; };
-		20C19AE01E56EBB10010CAF5 /* MCFTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFTabBar.m; sourceTree = "<group>"; };
+		20C19AE21E56FB400010CAF5 /* MCFNetworkManager+NaVi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MCFNetworkManager+NaVi.h"; sourceTree = "<group>"; };
+		20C19AE31E56FB400010CAF5 /* MCFNetworkManager+NaVi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MCFNetworkManager+NaVi.m"; sourceTree = "<group>"; };
+		20C19AE71E56FBE90010CAF5 /* MCFTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFTabBar.h; sourceTree = "<group>"; };
+		20C19AE81E56FBE90010CAF5 /* MCFTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFTabBar.m; sourceTree = "<group>"; };
+		20C19AED1E56FDF10010CAF5 /* MCFBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFBaseModel.h; sourceTree = "<group>"; };
+		20C19AEE1E56FDF10010CAF5 /* MCFBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFBaseModel.m; sourceTree = "<group>"; };
+		20C19AF01E56FE4B0010CAF5 /* MCFNaviModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFNaviModel.h; sourceTree = "<group>"; };
+		20C19AF11E56FE4B0010CAF5 /* MCFNaviModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFNaviModel.m; sourceTree = "<group>"; };
 		20C49BC11E554ACF00196534 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		20C49BC21E554B7300196534 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		20C49BC31E554B7300196534 /* constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = constants.m; sourceTree = "<group>"; };
@@ -126,11 +135,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		20C19AD51E56E6030010CAF5 /* View */ = {
+		20C19AE51E56FBE90010CAF5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				20C19ADF1E56EBB10010CAF5 /* MCFTabBar.h */,
-				20C19AE01E56EBB10010CAF5 /* MCFTabBar.m */,
+				20C19AED1E56FDF10010CAF5 /* MCFBaseModel.h */,
+				20C19AEE1E56FDF10010CAF5 /* MCFBaseModel.m */,
+				20C19AF01E56FE4B0010CAF5 /* MCFNaviModel.h */,
+				20C19AF11E56FE4B0010CAF5 /* MCFNaviModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		20C19AE61E56FBE90010CAF5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				20C19AE71E56FBE90010CAF5 /* MCFTabBar.h */,
+				20C19AE81E56FBE90010CAF5 /* MCFTabBar.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -138,6 +158,8 @@
 		20C49BC81E554CE800196534 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				20C19AE51E56FBE90010CAF5 /* Model */,
+				20C19AE61E56FBE90010CAF5 /* View */,
 				20C49BCF1E5574FC00196534 /* Controller */,
 				20C49BCC1E555AFE00196534 /* Manager */,
 				20C49BCE1E555AFE00196534 /* Vendor */,
@@ -187,7 +209,6 @@
 		20C49BCF1E5574FC00196534 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				20C19AD51E56E6030010CAF5 /* View */,
 				20C49BD01E5575B800196534 /* Common */,
 			);
 			path = Controller;
@@ -209,6 +230,8 @@
 		20C49BD41E55821C00196534 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				20C19AE21E56FB400010CAF5 /* MCFNetworkManager+NaVi.h */,
+				20C19AE31E56FB400010CAF5 /* MCFNetworkManager+NaVi.m */,
 				20C49BE01E558D6000196534 /* MCFNetworkManager.h */,
 				20C49BE11E558D6000196534 /* MCFNetworkManager.m */,
 				20C49BD51E55872B00196534 /* NTESClient */,
@@ -605,18 +628,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20C19AE91E56FBE90010CAF5 /* MCFTabBar.m in Sources */,
+				20C19AEF1E56FDF10010CAF5 /* MCFBaseModel.m in Sources */,
 				20C49BDD1E55872B00196534 /* NTESHTTPClient.m in Sources */,
 				2793547E1E542B48004ECB95 /* ViewController.m in Sources */,
 				20C49BD31E5575DD00196534 /* BaseViewController.m in Sources */,
 				2793547B1E542B48004ECB95 /* AppDelegate.m in Sources */,
 				279354781E542B48004ECB95 /* main.m in Sources */,
+				20C19AE41E56FB400010CAF5 /* MCFNetworkManager+NaVi.m in Sources */,
 				20C49BE21E558D6000196534 /* MCFNetworkManager.m in Sources */,
 				20C49BC41E554B7300196534 /* constants.m in Sources */,
 				20C49BDF1E55872B00196534 /* NTESHTTPTask.m in Sources */,
 				20C49BDE1E55872B00196534 /* NTESHTTPSessionManager.m in Sources */,
 				20C19AD41E56E57A0010CAF5 /* RootTabBarController.m in Sources */,
-				20C19AE11E56EBB10010CAF5 /* MCFTabBar.m in Sources */,
 				201425D21E568C0C00A1535E /* MCFNavigationController.m in Sources */,
+				20C19AF21E56FE4B0010CAF5 /* MCFNaviModel.m in Sources */,
 				20C49BE51E5599ED00196534 /* MCFConfigure.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
