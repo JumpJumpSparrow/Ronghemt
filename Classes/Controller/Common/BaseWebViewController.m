@@ -10,7 +10,7 @@
 #import "MCFNetworkManager.h"
 @interface BaseWebViewController ()<UIWebViewDelegate>
 
-@property (nonatomic, copy) NSString *url;
+@property (nonatomic, assign) dispatch_once_t onceToken;
 @end
 
 @implementation BaseWebViewController
@@ -35,12 +35,14 @@
     [super viewDidLoad];
     
     [self.view addSubview:self.contentWebView];
-    if (self.url.length > 0) [self loadRequest:self.url];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.contentWebView.frame = self.view.bounds;
+    dispatch_once(&_onceToken, ^{
+        if (self.url.length > 0) [self loadRequest:self.url];
+    });
 }
 
 - (void)loadRequest:(NSString *)url {
@@ -63,6 +65,10 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self hideLoading];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [self hideLoading];
 }
 

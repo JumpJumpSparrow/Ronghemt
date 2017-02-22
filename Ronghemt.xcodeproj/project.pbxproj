@@ -30,6 +30,19 @@
 		20DFD1CF1E5AD92100D13921 /* MCFNetworkManager+User.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1CE1E5AD92100D13921 /* MCFNetworkManager+User.m */; };
 		20DFD1D21E5AD9BB00D13921 /* MCFUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1D11E5AD9BB00D13921 /* MCFUserModel.m */; };
 		20DFD1D51E5ADC5800D13921 /* RegisterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1D41E5ADC5800D13921 /* RegisterModel.m */; };
+		20DFD1D81E5AE4BB00D13921 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1D71E5AE4BB00D13921 /* MineViewController.m */; };
+		20DFD1DB1E5AE54C00D13921 /* BaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1DA1E5AE54C00D13921 /* BaseCollectionViewCell.m */; };
+		20DFD1DE1E5AE83600D13921 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1DD1E5AE83600D13921 /* BaseTableViewCell.m */; };
+		20DFD1E21E5AE8F700D13921 /* IconTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1E11E5AE8F700D13921 /* IconTitleCell.m */; };
+		20DFD1E81E5AF23400D13921 /* BaseTableViewHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1E71E5AF23400D13921 /* BaseTableViewHeaderFooterView.m */; };
+		20DFD1EB1E5AF27C00D13921 /* UserHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1EA1E5AF27C00D13921 /* UserHeader.m */; };
+		20DFD1ED1E5BD61100D13921 /* Mine.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20DFD1EC1E5BD61100D13921 /* Mine.plist */; };
+		20DFD1F01E5C1A3100D13921 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1EF1E5C1A3100D13921 /* ProfileViewController.m */; };
+		20DFD1F31E5C1E1900D13921 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1F21E5C1E1900D13921 /* CollectionViewController.m */; };
+		20DFD1F61E5C1E2D00D13921 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1F51E5C1E2D00D13921 /* FeedbackViewController.m */; };
+		20DFD1FC1E5C1F7400D13921 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1FB1E5C1F7400D13921 /* SettingViewController.m */; };
+		20DFD1FF1E5C236C00D13921 /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1FE1E5C236C00D13921 /* RegistViewController.m */; };
+		20DFD2021E5C23A100D13921 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD2011E5C23A100D13921 /* LogInViewController.m */; };
 		279354781E542B48004ECB95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 279354771E542B48004ECB95 /* main.m */; };
 		2793547B1E542B48004ECB95 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2793547A1E542B48004ECB95 /* AppDelegate.m */; };
 		2793547E1E542B48004ECB95 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2793547D1E542B48004ECB95 /* ViewController.m */; };
@@ -113,6 +126,31 @@
 		20DFD1D11E5AD9BB00D13921 /* MCFUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFUserModel.m; sourceTree = "<group>"; };
 		20DFD1D31E5ADC5800D13921 /* RegisterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterModel.h; sourceTree = "<group>"; };
 		20DFD1D41E5ADC5800D13921 /* RegisterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterModel.m; sourceTree = "<group>"; };
+		20DFD1D61E5AE4BB00D13921 /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
+		20DFD1D71E5AE4BB00D13921 /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
+		20DFD1D91E5AE54C00D13921 /* BaseCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewCell.h; sourceTree = "<group>"; };
+		20DFD1DA1E5AE54C00D13921 /* BaseCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewCell.m; sourceTree = "<group>"; };
+		20DFD1DC1E5AE83600D13921 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
+		20DFD1DD1E5AE83600D13921 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
+		20DFD1E01E5AE8F700D13921 /* IconTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconTitleCell.h; sourceTree = "<group>"; };
+		20DFD1E11E5AE8F700D13921 /* IconTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconTitleCell.m; sourceTree = "<group>"; };
+		20DFD1E61E5AF23400D13921 /* BaseTableViewHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewHeaderFooterView.h; sourceTree = "<group>"; };
+		20DFD1E71E5AF23400D13921 /* BaseTableViewHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewHeaderFooterView.m; sourceTree = "<group>"; };
+		20DFD1E91E5AF27C00D13921 /* UserHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHeader.h; sourceTree = "<group>"; };
+		20DFD1EA1E5AF27C00D13921 /* UserHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHeader.m; sourceTree = "<group>"; };
+		20DFD1EC1E5BD61100D13921 /* Mine.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Mine.plist; sourceTree = "<group>"; };
+		20DFD1EE1E5C1A3100D13921 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		20DFD1EF1E5C1A3100D13921 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		20DFD1F11E5C1E1900D13921 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
+		20DFD1F21E5C1E1900D13921 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		20DFD1F41E5C1E2D00D13921 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
+		20DFD1F51E5C1E2D00D13921 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
+		20DFD1FA1E5C1F7400D13921 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		20DFD1FB1E5C1F7400D13921 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		20DFD1FD1E5C236C00D13921 /* RegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistViewController.h; sourceTree = "<group>"; };
+		20DFD1FE1E5C236C00D13921 /* RegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistViewController.m; sourceTree = "<group>"; };
+		20DFD2001E5C23A100D13921 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
+		20DFD2011E5C23A100D13921 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		279354731E542B48004ECB95 /* Ronghemt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ronghemt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		279354771E542B48004ECB95 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		279354791E542B48004ECB95 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -185,6 +223,12 @@
 			children = (
 				20C19AE71E56FBE90010CAF5 /* MCFTabBar.h */,
 				20C19AE81E56FBE90010CAF5 /* MCFTabBar.m */,
+				20DFD1D91E5AE54C00D13921 /* BaseCollectionViewCell.h */,
+				20DFD1DA1E5AE54C00D13921 /* BaseCollectionViewCell.m */,
+				20DFD1DC1E5AE83600D13921 /* BaseTableViewCell.h */,
+				20DFD1DD1E5AE83600D13921 /* BaseTableViewCell.m */,
+				20DFD1E61E5AF23400D13921 /* BaseTableViewHeaderFooterView.h */,
+				20DFD1E71E5AF23400D13921 /* BaseTableViewHeaderFooterView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -330,6 +374,21 @@
 		20DFD1C21E5AC57F00D13921 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				20DFD1DF1E5AE8CD00D13921 /* view */,
+				20DFD1D61E5AE4BB00D13921 /* MineViewController.h */,
+				20DFD1D71E5AE4BB00D13921 /* MineViewController.m */,
+				20DFD1FD1E5C236C00D13921 /* RegistViewController.h */,
+				20DFD1FE1E5C236C00D13921 /* RegistViewController.m */,
+				20DFD2001E5C23A100D13921 /* LogInViewController.h */,
+				20DFD2011E5C23A100D13921 /* LogInViewController.m */,
+				20DFD1EE1E5C1A3100D13921 /* ProfileViewController.h */,
+				20DFD1EF1E5C1A3100D13921 /* ProfileViewController.m */,
+				20DFD1F11E5C1E1900D13921 /* CollectionViewController.h */,
+				20DFD1F21E5C1E1900D13921 /* CollectionViewController.m */,
+				20DFD1F41E5C1E2D00D13921 /* FeedbackViewController.h */,
+				20DFD1F51E5C1E2D00D13921 /* FeedbackViewController.m */,
+				20DFD1FA1E5C1F7400D13921 /* SettingViewController.h */,
+				20DFD1FB1E5C1F7400D13921 /* SettingViewController.m */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -341,6 +400,18 @@
 				20DFD1C51E5AC5AE00D13921 /* VideoViewController.m */,
 			);
 			path = Video;
+			sourceTree = "<group>";
+		};
+		20DFD1DF1E5AE8CD00D13921 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				20DFD1E01E5AE8F700D13921 /* IconTitleCell.h */,
+				20DFD1E11E5AE8F700D13921 /* IconTitleCell.m */,
+				20DFD1E91E5AF27C00D13921 /* UserHeader.h */,
+				20DFD1EA1E5AF27C00D13921 /* UserHeader.m */,
+				20DFD1EC1E5BD61100D13921 /* Mine.plist */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		2793546A1E542B48004ECB95 = {
@@ -554,6 +625,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				279354861E542B48004ECB95 /* LaunchScreen.storyboard in Resources */,
+				20DFD1ED1E5BD61100D13921 /* Mine.plist in Resources */,
 				279354831E542B48004ECB95 /* Assets.xcassets in Resources */,
 				279354811E542B48004ECB95 /* Main.storyboard in Resources */,
 			);
@@ -719,22 +791,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				20C19AE91E56FBE90010CAF5 /* MCFTabBar.m in Sources */,
+				20DFD1E21E5AE8F700D13921 /* IconTitleCell.m in Sources */,
 				20C19AEF1E56FDF10010CAF5 /* MCFBaseModel.m in Sources */,
 				20C49BDD1E55872B00196534 /* NTESHTTPClient.m in Sources */,
 				2793547E1E542B48004ECB95 /* ViewController.m in Sources */,
 				20C49BD31E5575DD00196534 /* BaseViewController.m in Sources */,
 				2793547B1E542B48004ECB95 /* AppDelegate.m in Sources */,
+				20DFD1FF1E5C236C00D13921 /* RegistViewController.m in Sources */,
 				279354781E542B48004ECB95 /* main.m in Sources */,
 				20C19AE41E56FB400010CAF5 /* MCFNetworkManager+NaVi.m in Sources */,
+				20DFD2021E5C23A100D13921 /* LogInViewController.m in Sources */,
 				20C49BE21E558D6000196534 /* MCFNetworkManager.m in Sources */,
+				20DFD1E81E5AF23400D13921 /* BaseTableViewHeaderFooterView.m in Sources */,
+				20DFD1DB1E5AE54C00D13921 /* BaseCollectionViewCell.m in Sources */,
+				20DFD1F31E5C1E1900D13921 /* CollectionViewController.m in Sources */,
 				20DFD1B31E5A932D00D13921 /* MCFAlertController.m in Sources */,
 				20DFD1D21E5AD9BB00D13921 /* MCFUserModel.m in Sources */,
 				20C49BC41E554B7300196534 /* constants.m in Sources */,
+				20DFD1EB1E5AF27C00D13921 /* UserHeader.m in Sources */,
+				20DFD1F61E5C1E2D00D13921 /* FeedbackViewController.m in Sources */,
+				20DFD1D81E5AE4BB00D13921 /* MineViewController.m in Sources */,
 				20DFD1C61E5AC5AE00D13921 /* VideoViewController.m in Sources */,
 				20C49BDF1E55872B00196534 /* NTESHTTPTask.m in Sources */,
+				20DFD1F01E5C1A3100D13921 /* ProfileViewController.m in Sources */,
 				20C49BDE1E55872B00196534 /* NTESHTTPSessionManager.m in Sources */,
+				20DFD1FC1E5C1F7400D13921 /* SettingViewController.m in Sources */,
 				20DFD1C91E5AD30800D13921 /* ServiceViewController.m in Sources */,
 				20DFD1B01E5A883D00D13921 /* MCFHomeViewController.m in Sources */,
+				20DFD1DE1E5AE83600D13921 /* BaseTableViewCell.m in Sources */,
 				20DFD1CF1E5AD92100D13921 /* MCFNetworkManager+User.m in Sources */,
 				20C19AD41E56E57A0010CAF5 /* RootTabBarController.m in Sources */,
 				201425D21E568C0C00A1535E /* MCFNavigationController.m in Sources */,

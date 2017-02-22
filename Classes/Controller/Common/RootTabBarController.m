@@ -16,6 +16,7 @@
 #import "VideoViewController.h"
 #import "ServiceViewController.h"
 #import "LifeViewController.h"
+#import "MineViewController.h"
 
 @interface RootTabBarController ()
 
@@ -68,7 +69,7 @@
     
     ServiceViewController *serviceVC = [self.childControllers objectAtIndex:2];
     MCFNaviModel *naviModel = self.naviItems[2];
-    [serviceVC loadRequest:naviModel.navigationUrl];
+    serviceVC.url = naviModel.navigationUrl;
     
     LifeViewController *lifeVc = [self.childControllers objectAtIndex:3];
     [lifeVc loadChannels:self.naviItems[3]];
@@ -87,7 +88,7 @@
     LifeViewController *lifeVC = [[LifeViewController alloc] init];
     MCFNavigationController *lifeNaviVC = [[MCFNavigationController alloc] initWithRootViewController:lifeVC];
     
-    BaseViewController *mineVC = [[BaseViewController alloc] init];
+    MineViewController *mineVC = [[MineViewController alloc] init];
     MCFNavigationController *mineNaviVC = [[MCFNavigationController alloc] initWithRootViewController:mineVC];
     
     self.viewControllers = @[homeNaviVC, videoNaviVC, serviceNavi, lifeNaviVC, mineNaviVC];

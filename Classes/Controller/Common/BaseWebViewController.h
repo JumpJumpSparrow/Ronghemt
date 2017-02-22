@@ -10,6 +10,7 @@
 
 @interface BaseWebViewController : BaseViewController
 
+@property (nonatomic, copy) NSString *url;
 @property (nonatomic, strong) UIWebView *contentWebView;
 
 - (void)loadRequest:(NSString *)url;
