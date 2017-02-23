@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import <MBProgressHUD.h>
+#import "MCFAlertController.h"
 
 @interface BaseViewController ()
 
@@ -23,8 +24,7 @@
 
 - (void)showLoading{
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-        self.hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     });
 }
 
@@ -32,16 +32,16 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         
         if (self.hud) [self.hud hideAnimated:NO];
-        self.hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+        self.hud = self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];;
         self.hud.mode = MBProgressHUDModeText;
+        self.hud.removeFromSuperViewOnHide = YES;
         self.hud.label.text = tip;
-        [self.hud hideAnimated:YES afterDelay:3.0f];
+        [self.hud hideAnimated:YES afterDelay:2.0f];
     });
 }
 
 - (void)hideLoading {
     dispatch_async(dispatch_get_main_queue(), ^{
-        
         if (self.hud) [self.hud hideAnimated:YES];
     });
 }

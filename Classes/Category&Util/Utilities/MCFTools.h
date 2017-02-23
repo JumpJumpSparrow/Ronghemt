@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
+@class MCFUserModel;
 @interface MCFTools : NSObject
 
-+ (void)showAlert:(NSString *)alert to:(UIViewController *)target completion:(void(^)())completion;
++ (id)getObjectForKey:(NSString *)key;
 
-+ (void)showAlert:(NSString *)alert to:(UIViewController *)target;
++ (instancetype)sharedInstance;
++ (BOOL)isLogined;
++ (MCFUserModel *)getLoginUser;
++ (void)saveLoginUser:(MCFUserModel *)bean;
++ (void)clearLoginUser;
 @end

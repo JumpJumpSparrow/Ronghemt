@@ -22,7 +22,7 @@
     if (_nameLabel == nil) {
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.textColor = [UIColor blackColor];
-        _nameLabel.font = [UIFont systemFontOfSize:15.0f];
+        _nameLabel.font = [UIFont systemFontOfSize:18.0f];
         _nameLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _nameLabel;
@@ -63,7 +63,8 @@
     MCFUserModel *user = (MCFUserModel *)model;
     @weakify(self)
     [self.backgroundImageView setImageWithURL:[NSURL URLWithString:user.avatar]
-                                  placeholder:nil options:YYWebImageOptionProgressiveBlur
+                                  placeholder:[UIImage imageNamed:@"defaultAvatar"]
+                                      options:YYWebImageOptionProgressiveBlur
                                    completion:^(UIImage * _Nullable image,
                                                 NSURL * _Nonnull url,
                                                 YYWebImageFromType from,

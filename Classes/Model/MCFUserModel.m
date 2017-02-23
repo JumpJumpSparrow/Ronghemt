@@ -9,5 +9,18 @@
 #import "MCFUserModel.h"
 
 @implementation MCFUserModel
+MJCodingImplementation // 归档、解归档
+
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    
+    return @{
+             @"username" : @"username",
+               @"avatar" : @"avatar",
+                @"email" : @"email",
+                @"phone" : @"phone",
+            @"sessionid" : @"sessionid",
+               @"userId" : @"id"
+             };
+}
 
 @end

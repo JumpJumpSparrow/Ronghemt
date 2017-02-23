@@ -15,15 +15,17 @@ typedef NS_ENUM(NSInteger, AppEdition) {
 
 static const AppEdition appType = AppEditionStandard;// 更改应用版本
 
-static NSString *AppStandardHost      = @"http://user.dev.ctvcloud.com/api/";//标准版
-static NSString *AppWFHost            = @"http://user.dev.ctvcloud.com/api/";//后续将有改变f
+static NSString *AppStandardHost          = @"http://user.dev.ctvcloud.com/api/";//标准版
+static NSString *AppWFHost                = @"http://user.dev.ctvcloud.com/api/";//后续将有改变f
 
-static NSString *NaviTypeStandard     = @"http://app.dev.wfrbw.com/html/nav.html";
-static NSString *NaviTypeWF           = @"http://app2.dev.ctvcloud.com/html/nav.html";
+static NSString *NaviTypeStandard         = @"http://app.dev.wfrbw.com/html/nav.html";
+static NSString *NaviTypeWF               = @"http://app2.dev.ctvcloud.com/html/nav.html";
 
-static NSString *AppColorSelected    =@"#ef7032";
-static NSString *AppColorNormal      =@"#929292";
+static NSString *AppColorSelected         =@"#ef7032";
+static NSString *AppColorNormal           =@"#929292";
+#define APPGRAY     [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1]
 
+static NSString *AppUserKey               = @"AppUserKeyAppUserKey";
 
 @interface constants : NSObject
 

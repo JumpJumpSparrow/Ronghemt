@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <YYKit.h>
+#import "MCFTools.h"
 @interface BaseViewController : UIViewController
 
+- (void)showTip:(NSString *)tip;
 
 - (void)showLoading;
 - (void)hideLoading;
-- (void)showTip:(NSString *)tip;
 @end

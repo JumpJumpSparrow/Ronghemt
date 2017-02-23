@@ -7,9 +7,9 @@
 //
 
 #import "MCFNetworkManager.h"
-#import "RegisterModel.h"
-#import "MCFUserModel.h"
 
+@class MCFUserModel;
+@class RegisterModel;
 @interface MCFNetworkManager (User)
 
 + (void)registerUser:(RegisterModel *)user success:(void(^)(MCFUserModel *user, NSString *tip))success failure:(void(^)(NSError *error))failure;

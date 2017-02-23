@@ -20,6 +20,7 @@
 		20C49BDF1E55872B00196534 /* NTESHTTPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BDC1E55872B00196534 /* NTESHTTPTask.m */; };
 		20C49BE21E558D6000196534 /* MCFNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BE11E558D6000196534 /* MCFNetworkManager.m */; };
 		20C49BE51E5599ED00196534 /* MCFConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C49BE41E5599ED00196534 /* MCFConfigure.m */; };
+		20CC5DFE1E5D86BD002E8F38 /* ModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CC5DFD1E5D86BD002E8F38 /* ModifyPasswordViewController.m */; };
 		20DFD1B01E5A883D00D13921 /* MCFHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1AF1E5A883D00D13921 /* MCFHomeViewController.m */; };
 		20DFD1B31E5A932D00D13921 /* MCFAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1B21E5A932D00D13921 /* MCFAlertController.m */; };
 		20DFD1BC1E5A973300D13921 /* MCFTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1BB1E5A973300D13921 /* MCFTools.m */; };
@@ -106,6 +107,8 @@
 		20C49BE11E558D6000196534 /* MCFNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFNetworkManager.m; sourceTree = "<group>"; };
 		20C49BE31E5599ED00196534 /* MCFConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFConfigure.h; sourceTree = "<group>"; };
 		20C49BE41E5599ED00196534 /* MCFConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFConfigure.m; sourceTree = "<group>"; };
+		20CC5DFC1E5D86BD002E8F38 /* ModifyPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPasswordViewController.h; sourceTree = "<group>"; };
+		20CC5DFD1E5D86BD002E8F38 /* ModifyPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPasswordViewController.m; sourceTree = "<group>"; };
 		20DFD1AE1E5A883D00D13921 /* MCFHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFHomeViewController.h; sourceTree = "<group>"; };
 		20DFD1AF1E5A883D00D13921 /* MCFHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFHomeViewController.m; sourceTree = "<group>"; };
 		20DFD1B11E5A932D00D13921 /* MCFAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFAlertController.h; sourceTree = "<group>"; };
@@ -379,6 +382,8 @@
 				20DFD1D71E5AE4BB00D13921 /* MineViewController.m */,
 				20DFD1FD1E5C236C00D13921 /* RegistViewController.h */,
 				20DFD1FE1E5C236C00D13921 /* RegistViewController.m */,
+				20CC5DFC1E5D86BD002E8F38 /* ModifyPasswordViewController.h */,
+				20CC5DFD1E5D86BD002E8F38 /* ModifyPasswordViewController.m */,
 				20DFD2001E5C23A100D13921 /* LogInViewController.h */,
 				20DFD2011E5C23A100D13921 /* LogInViewController.m */,
 				20DFD1EE1E5C1A3100D13921 /* ProfileViewController.h */,
@@ -823,6 +828,7 @@
 				20C19AD41E56E57A0010CAF5 /* RootTabBarController.m in Sources */,
 				201425D21E568C0C00A1535E /* MCFNavigationController.m in Sources */,
 				20DFD1CC1E5AD6C000D13921 /* LifeViewController.m in Sources */,
+				20CC5DFE1E5D86BD002E8F38 /* ModifyPasswordViewController.m in Sources */,
 				20C19AF21E56FE4B0010CAF5 /* MCFNaviModel.m in Sources */,
 				20DFD1BC1E5A973300D13921 /* MCFTools.m in Sources */,
 				20DFD1BF1E5AAF9900D13921 /* BaseWebViewController.m in Sources */,

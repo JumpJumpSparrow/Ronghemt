@@ -7,24 +7,48 @@
 //
 
 #import "MCFTools.h"
-#import "MCFAlertController.h"
-#import <YYKit.h>
+#import "MCFUserModel.h"
 
 @implementation MCFTools
 
-+ (void)showAlert:(NSString *)alert to:(UIViewController *)target completion:(void (^)())completion {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        MCFAlertController *alertVC = [MCFAlertController alertControllerWithTitle:@"提示" message:alert preferredStyle:UIAlertControllerStyleAlert];
-        alertVC.messageColor = [UIColor colorWithHexString:AppColorSelected];
-        alertVC.tintColor = [UIColor colorWithHexString:AppColorSelected];
-        MCFAlertAction *action = [MCFAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:NULL];
-        [alertVC addAction:action];
-        [target presentViewController:alertVC animated:YES completion:completion];
+
++ (instancetype)sharedInstance {
+    static dispatch_once_t onceToken;
+    static MCFTools *tools;
+    dispatch_once(&onceToken, ^{
+        tools = [[MCFTools alloc] init];
     });
+    return tools;
 }
 
-+ (void)showAlert:(NSString *)alert to:(UIViewController *)target {
-    
++ (void)saveLoginUser:(MCFUserModel *)bean {
+    if (bean) {
+        [MCFTools setObjectForKey:AppUserKey value:[NSKeyedArchiver archivedDataWithRootObject:bean]];;
+    }
 }
+
++ (MCFUserModel *)getLoginUser {
+    NSData *userData = [MCFTools getObjectForKey:AppUserKey];
+    if (userData) {
+        return [NSKeyedUnarchiver unarchiveObjectWithData:userData];
+    } else return [[MCFUserModel alloc] init];
+}
+
++ (BOOL)isLogined {
+    return [MCFTools getLoginUser].userId != 0;
+}
+
++ (void)clearLoginUser {
+    [MCFTools setObjectForKey:AppUserKey value:[[MCFUserModel alloc] init]];
+}
+
++ (id)getObjectForKey:(NSString *)key {
+    
+    return [[NSUserDefaults standardUserDefaults] objectForKey:key];
+}
+
++(void)setObjectForKey:(NSString*)key value:(id)value {
+    [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
+}
+
 @end

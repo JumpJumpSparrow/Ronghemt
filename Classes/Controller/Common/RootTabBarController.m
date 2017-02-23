@@ -17,6 +17,7 @@
 #import "ServiceViewController.h"
 #import "LifeViewController.h"
 #import "MineViewController.h"
+#import "MCFAlertController.h"
 
 @interface RootTabBarController ()
 
@@ -56,7 +57,8 @@
         });
         
     } failure:^(NSError *error) {
-        [MCFTools showAlert:@"网络错误，请退出重试" to:self completion:NULL];
+         BaseViewController *currentVc = (BaseViewController *)self.selectedViewController;
+        [currentVc showTip:@"网络错误!"];
     }];
 }
 

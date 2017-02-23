@@ -23,6 +23,7 @@
     [self.contentView addSubview:self.iconImageView];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.textLabel.textColor = [UIColor colorWithHexString:AppColorNormal];
+    self.textLabel.font = [UIFont systemFontOfSize:15.0f];
     return self;
 }
 
