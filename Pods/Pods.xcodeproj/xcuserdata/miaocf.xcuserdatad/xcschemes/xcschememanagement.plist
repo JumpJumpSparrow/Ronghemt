@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FastttCamera.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -39,12 +44,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RDVTabBarController.xcscheme</key>
+		<key>RSKImageCropper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>WMPageController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>YPTabBarController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -62,7 +72,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2D03B12ADFA357FC28517BE9BB77E676</key>
+		<key>14A3B1A04B95DCD2CAF82E90106A33F3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2E4059746051117806884F5DCF98C3DC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>552436C685155AA1BCB24E8A5C7707B7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,12 +92,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>79395BCC3E9FA4C473A741AA3F06C4ED</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7DB3A13371ADF831B9C5CF30148F8079</key>
+		<key>61D18C3C5A3C44BF2A1D4AC6D9566819</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,7 +112,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BA4F89518E0BBC0D9C51B540ABFB48AA</key>
+		<key>A73FC91580A2C6B53396955A376F6AA1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D9BC9BD0EF0528B9292E73F39EDAEB77</key>
 		<dict>
 			<key>primary</key>
 			<true/>

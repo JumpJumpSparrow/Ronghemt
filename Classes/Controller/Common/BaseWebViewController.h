@@ -7,11 +7,13 @@
 //
 
 #import "BaseViewController.h"
+#import <WebKit/WebKit.h>
 
 @interface BaseWebViewController : BaseViewController
 
 @property (nonatomic, copy) NSString *url;
-@property (nonatomic, strong) UIWebView *contentWebView;
+@property (nonatomic, strong) WKWebView *contentWebView;
+@property (nonatomic, assign) BOOL hideNavi;
 
 - (void)loadRequest:(NSString *)url;
 - (instancetype)initWithUrl:(NSString *)url;

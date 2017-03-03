@@ -49,15 +49,16 @@
     self.optionArray = [NSArray arrayWithContentsOfFile:path];
     self.automaticallyAdjustsScrollViewInsets  =NO;
     [self.view addSubview:self.listTable];
-    LogInViewController *loginVC = [[LogInViewController alloc] init];
-    loginVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:loginVC animated:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
-    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self checkLoginStatus];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -70,6 +71,15 @@
     ProfileViewController *profileVC = [[ProfileViewController alloc] initWithUser:user];
     profileVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:profileVC animated:YES];
+}
+//-------------取反
+- (void)checkLoginStatus {
+    if([MCFTools isLogined]){
+        LogInViewController *loginVC = [[LogInViewController alloc] init];
+        loginVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:loginVC animated:NO];
+        return;
+    }
 }
 
 #pragma mark - table delegate

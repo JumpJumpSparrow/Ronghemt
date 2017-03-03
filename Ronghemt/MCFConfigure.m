@@ -15,28 +15,48 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         cfg = [[MCFConfigure alloc] init];
+        
+        cfg.umengAppKey = umengAppKey;
+        if (appType == AppEditionStandard) {
+            
+            cfg.APPNetHost        = AppStandardHost;
+            cfg.APPNaviType       = NaviTypeStandard;
+            cfg.APPIdWX           = AppIdWX;
+            cfg.AppSecretWX       = AppSecretWX;
+            cfg.UMChannel         = UMENG_CHANNEL;
+            
+        } else if (appType == AppEditionWF) {
+            cfg.APPNetHost        = AppWFHost;
+            cfg.APPNaviType       = NaviTypeWF;
+            cfg.APPIdWX           = AppIdWXWF;
+            cfg.AppSecretWX       = AppSecretWXWF;
+            cfg.UMChannel         = UMENG_CHANNEL_WF;
+        }
     });
     return cfg;
 }
 
-- (NSString *)APPHost {
-    static NSString *host = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        if (appType == AppEditionStandard) host = AppStandardHost;
-        else host = AppWFHost;
-    });
-    return host;
+- (void)setAPPNetHost:(NSString *)APPNetHost {
+    _APPNetHost = APPNetHost;
 }
 
-- (NSString *)NaviType {
-    static NSString *NaviHost = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        if (appType == AppEditionStandard) NaviHost = NaviTypeStandard;
-        else NaviHost = NaviTypeWF;
-    });
-    return NaviHost;
+- (void)setAPPNaviType:(NSString *)APPNaviType {
+    _APPNaviType = APPNaviType;
 }
 
+- (void)setAPPIdWX:(NSString *)APPIdWX {
+    _APPIdWX = APPIdWX;
+}
+
+- (void)setAppSecretWX:(NSString *)AppSecretWX {
+    _AppSecretWX = AppSecretWX;
+}
+
+- (void)setUmengAppKey:(NSString *)umengAppKey {
+    _umengAppKey = umengAppKey;
+}
+
+- (void)setUMChannel:(NSString *)UMChannel {
+    _UMChannel = UMChannel;
+}
 @end

@@ -7,16 +7,38 @@
 //
 
 #import "SettingViewController.h"
+#import "AppDelegate.h"
 
 @interface SettingViewController ()
 
+@property (nonatomic, strong) UIButton *logoutButton;
 @end
 
 @implementation SettingViewController
 
+- (UIButton *)logoutButton {
+    if (_logoutButton == nil) {
+        _logoutButton = [[UIButton alloc] initWithFrame:CGRectMake(10, self.view.height - 44.0f - 10.0f, self.view.width - 20, 44.0f)];
+        [_logoutButton setTitle:@"注销当前帐号" forState:UIControlStateNormal];
+        [_logoutButton setBackgroundImage:[UIImage imageNamed:@"commit_bg"] forState:UIControlStateNormal];
+        [_logoutButton addTarget:self action:@selector(logOut) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _logoutButton;
+}
+
+//推荐好友
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"设置";
+    [self.view addSubview:self.logoutButton];
+}
+
+- (void)logOut {
+    [MCFTools clearLoginUser];
+    
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [delegate.rootVc switchToIndex:0 subIndex:0];
 }
 
 - (void)didReceiveMemoryWarning {

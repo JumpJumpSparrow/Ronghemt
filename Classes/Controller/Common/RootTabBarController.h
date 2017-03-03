@@ -10,4 +10,5 @@
 
 @interface RootTabBarController : UITabBarController
 
+- (void)switchToIndex:(NSInteger)index subIndex:(NSInteger)subIndex;
 @end

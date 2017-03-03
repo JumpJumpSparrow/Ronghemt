@@ -57,8 +57,7 @@
         });
         
     } failure:^(NSError *error) {
-         BaseViewController *currentVc = (BaseViewController *)self.selectedViewController;
-        [currentVc showTip:@"网络错误!"];
+
     }];
 }
 
@@ -76,6 +75,33 @@
     LifeViewController *lifeVc = [self.childControllers objectAtIndex:3];
     [lifeVc loadChannels:self.naviItems[3]];
 }
+
+- (void)switchToIndex:(NSInteger)index subIndex:(NSInteger)subIndex {
+    if (index < 0 || index > self.childControllers.count) {
+        return;
+    }
+    self.selectedIndex = index;
+    switch (index) {
+        case 0:{
+            MCFHomeViewController *firstVc = [self.childControllers objectAtIndex:0];
+            firstVc.selectedIndex = subIndex;
+            break;
+        }
+        case 1:{
+            VideoViewController *videoVC = [self.childControllers objectAtIndex:1];
+            videoVC.selectedIndex = subIndex;
+            break;
+        }
+        case 3:{
+            LifeViewController *lifeVc = [self.childControllers objectAtIndex:3];
+            lifeVc.selectedIndex = subIndex;
+            break;
+        }
+        default:
+            break;
+    }
+}
+
 
 - (void)installControllers {
     MCFHomeViewController *homeVc = [[MCFHomeViewController alloc] init];

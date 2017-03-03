@@ -60,6 +60,21 @@
     [self addChildViewController:self.pageManagerController];
     [self.view addSubview:self.pageManagerController.view];
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.pageManagerController.selectIndex = (int)self.selectedIndex ;
+}
+
+//重置
+//- (NSInteger)selectedIndex {
+//    NSInteger index = _selectedIndex;
+//    _selectedIndex = 0;
+//    return index;
+//}
 
 - (NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController {
     return self.channelsArray.count;

@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "RootTabBarController.h"
+#import <UMSocialCore/UMSocialCore.h>
 
 @interface AppDelegate ()
 
@@ -20,13 +20,14 @@
     
     [MCFConfigure cfg];//初始化配置
     
-    RootTabBarController *rootVc = [[RootTabBarController alloc] init];
+    [self UMSetUp];
+    
+    self.rootVc = [[RootTabBarController alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    [self.window setRootViewController:rootVc];
+    [self.window setRootViewController:self.rootVc];
     [self.window makeKeyAndVisible];
     return YES;
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -54,5 +55,14 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+// 缺少QQ sina 
+- (void)UMSetUp {
+    [[UMSocialManager defaultManager] openLog:YES];
+    [[UMSocialManager defaultManager] setUmSocialAppkey:[MCFConfigure cfg].umengAppKey];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession
+                                          appKey:[MCFConfigure cfg].APPIdWX
+                                       appSecret:[MCFConfigure cfg].AppSecretWX
+                                     redirectURL:@"http://mobile.umeng.com/social"];
+}
 
 @end

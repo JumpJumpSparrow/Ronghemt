@@ -8,17 +8,36 @@
 
 #import "BaseWebViewController.h"
 #import "MCFNetworkManager.h"
-@interface BaseWebViewController ()<UIWebViewDelegate>
+#import <JavaScriptCore/JavaScriptCore.h>
+#import "AppDelegate.h"
+
+@interface BaseWebViewController ()<WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler>
 
 @property (nonatomic, assign) dispatch_once_t onceToken;
+@property (nonatomic, strong) WKWebViewConfiguration *configuration;
 @end
 
 @implementation BaseWebViewController
 
-- (UIWebView *)contentWebView {
+- (WKWebViewConfiguration *)configuration {
+    if (_configuration == nil) {
+        _configuration = [[WKWebViewConfiguration alloc] init];
+        [_configuration.userContentController addScriptMessageHandler:self name:@"goDetail"];
+        [_configuration.userContentController addScriptMessageHandler:self name:@"goToBaoLiao"];
+        [_configuration.userContentController addScriptMessageHandler:self name:@"goNavigationDetail"];
+        [_configuration.userContentController addScriptMessageHandler:self name:@"switchPages"];
+        [_configuration.userContentController addScriptMessageHandler:self name:@"goToMoreProgram"];
+        [_configuration.userContentController addScriptMessageHandler:self name:@"goBack"];
+    }
+    return _configuration;
+}
+
+- (WKWebView *)contentWebView {
     if (_contentWebView == nil) {
-        _contentWebView = [[UIWebView alloc] init];
-        _contentWebView.delegate = self;
+
+        _contentWebView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:self.configuration];
+        _contentWebView.UIDelegate = self;
+        _contentWebView.navigationDelegate = self;
     }
     return _contentWebView;
 }
@@ -37,14 +56,27 @@
     [self.view addSubview:self.contentWebView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    if (self.hideNavi) {
+        [self.navigationController setNavigationBarHidden:YES animated:animated];
+    }
+    [super viewWillAppear:animated];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+
     self.contentWebView.frame = self.view.bounds;
     dispatch_once(&_onceToken, ^{
         if (self.url.length > 0) [self loadRequest:self.url];
     });
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
+}
 - (void)loadRequest:(NSString *)url {
     if (url.length == 0) return;
     
@@ -52,24 +84,78 @@
     [self.contentWebView loadRequest:request];
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 
-    NSString *requestUrl = [request URL].absoluteString;
-    NSLog(@"start request :%@",requestUrl);
-    
-    return YES;
+- (NSDictionary *)getDictionaryWithJsonString:(NSString *)json {
+    if (json.length == 0) return nil;
+    NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+    if (error) return nil;
+    return dict;
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView {
+#pragma mark - WKWebViewDelegate
+
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
+    NSLog(@"%@ == %@", message.name, message.body);
+    
+    NSDictionary *dict = message.body;
+    if (dict == nil) return;
+    
+    if ([message.name isEqualToString:@"goDetail"]) {
+        NSString *url = dict[@"loadUrl"];
+        //NSString *title = dict[@"title"];
+        BaseWebViewController *webVC = [[BaseWebViewController alloc] initWithUrl:url];
+        //webVC.title = title;
+        webVC.hidesBottomBarWhenPushed = YES;
+        webVC.hideNavi = YES;
+        [self.navigationController pushViewController:webVC animated:YES];
+    }
+    if ([message.name isEqualToString:@"goNavigationDetail"]) {
+        NSString *url = dict[@"loadUrl"];
+        NSString *title = dict[@"title"];
+        BaseWebViewController *webVC = [[BaseWebViewController alloc] initWithUrl:url];
+        webVC.hidesBottomBarWhenPushed = YES;
+        webVC.title = title;
+        webVC.hideNavi = NO;
+        [self.navigationController pushViewController:webVC animated:YES];
+    }
+    if ([message.name isEqualToString:@"switchPages"]) {
+        NSInteger index = [dict[@"firstMenu"] integerValue];
+        NSInteger subIndex = [dict[@"secMenu"] integerValue];
+        
+        AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [delegate.rootVc switchToIndex:index subIndex:subIndex];
+    }
+    
+    if ([message.name isEqualToString:@"goToBaoLiao"]) {
+        
+    }
+    
+    if ([message.name isEqualToString:@"goBack"]) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
     [self showLoading];
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
+- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
+    
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [self hideLoading];
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     [self hideLoading];
+}
+
+// realese the delegate here!
+- (void)dealloc {
+    
 }
 
 - (void)didReceiveMemoryWarning {

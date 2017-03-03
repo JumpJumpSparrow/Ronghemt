@@ -11,5 +11,6 @@
 @class MCFNaviModel;
 @interface VideoViewController : BaseViewController
 
+@property (nonatomic, assign) NSInteger selectedIndex;
 - (void)loadChannels:(MCFNaviModel *)naviModel;
 @end

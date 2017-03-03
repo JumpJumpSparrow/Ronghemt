@@ -12,7 +12,7 @@
 
 + (void)requestNaviTypeSuccess:(void (^)(NSArray *))sucess failure:(void (^)(NSError *))failure {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    [[MCFNetworkManager sharedManager] GET: [MCFConfigure cfg].NaviType
+    [[MCFNetworkManager sharedManager] GET: [MCFConfigure cfg].APPNaviType
                                  parameters:nil success:^(NSUInteger taskId, id responseObject) {
                                      [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                                      NSArray *tabBarItems = [responseObject objectForKey:@"navigationList"];

@@ -11,7 +11,7 @@
 @class MCFNaviModel;
 @interface MCFHomeViewController : BaseViewController
 
-
+@property (nonatomic, assign) NSInteger selectedIndex;
 - (instancetype)initWithChannels:(MCFNaviModel *)naviModel;
 - (void)loadChannels:(MCFNaviModel *)naviModel;
 @end

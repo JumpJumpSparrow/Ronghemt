@@ -10,7 +10,11 @@
 
 @interface MCFConfigure : NSObject
 
-@property (nonatomic, readonly, copy) NSString *APPHost;
-@property (nonatomic, readonly, copy) NSString *NaviType;
+@property (nonatomic, readonly, copy) NSString *APPNetHost;
+@property (nonatomic, readonly, copy) NSString *APPNaviType;
+@property (nonatomic, readonly, copy) NSString *umengAppKey;
+@property (nonatomic, readonly, copy) NSString *APPIdWX;
+@property (nonatomic, readonly, copy) NSString *AppSecretWX;
+@property (nonatomic, readonly, copy) NSString *UMChannel;
 + (instancetype)cfg;
 @end

@@ -7,8 +7,6 @@
 //
 
 #import "MCFNetworkManager+User.h"
-#import "MCFUserModel.h"
-#import "RegisterModel.h"
 #import "MCFTools.h"
 
 static NSString *LogIn        = @"login.php";

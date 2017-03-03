@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RootTabBarController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (nonatomic, strong) RootTabBarController *rootVc;
 @property (strong, nonatomic) UIWindow *window;
-
-
 @end
 

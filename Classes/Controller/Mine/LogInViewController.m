@@ -12,6 +12,7 @@
 #import "RegistViewController.h"
 #import "ModifyPasswordViewController.h"
 #import "RegisterModel.h"
+#import <UMSocialCore/UMSocialCore.h>
 
 @interface TitleInputView : UIView<UITextFieldDelegate>
 
@@ -79,7 +80,19 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
     NSString *toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    NSUInteger lengthOfString = toBeString.length;  //lengthOfString的值始终为1
+    for (NSInteger loopIndex = 0; loopIndex < lengthOfString; loopIndex++) {
+        unichar character = [toBeString characterAtIndex:loopIndex]; 
+        // 48-57;{0,9};65-90;{A..Z};97-122:{a..z}
+        if (character < 48) return NO; // 48 unichar for 0
+        if (character > 57 && character < 65) return NO; //
+        if (character > 90 && character < 97) return NO;
+        if (character > 122) return NO;
+        
+    }
     if (toBeString.length > self.lengthLimit) {
         return NO;
     }
@@ -244,11 +257,13 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.account = [[TitleInputView alloc] initWith:@"账号" placeholder:@"手机号" frame:CGRectMake(0, 64.0f, SCREEN_WIDTH, 44.0f)];
-    self.account.keyboardType = UIKeyboardTypePhonePad;
+    self.account.keyboardType = UIKeyboardTypeNumberPad;
+    self.account.lengthLimit = 11;
     
     self.password = [[TitleInputView alloc] initWith:@"密码" placeholder:@"请输入密码" frame:CGRectMake(0, 64.0f + 44.0f, SCREEN_WIDTH, 44.0f)];
     self.password.returnType = UIReturnKeyDone;
     self.password.isSecureText = YES;
+    self.password.lengthLimit = 16;
     self.password.keyboardType = UIKeyboardTypeDefault;
     
     [self.view addSubview:self.account];
@@ -274,6 +289,10 @@
         [self showTip:@"请输入密码"];
         return;
     }
+    if (user.password.length < 8) {
+        [self showTip:@"密码为字母数字组合，长度至少8位"];
+        return;
+    }
     [MCFNetworkManager loginWithUser:nil success:^(MCFUserModel *user, NSString *tip) {
         
     } failure:^(NSError *error) {
@@ -284,20 +303,45 @@
 #pragma mark - thirdDelegate
 
 - (void)didSelectLoginMethod:(NSInteger)index {
+    
+    UMSocialPlatformType platformType;
+    
     switch (index) {
         case 1: // QQ
-            
+            platformType = UMSocialPlatformType_QQ;
             break;
             
         case 2: // weibo
-            
+            platformType = UMSocialPlatformType_Sina;
             break;
         case 3: // weixin
-            
+            platformType = UMSocialPlatformType_WechatSession;
             break;
         default:
             break;
     }
+    
+    [[UMSocialManager defaultManager] getUserInfoWithPlatform:platformType currentViewController:self completion:^(id result, NSError *error) {
+        
+        UMSocialUserInfoResponse *resp = result;
+        
+        // 第三方登录数据(为空表示平台未提供)
+        // 授权数据
+        NSLog(@" uid: %@", resp.uid);
+        NSLog(@" openid: %@", resp.openid);
+        NSLog(@" accessToken: %@", resp.accessToken);
+        NSLog(@" refreshToken: %@", resp.refreshToken);
+        NSLog(@" expiration: %@", resp.expiration);
+        
+        // 用户数据
+        NSLog(@" name: %@", resp.name);
+        NSLog(@" iconurl: %@", resp.iconurl);
+        NSLog(@" gender: %@", resp.gender);
+        
+        // 第三方平台SDK原始数据
+        NSLog(@" originalResponse: %@", resp.originalResponse);
+    }];
+    
 }
 
 - (void)didSelectRegistButton {

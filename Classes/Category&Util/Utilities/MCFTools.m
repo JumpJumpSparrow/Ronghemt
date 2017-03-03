@@ -35,11 +35,11 @@
 }
 
 + (BOOL)isLogined {
-    return [MCFTools getLoginUser].userId != 0;
+    return [MCFTools getLoginUser].userId > 0;
 }
 
 + (void)clearLoginUser {
-    [MCFTools setObjectForKey:AppUserKey value:[[MCFUserModel alloc] init]];
+    [MCFTools setObjectForKey:AppUserKey value:[NSKeyedArchiver archivedDataWithRootObject:[[MCFUserModel alloc] init]]];
 }
 
 + (id)getObjectForKey:(NSString *)key {

@@ -53,7 +53,7 @@
     if ([[url lowercaseString] hasPrefix:@"http"]) {
         requestUrlString = url;
     } else {
-        NSString *host = [MCFConfigure cfg].APPHost;
+        NSString *host = [MCFConfigure cfg].APPNetHost;
         requestUrlString = [host stringByAppendingPathComponent:url];
     }
     return requestUrlString;

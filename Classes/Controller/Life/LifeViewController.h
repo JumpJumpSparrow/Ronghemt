@@ -10,6 +10,7 @@
 
 @class MCFNaviModel;
 @interface LifeViewController : BaseViewController
+@property (nonatomic, assign) NSInteger selectedIndex;
 
 - (void)loadChannels:(MCFNaviModel *)naviModel;
 @end

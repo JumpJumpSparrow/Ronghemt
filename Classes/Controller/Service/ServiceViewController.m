@@ -16,9 +16,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBar.hidden = YES;
     self.contentWebView.backgroundColor = [UIColor whiteColor];
-    self.contentWebView.scrollView.scrollEnabled = NO;
+    //self.contentWebView.scrollView.scrollEnabled = NO;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
