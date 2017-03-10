@@ -145,6 +145,134 @@ static const CGFloat kK = 0;
     return _rotationGestureRecognizer;
 }
 
+- (CGRect)cropRect
+{
+    CGRect cropRect = CGRectZero;
+    float zoomScale = 1.0 / self.imageScrollView.zoomScale;
+    
+    cropRect.origin.x = round(self.imageScrollView.contentOffset.x * zoomScale);
+    cropRect.origin.y = round(self.imageScrollView.contentOffset.y * zoomScale);
+    cropRect.size.width = CGRectGetWidth(self.imageScrollView.bounds) * zoomScale;
+    cropRect.size.height = CGRectGetHeight(self.imageScrollView.bounds) * zoomScale;
+    
+    CGFloat width = CGRectGetWidth(cropRect);
+    CGFloat height = CGRectGetHeight(cropRect);
+    CGFloat ceilWidth = ceil(width);
+    CGFloat ceilHeight = ceil(height);
+    
+    if (fabs(ceilWidth - width) < pow(10, kK) * RSK_EPSILON * fabs(ceilWidth + width) || fabs(ceilWidth - width) < RSK_MIN ||
+        fabs(ceilHeight - height) < pow(10, kK) * RSK_EPSILON * fabs(ceilHeight + height) || fabs(ceilHeight - height) < RSK_MIN) {
+        
+        cropRect.size.width = ceilWidth;
+        cropRect.size.height = ceilHeight;
+    } else {
+        cropRect.size.width = floor(width);
+        cropRect.size.height = floor(height);
+    }
+    
+    return cropRect;
+}
+
+- (CGRect)rectForClipPath
+{
+    if (!self.maskLayerStrokeColor) {
+        return self.overlayView.frame;
+    } else {
+        CGFloat maskLayerLineHalfWidth = self.maskLayerLineWidth / 2.0;
+        return CGRectInset(self.overlayView.frame, -maskLayerLineHalfWidth, -maskLayerLineHalfWidth);
+    }
+}
+
+- (CGRect)rectForMaskPath
+{
+    if (!self.maskLayerStrokeColor) {
+        return self.maskRect;
+    } else {
+        CGFloat maskLayerLineHalfWidth = self.maskLayerLineWidth / 2.0;
+        return CGRectInset(self.maskRect, maskLayerLineHalfWidth, maskLayerLineHalfWidth);
+    }
+}
+
+- (CGFloat)rotationAngle
+{
+    CGAffineTransform transform = self.imageScrollView.transform;
+    CGFloat rotationAngle = atan2(transform.b, transform.a);
+    return rotationAngle;
+}
+
+- (CGFloat)zoomScale
+{
+    return self.imageScrollView.zoomScale;
+}
+
+- (void)setAvoidEmptySpaceAroundImage:(BOOL)avoidEmptySpaceAroundImage
+{
+    if (_avoidEmptySpaceAroundImage != avoidEmptySpaceAroundImage) {
+        _avoidEmptySpaceAroundImage = avoidEmptySpaceAroundImage;
+        
+        self.imageScrollView.aspectFill = avoidEmptySpaceAroundImage;
+    }
+}
+
+- (void)setCropMode:(MCFImageCropMode)cropMode
+{
+    if (_cropMode != cropMode) {
+        _cropMode = cropMode;
+        
+        if (self.imageScrollView.zoomView) {
+            [self reset:NO];
+        }
+    }
+}
+
+- (void)setOriginalImage:(UIImage *)originalImage
+{
+    if (![_originalImage isEqual:originalImage]) {
+        _originalImage = originalImage;
+        [self displayImage];
+    }
+}
+
+- (void)setMaskPath:(UIBezierPath *)maskPath
+{
+    if (![_maskPath isEqual:maskPath]) {
+        _maskPath = maskPath;
+        
+        UIBezierPath *clipPath = [UIBezierPath bezierPathWithRect:self.rectForClipPath];
+        [clipPath appendPath:maskPath];
+        clipPath.usesEvenOddFillRule = YES;
+        
+        CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
+        pathAnimation.duration = [CATransaction animationDuration];
+        pathAnimation.timingFunction = [CATransaction animationTimingFunction];
+        [self.maskLayer addAnimation:pathAnimation forKey:@"path"];
+        
+        self.maskLayer.path = [clipPath CGPath];
+    }
+}
+
+- (void)setRotationAngle:(CGFloat)rotationAngle
+{
+    if (self.rotationAngle != rotationAngle) {
+        CGFloat rotation = (rotationAngle - self.rotationAngle);
+        CGAffineTransform transform = CGAffineTransformRotate(self.imageScrollView.transform, rotation);
+        self.imageScrollView.transform = transform;
+    }
+}
+
+- (void)setRotationEnabled:(BOOL)rotationEnabled
+{
+    if (_rotationEnabled != rotationEnabled) {
+        _rotationEnabled = rotationEnabled;
+        
+        self.rotationGestureRecognizer.enabled = rotationEnabled;
+    }
+}
+
+- (void)setZoomScale:(CGFloat)zoomScale
+{
+    self.imageScrollView.zoomScale = zoomScale;
+}
 
 - (void)displayImage
 {
@@ -201,46 +329,23 @@ static const CGFloat kK = 0;
 {
     [self setRotationAngle:0.0];
 }
-- (void)setRotationAngle:(CGFloat)rotationAngle
-{
-    if (self.rotationAngle != rotationAngle) {
-        CGFloat rotation = (rotationAngle - self.rotationAngle);
-        CGAffineTransform transform = CGAffineTransformRotate(self.imageScrollView.transform, rotation);
-        self.imageScrollView.transform = transform;
-    }
-}
+
 - (void)layOutOverlayView {
     CGRect frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds) * 2, CGRectGetHeight(self.bounds) * 2);
     self.overlayView.frame = frame;
 }
 
-- (CGRect)cropRect
+- (void)resetZoomScale
 {
-    CGRect cropRect = CGRectZero;
-    float zoomScale = 1.0 / self.imageScrollView.zoomScale;
-    
-    cropRect.origin.x = round(self.imageScrollView.contentOffset.x * zoomScale);
-    cropRect.origin.y = round(self.imageScrollView.contentOffset.y * zoomScale);
-    cropRect.size.width = CGRectGetWidth(self.imageScrollView.bounds) * zoomScale;
-    cropRect.size.height = CGRectGetHeight(self.imageScrollView.bounds) * zoomScale;
-    
-    CGFloat width = CGRectGetWidth(cropRect);
-    CGFloat height = CGRectGetHeight(cropRect);
-    CGFloat ceilWidth = ceil(width);
-    CGFloat ceilHeight = ceil(height);
-    
-    if (fabs(ceilWidth - width) < pow(10, kK) * RSK_EPSILON * fabs(ceilWidth + width) || fabs(ceilWidth - width) < RSK_MIN ||
-        fabs(ceilHeight - height) < pow(10, kK) * RSK_EPSILON * fabs(ceilHeight + height) || fabs(ceilHeight - height) < RSK_MIN) {
-        
-        cropRect.size.width = ceilWidth;
-        cropRect.size.height = ceilHeight;
+    CGFloat zoomScale;
+    if (CGRectGetWidth(self.bounds) > CGRectGetHeight(self.bounds)) {
+        zoomScale = CGRectGetHeight(self.bounds) / self.originalImage.size.height;
     } else {
-        cropRect.size.width = floor(width);
-        cropRect.size.height = floor(height);
+        zoomScale = CGRectGetWidth(self.bounds) / self.originalImage.size.width;
     }
-    
-    return cropRect;
+    self.imageScrollView.zoomScale = zoomScale;
 }
+
 
 - (void)updateMaskPath
 {
@@ -258,16 +363,6 @@ static const CGFloat kK = 0;
             break;
         }
     }
-}
-- (void)resetZoomScale {
-    CGFloat zoomScale;
-    if (CGRectGetWidth(self.bounds) > CGRectGetHeight(self.bounds)) {
-        zoomScale = CGRectGetHeight(self.bounds) / self.originalImage.size.height;
-    } else {
-        zoomScale = CGRectGetWidth(self.bounds) / self.originalImage.size.width;
-    }
-    self.imageScrollView.zoomScale = zoomScale;
-
 }
 
 - (void)layoutImageScrollView {

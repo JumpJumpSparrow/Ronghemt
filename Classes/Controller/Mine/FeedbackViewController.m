@@ -8,6 +8,7 @@
 
 #import "FeedbackViewController.h"
 #import <YYKit.h>
+#import "MCFNetworkManager+User.h"
 
 @interface TextInputView : UIView<YYTextViewDelegate>
 
@@ -23,6 +24,7 @@
         _inputView.textVerticalAlignment = YYTextVerticalAlignmentTop;
         _inputView.textAlignment = NSTextAlignmentLeft;
         _inputView.delegate = self;
+        _inputView.font = [UIFont systemFontOfSize:15.0f];
     }
     return _inputView;
 }
@@ -55,6 +57,7 @@
     if (_inputField == nil) {
         _inputField = [[UITextField alloc] init];
         _inputField.placeholder = @"留下您的联系方式：QQ／邮箱／手机号码";
+        _inputField.font = [UIFont systemFontOfSize:13.0f];
         _inputField.delegate = self;
     }
     return _inputField;
@@ -118,10 +121,36 @@
     [self.view addSubview:self.mainInputView];
     [self.view addSubview:self.inputBar];
     [self.view addSubview:self.commitButton];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
+        [self.view endEditing:YES];
+    }];
+    [self.navigationController.navigationBar addGestureRecognizer:tap];
 }
 
 - (void)commtiAdvice {
+    
+    if (self.mainInputView.inputView.text.length < 12) {
+        [self showTip:@"建议不要少于12个字"];
+        return;
+    }
+    if (self.inputBar.inputField.text == 0) {
+        [self showTip:@"请输入联系方式"];
+        return;
+    }
+    [self showLoading];
 
+    [MCFNetworkManager feedBack:self.mainInputView.inputView.text
+                        contact:self.inputBar.inputField.text
+                        success:^(NSString *tip) {
+                            [self hideLoading];
+                            [self showTip:tip];
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                [self.navigationController popViewControllerAnimated:YES];
+                            });
+    } failure:^(NSError *error) {
+        [self hideLoading];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -129,14 +158,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    [self.view endEditing:YES];
 }
-*/
 
 @end

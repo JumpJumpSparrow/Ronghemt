@@ -24,6 +24,7 @@
             cfg.APPIdWX           = AppIdWX;
             cfg.AppSecretWX       = AppSecretWX;
             cfg.UMChannel         = UMENG_CHANNEL;
+            cfg.AppCollect        = APPUserCollect;
             
         } else if (appType == AppEditionWF) {
             cfg.APPNetHost        = AppWFHost;
@@ -31,6 +32,7 @@
             cfg.APPIdWX           = AppIdWXWF;
             cfg.AppSecretWX       = AppSecretWXWF;
             cfg.UMChannel         = UMENG_CHANNEL_WF;
+            cfg.AppCollect        = APPUserCollect;
         }
     });
     return cfg;
@@ -58,5 +60,9 @@
 
 - (void)setUMChannel:(NSString *)UMChannel {
     _UMChannel = UMChannel;
+}
+
+- (void)setAppCollect:(NSString *)AppCollect {
+    _AppCollect = AppCollect;
 }
 @end

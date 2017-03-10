@@ -289,14 +289,19 @@
         [self showTip:@"请输入密码"];
         return;
     }
-    if (user.password.length < 8) {
+    
+    if (![MCFTools verifyPassword:user.password lengthLimit:8]) {
         [self showTip:@"密码为字母数字组合，长度至少8位"];
         return;
     }
-    [MCFNetworkManager loginWithUser:nil success:^(MCFUserModel *user, NSString *tip) {
-        
+    [MCFNetworkManager loginWithUser:user success:^(MCFUserModel *user, NSString *tip) {
+        [self showTip:@"登录成功"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        });
     } failure:^(NSError *error) {
-        
+        [self showTip:@"登录失败请稍后再试"];
     }];
 }
 
@@ -345,11 +350,13 @@
 }
 
 - (void)didSelectRegistButton {
+    [self.view endEditing:YES];
     RegistViewController *registVC = [[RegistViewController alloc] init];
     [self.navigationController pushViewController:registVC animated:YES];
 }
 
 - (void)didSelectForgotButton {
+    [self.view endEditing:YES];
     ModifyPasswordViewController *modifyVc = [[ModifyPasswordViewController alloc] init];
     [self.navigationController pushViewController:modifyVc animated:YES];
 }

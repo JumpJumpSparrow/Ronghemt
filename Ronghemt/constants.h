@@ -13,7 +13,7 @@ typedef NS_ENUM(NSInteger, AppEdition) {
     AppEditionWF          = 1
 };
 
-static const AppEdition appType = AppEditionWF;// 更改应用版本
+static const AppEdition appType = AppEditionWF;// 更改应用版本 注意事项：1>URL scheme 2>bundleID 3
 
 
 
@@ -30,7 +30,7 @@ static NSString *umengAppKey              = @"58b3a5598f4a9d0ba100114a";
 static NSString *UMENG_CHANNEL            = @"RongHeMeiTi";
 static NSString *AppIdWX                  = @"wx8b0671c98908cef7";
 static NSString *AppSecretWX              = @"50e4894fca6ee406679198a580c325bf";
-
+static NSString *APPUserCollect           = @"http://app2.dev.ctvcloud.com/html/shoucang.html";
 
 
 //Wifang====================================

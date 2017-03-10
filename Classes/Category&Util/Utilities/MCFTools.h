@@ -18,4 +18,7 @@
 + (MCFUserModel *)getLoginUser;
 + (void)saveLoginUser:(MCFUserModel *)bean;
 + (void)clearLoginUser;
+
++ (NSString *)securityText:(NSString *)text;
++ (BOOL)verifyPassword:(NSString *)passWord lengthLimit:(NSInteger)limit;
 @end

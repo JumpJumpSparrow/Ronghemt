@@ -10,6 +10,8 @@
 #import "MCFNetworkManager.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "AppDelegate.h"
+#import "MCFTools.h"
+#import "MCFUserModel.h"
 
 @interface BaseWebViewController ()<WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler>
 
@@ -28,6 +30,7 @@
         [_configuration.userContentController addScriptMessageHandler:self name:@"switchPages"];
         [_configuration.userContentController addScriptMessageHandler:self name:@"goToMoreProgram"];
         [_configuration.userContentController addScriptMessageHandler:self name:@"goBack"];
+        [_configuration.userContentController addScriptMessageHandler:self name:@"getValue"];
     }
     return _configuration;
 }
@@ -131,10 +134,20 @@
     if ([message.name isEqualToString:@"goToBaoLiao"]) {
         
     }
-    
+    if ([message.name isEqualToString:@"getValue"]) {
+        [self callBackJS];
+    }
+   
     if ([message.name isEqualToString:@"goBack"]) {
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+- (void)callBackJS {
+    MCFUserModel *user = [MCFTools getLoginUser];
+    NSString *jsFunc = @"getSessionId(\"%@\");";
+    NSString *jsCode = [NSString stringWithFormat:jsFunc,user.session];
+    [self.contentWebView evaluateJavaScript:jsCode completionHandler:NULL];
 }
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {

@@ -17,7 +17,7 @@
         [_verifyButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_verifyButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
         _verifyButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
-        [_verifyButton addTarget:self action:@selector(didSelectedButton) forControlEvents:UIControlEventTouchUpInside];
+        [_verifyButton addTarget:self action:@selector(didSelectedButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _verifyButton;
 }
@@ -80,9 +80,9 @@
     return self;
 }
 
-- (void)didSelectedButton {
-    if ([self.delegate respondsToSelector:@selector(verifyTheAccount)]) {
-        [self.delegate verifyTheAccount];
+- (void)didSelectedButton:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(verifyTheAccount:)]) {
+        [self.delegate verifyTheAccount:sender];
     }
 }
 

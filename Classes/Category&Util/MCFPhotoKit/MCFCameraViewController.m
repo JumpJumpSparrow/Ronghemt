@@ -8,6 +8,8 @@
 
 #import "MCFCameraViewController.h"
 #import <FastttCamera.h>
+#import "MCFImagePreViewViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface MCFCameraViewController ()<FastttCameraDelegate>
 
@@ -31,24 +33,60 @@
     
     self.triggerButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0f - 40.0f, self.view.frame.size.height - 100.0f, 80.0f, 80.0f)];
     [self.triggerButton addTarget:self action:@selector(takePhoto) forControlEvents:UIControlEventTouchUpInside];
-    self.triggerButton.backgroundColor = [UIColor whiteColor];
+    [self.triggerButton setImage:[UIImage imageNamed:@"trigger"] forState:UIControlStateNormal];
     [self.view addSubview:self.triggerButton];
     
     self.torchButton = [[UIButton alloc] initWithFrame:CGRectMake(20.0f, self.view.frame.size.height - 40.0f - 20.0f, 40.0f, 40.0f)];
     [self.torchButton addTarget:self action:@selector(selectFleshMode:) forControlEvents:UIControlEventTouchUpInside];
-    self.torchButton.backgroundColor = [UIColor greenColor];
+    [self.torchButton setImage:[UIImage imageNamed:@"flash"] forState:UIControlStateNormal];
     [self.view addSubview:self.torchButton];
     
     self.switchButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 40.0f - 20.0f, self.view.frame.size.height - 40.0f - 20.0f, 40.0f, 40.0f)];
     [self.switchButton addTarget:self action:@selector(switchCamera:) forControlEvents:UIControlEventTouchUpInside];
-    self.switchButton.backgroundColor  = [UIColor cyanColor];
+    [self.switchButton setImage:[UIImage imageNamed:@"switch"] forState:UIControlStateNormal];
     [self.view addSubview:self.switchButton];
     
     self.cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(20.0f, 20.0f, 44.0f, 44.0f)];
-    self.cancelButton.backgroundColor = [UIColor whiteColor];
-    [self.cancelButton setTitle:@"cancel" forState:UIControlStateNormal];
+    [self.cancelButton setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
     [self.cancelButton addTarget:self action:@selector(didSelectCancel) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.cancelButton];
+    
+    self.cancelButton.hidden =
+    self.torchButton.hidden =
+    self.switchButton.hidden =
+    self.triggerButton.hidden = YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didAVCaptureSessionStartRunning:)
+                                                 name:AVCaptureSessionDidStartRunningNotification
+                                               object:nil];
+}
+
+- (void)didAVCaptureSessionStartRunning:(NSNotification *)notification {
+    self.cancelButton.hidden =
+    self.torchButton.hidden =
+    self.switchButton.hidden =
+    self.triggerButton.hidden = NO;
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:AVCaptureSessionDidStartRunningNotification
+                                                  object:nil];
+    self.cancelButton.hidden =
+    self.torchButton.hidden =
+    self.switchButton.hidden =
+    self.triggerButton.hidden = YES;
+    
+    if (self.previewImageView) {
+        [self.previewImageView removeFromSuperview];
+        self.previewImageView = nil;
+    }
 }
 
 - (void)cameraController:(id<FastttCameraInterface>)cameraController didFinishCapturingImage:(FastttCapturedImage *)capturedImage {
@@ -82,16 +120,13 @@
 
 }
 
-- (void)cameraController:(id<FastttCameraInterface>)cameraController didFinishScalingCapturedImage:(FastttCapturedImage *)capturedImage {
-
-}
-
-- (void)cameraController:(id<FastttCameraInterface>)cameraController didFinishCapturingImageData:(NSData *)rawJPEGData {
-
-}
-
 - (void)cameraController:(id<FastttCameraInterface>)cameraController didFinishNormalizingCapturedImage:(FastttCapturedImage *)capturedImage {
-
+    MCFImagePreViewViewController *previewVC = [[MCFImagePreViewViewController alloc] initWithImage:capturedImage.fullImage];
+    previewVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:previewVC animated:YES];
+    if (self.previewImageView) {
+        [self.previewImageView removeFromSuperview];
+    }
 }
 
 - (void)takePhoto {

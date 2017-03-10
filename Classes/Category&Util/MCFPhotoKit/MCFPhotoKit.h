@@ -10,6 +10,6 @@
 #define MCFPhotoKit_h
 
 #import "MCFCameraViewController.h"
-
+#import "MCFPhotoLibraryViewController.h"
 
 #endif /* MCFPhotoKit_h */

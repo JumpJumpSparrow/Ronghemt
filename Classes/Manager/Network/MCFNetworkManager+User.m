@@ -8,9 +8,17 @@
 
 #import "MCFNetworkManager+User.h"
 #import "MCFTools.h"
+#import "GTMBase64.h"
 
-static NSString *LogIn        = @"login.php";
-static NSString *Regist       = @"user/register";
+static NSString *LogIn            = @"login.php";
+static NSString *Regist           = @"register.php";
+static NSString *verifyCode       = @"code.php";
+static NSString *modifyPass       = @"find_passwd.php";
+static NSString *uploadFile       = @"file_upload.php";
+static NSString *updateProfile    = @"userinfo_modify.php";
+static NSString *bindPhone        = @"bind_phone.php";
+static NSString *updateUserInfo   = @"get_userinfo.php";
+static NSString *feedback         = @"feedback.php";
 
 @implementation MCFNetworkManager (User)
 
@@ -19,6 +27,7 @@ static NSString *Regist       = @"user/register";
               failure:(void (^)(NSError *))failure {
 
     NSDictionary *paramDict = [user mj_keyValues];
+    
     [[MCFNetworkManager sharedManager] POST:LogIn
                                  parameters:paramDict
                                     success:^(NSUInteger taskId, id responseObject) {
@@ -55,6 +64,183 @@ static NSString *Regist       = @"user/register";
                                             failure (error);
                                         }
                                     }];
+}
+
++ (void)requestVerifyCodeForPhone:(NSString *)phone
+                          success:(void (^)(NSString *, NSString *))success
+                          failure:(void (^)(NSError *))failure {
+    NSDictionary *dict = @{@"phone" : phone};
+    [[MCFNetworkManager sharedManager] GET:verifyCode
+                                parameters:dict
+                                   success:^(NSUInteger taskId, id responseObject) {
+                                       NSString *code = [responseObject objectForKey:@"code"];
+                                       NSString *message = [responseObject objectForKey:@"message"];
+                                       if (success) {
+                                           success(code, message);
+                                       }
+    } failure:^(NSUInteger taskId, NSError *error) {
+        if (failure) {
+            failure (error);
+        }
+    }];
+}
+
++ (void)modifyPassword:(RegisterModel *)newPassWord
+               success:(void (^)(NSString *))success
+               failure:(void (^)(NSError *))failure {
+    
+    NSDictionary *dict = @{ @"phone" : newPassWord.phone,
+                            @"code" : @(newPassWord.code),
+                            @"new" : newPassWord.password,
+                            @"confirm" : newPassWord.re_password
+                           };
+    [[MCFNetworkManager sharedManager] GET:modifyPass
+                                parameters:dict
+                                   success:^(NSUInteger taskId, id responseObject) {
+                                       NSString *message = [responseObject objectForKey:@"message"];
+                                       if (success) {
+                                           success(message);
+                                       }
+    } failure:^(NSUInteger taskId, NSError *error) {
+        if (failure) {
+            failure (error);
+        }
+    }];
+}
+
++ (void)updateUserProfile:(MCFUserModel *)user
+                  success:(void (^)(NSString *))success
+                  failure:(void (^)(NSError *))failure {
+    
+    NSDictionary *dict = [user mj_keyValues];
+    
+    [[MCFNetworkManager sharedManager] POST:updateProfile
+                                 parameters:dict
+                                    success:^(NSUInteger taskId, id responseObject) {
+        
+                                        NSString *tip = [responseObject objectForKey:@"message"];
+                                        if (success) {
+                                            success(tip);
+                                        }
+    } failure:^(NSUInteger taskId, NSError *error) {
+        if (failure) {
+            failure (error);
+        }
+    }];
+}
+
++ (void)bindPhoneNumber:(NSString *)number
+                   code:(NSString *)code
+                success:(void (^)(NSString *))success
+                failure:(void (^)(NSError *))failure {
+    
+    if (number.length == 0 || code.length == 0) return;
+    MCFUserModel *user = [MCFTools getLoginUser];
+    NSDictionary *dict = @{@"phone" : number ,
+                           @"code" : code,
+                           @"session" : user.session};
+    
+    [[MCFNetworkManager sharedManager] POST:bindPhone parameters:dict
+                                    success:^(NSUInteger taskId, id responseObject) {
+        
+        NSString *sting = [responseObject objectForKey:@"message"];
+        if (success) {
+            success(sting);
+        }
+    } failure:^(NSUInteger taskId, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
++ (void)feedBack:(NSString *)content
+         contact:(NSString *)contact
+         success:(void (^)(NSString *))success
+         failure:(void (^)(NSError *))failure {
+
+    if (contact.length == 0 || content.length == 0) return;
+    MCFUserModel *user = [MCFTools getLoginUser];
+    NSDictionary *dict = @{@"contact" : contact ,
+                           @"content" : content,
+                           @"session" : user.session};
+    
+    [[MCFNetworkManager sharedManager] POST:feedback parameters:dict
+                                    success:^(NSUInteger taskId, id responseObject) {
+                                        
+                                        NSString *sting = [responseObject objectForKey:@"message"];
+                                        if (success) {
+                                            success(sting);
+                                        }
+                                    } failure:^(NSUInteger taskId, NSError *error) {
+                                        if (failure) {
+                                            failure(error);
+                                        }
+                                    }];
+}
+
++ (void)upLoadImage:(UIImage *)image
+            success:(void (^)(NSString *))success
+            failure:(void (^)(NSError *))failure {
+    NSData *data = UIImageJPEGRepresentation(image, 0.5);
+    //NSString *fileStr = [GTMBase64 stringByEncodingData:data];
+    NSDictionary *dict = @{@"file" : data};
+    
+    [[MCFNetworkManager sharedManager] POST:uploadFile parameters:dict success:^(NSUInteger taskId, id responseObject) {
+        
+        NSString *sting = [responseObject objectForKey:@"message"];
+        if (success) {
+            success(sting);
+        }
+    } failure:^(NSUInteger taskId, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
++ (void)uploadFile:(NSObject *)file
+           success:(void (^)(NSString *))success
+           failure:(void (^)(NSError *))failure {
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html", @"text/json", @"text/javascript", @"text/plain", nil];
+    //2.上传文件
+    NSString *url = [NSString stringWithFormat:@"http://user.dev.ctvcloud.com/api/%@",uploadFile];
+    
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@" ", @"file", nil];
+    [manager POST:url parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        //上传文件参数
+        
+        NSData *data = UIImageJPEGRepresentation((UIImage *)file, 0.3);
+        [formData appendPartWithFileData:data name:@"file" fileName:@"imagefile.jpg" mimeType:@"image/jpeg"];
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+        //打印上传进度
+        CGFloat progress = 100.0 * uploadProgress.completedUnitCount / uploadProgress.totalUnitCount;
+        NSLog(@"%.2lf%%", progress);
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        //请求成功
+        NSLog(@"请求成功：%@",responseObject);
+        NSString *sting = [responseObject objectForKey:@"message"];
+        if (success) {
+            success(sting);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        //请求失败  
+        NSLog(@"请求失败：%@",error);
+        if (failure) {
+            failure(error);
+        }
+    }];
+    
 }
 
 @end

@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <YYKit/UIView+YYAdd.h>
+#import <YYKit.h>
 
 @protocol VerifyDelegate <NSObject>
 
 @optional
-- (void)verifyTheAccount;
+- (void)verifyTheAccount:(UIButton *)sender;
 - (void)didInputText:(NSString *)text index:(NSInteger)index;
 @end
 @interface InputView : UIView<UITextFieldDelegate>

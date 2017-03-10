@@ -26,7 +26,7 @@
         _pageManagerController.menuViewStyle = WMMenuViewStyleLine;
         self.pageManagerController.showOnNavigationBar = YES;
         _pageManagerController.menuView.lineColor = [UIColor colorWithHexString:AppColorSelected];
-        _pageManagerController.menuHeight = 34.0f;
+        _pageManagerController.menuHeight = 44.0f;
         _pageManagerController.menuItemWidth = 50.0f;
         _pageManagerController.titleColorSelected = [UIColor colorWithHexString:AppColorSelected];
         _pageManagerController.titleColorNormal = [UIColor colorWithHexString:AppColorNormal];

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2007E5791E6D6A440004DE37 /* MCFPhotoLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2007E5781E6D6A440004DE37 /* MCFPhotoLibraryViewController.m */; };
+		2007E57C1E6D6AC30004DE37 /* MCFAssetItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2007E57B1E6D6AC30004DE37 /* MCFAssetItemCell.m */; };
+		2007E5821E6D6BB00004DE37 /* MCFAssetCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2007E5811E6D6BB00004DE37 /* MCFAssetCollectionView.m */; };
+		2007E5851E6D6D400004DE37 /* MCFAssetCollecitonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2007E5841E6D6D400004DE37 /* MCFAssetCollecitonCell.m */; };
+		2007E5951E7137540004DE37 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 2007E5931E7137540004DE37 /* GTMBase64.m */; };
+		2007E5981E7250750004DE37 /* BindPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2007E5971E7250750004DE37 /* BindPhoneViewController.m */; };
 		201425D21E568C0C00A1535E /* MCFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 201425D11E568C0C00A1535E /* MCFNavigationController.m */; };
 		204FCEB91E5EBF6D000CB793 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 204FCEB81E5EBF6D000CB793 /* test.html */; };
 		207D11B31E65774500430F1D /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 207D118B1E65774500430F1D /* libSocialQQ.a */; };
@@ -36,6 +42,7 @@
 		207D11D61E667B9400430F1D /* MCFCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 207D11D51E667B9400430F1D /* MCFCameraViewController.m */; };
 		207D11DA1E67CF7E00430F1D /* MCFImagePreViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 207D11D91E67CF7E00430F1D /* MCFImagePreViewViewController.m */; };
 		207D11DD1E67F32C00430F1D /* MCFImageCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 207D11DC1E67F32C00430F1D /* MCFImageCropView.m */; };
+		207D11E11E6D383600430F1D /* MCFPhotoLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 207D11E01E6D383600430F1D /* MCFPhotoLibrary.m */; };
 		20C19AD41E56E57A0010CAF5 /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19AD31E56E57A0010CAF5 /* RootTabBarController.m */; };
 		20C19AE41E56FB400010CAF5 /* MCFNetworkManager+NaVi.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19AE31E56FB400010CAF5 /* MCFNetworkManager+NaVi.m */; };
 		20C19AE91E56FBE90010CAF5 /* MCFTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19AE81E56FBE90010CAF5 /* MCFTabBar.m */; };
@@ -108,6 +115,19 @@
 		0FA4C197D961D7EDB6E7CC64 /* libPods-Ronghemt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Ronghemt.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		146B43B991486ABA4925F885 /* libPods-RonghemtTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RonghemtTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		194F9056FFCAD09B08EC3EBD /* Pods-RonghemtTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RonghemtTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RonghemtTests/Pods-RonghemtTests.release.xcconfig"; sourceTree = "<group>"; };
+		2007E5771E6D6A440004DE37 /* MCFPhotoLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFPhotoLibraryViewController.h; sourceTree = "<group>"; };
+		2007E5781E6D6A440004DE37 /* MCFPhotoLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFPhotoLibraryViewController.m; sourceTree = "<group>"; };
+		2007E57A1E6D6AC30004DE37 /* MCFAssetItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFAssetItemCell.h; sourceTree = "<group>"; };
+		2007E57B1E6D6AC30004DE37 /* MCFAssetItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFAssetItemCell.m; sourceTree = "<group>"; };
+		2007E5801E6D6BB00004DE37 /* MCFAssetCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFAssetCollectionView.h; sourceTree = "<group>"; };
+		2007E5811E6D6BB00004DE37 /* MCFAssetCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFAssetCollectionView.m; sourceTree = "<group>"; };
+		2007E5831E6D6D400004DE37 /* MCFAssetCollecitonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFAssetCollecitonCell.h; sourceTree = "<group>"; };
+		2007E5841E6D6D400004DE37 /* MCFAssetCollecitonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFAssetCollecitonCell.m; sourceTree = "<group>"; };
+		2007E5921E7137540004DE37 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		2007E5931E7137540004DE37 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		2007E5941E7137540004DE37 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		2007E5961E7250750004DE37 /* BindPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindPhoneViewController.h; sourceTree = "<group>"; };
+		2007E5971E7250750004DE37 /* BindPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindPhoneViewController.m; sourceTree = "<group>"; };
 		201425D01E568C0C00A1535E /* MCFNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFNavigationController.h; sourceTree = "<group>"; };
 		201425D11E568C0C00A1535E /* MCFNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFNavigationController.m; sourceTree = "<group>"; };
 		204FCEB81E5EBF6D000CB793 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
@@ -160,6 +180,8 @@
 		207D11D91E67CF7E00430F1D /* MCFImagePreViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFImagePreViewViewController.m; sourceTree = "<group>"; };
 		207D11DB1E67F32C00430F1D /* MCFImageCropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFImageCropView.h; sourceTree = "<group>"; };
 		207D11DC1E67F32C00430F1D /* MCFImageCropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFImageCropView.m; sourceTree = "<group>"; };
+		207D11DF1E6D383600430F1D /* MCFPhotoLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFPhotoLibrary.h; sourceTree = "<group>"; };
+		207D11E01E6D383600430F1D /* MCFPhotoLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFPhotoLibrary.m; sourceTree = "<group>"; };
 		20C19AD21E56E57A0010CAF5 /* RootTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarController.h; sourceTree = "<group>"; };
 		20C19AD31E56E57A0010CAF5 /* RootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarController.m; sourceTree = "<group>"; };
 		20C19AE21E56FB400010CAF5 /* MCFNetworkManager+NaVi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MCFNetworkManager+NaVi.h"; sourceTree = "<group>"; };
@@ -308,6 +330,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2007E5911E7137540004DE37 /* GMT */ = {
+			isa = PBXGroup;
+			children = (
+				2007E5921E7137540004DE37 /* GTMBase64.h */,
+				2007E5931E7137540004DE37 /* GTMBase64.m */,
+				2007E5941E7137540004DE37 /* GTMDefines.h */,
+			);
+			path = GMT;
+			sourceTree = "<group>";
+		};
 		207D11881E65774500430F1D /* UMSocial */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,6 +441,7 @@
 		207D11D31E667B6C00430F1D /* MCFPhotoKit */ = {
 			isa = PBXGroup;
 			children = (
+				207D11DE1E6D380D00430F1D /* photo */,
 				207D11D41E667B9400430F1D /* MCFCameraViewController.h */,
 				207D11D51E667B9400430F1D /* MCFCameraViewController.m */,
 				207D11D81E67CF7E00430F1D /* MCFImagePreViewViewController.h */,
@@ -418,6 +451,23 @@
 				207D11DC1E67F32C00430F1D /* MCFImageCropView.m */,
 			);
 			path = MCFPhotoKit;
+			sourceTree = "<group>";
+		};
+		207D11DE1E6D380D00430F1D /* photo */ = {
+			isa = PBXGroup;
+			children = (
+				207D11DF1E6D383600430F1D /* MCFPhotoLibrary.h */,
+				207D11E01E6D383600430F1D /* MCFPhotoLibrary.m */,
+				2007E5771E6D6A440004DE37 /* MCFPhotoLibraryViewController.h */,
+				2007E5781E6D6A440004DE37 /* MCFPhotoLibraryViewController.m */,
+				2007E57A1E6D6AC30004DE37 /* MCFAssetItemCell.h */,
+				2007E57B1E6D6AC30004DE37 /* MCFAssetItemCell.m */,
+				2007E5801E6D6BB00004DE37 /* MCFAssetCollectionView.h */,
+				2007E5811E6D6BB00004DE37 /* MCFAssetCollectionView.m */,
+				2007E5831E6D6D400004DE37 /* MCFAssetCollecitonCell.h */,
+				2007E5841E6D6D400004DE37 /* MCFAssetCollecitonCell.m */,
+			);
+			path = photo;
 			sourceTree = "<group>";
 		};
 		20C19AE51E56FBE90010CAF5 /* Model */ = {
@@ -502,6 +552,7 @@
 		20C49BCE1E555AFE00196534 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				2007E5911E7137540004DE37 /* GMT */,
 				207D11881E65774500430F1D /* UMSocial */,
 			);
 			path = Vendor;
@@ -605,6 +656,8 @@
 				20DFD2011E5C23A100D13921 /* LogInViewController.m */,
 				20DFD1EE1E5C1A3100D13921 /* ProfileViewController.h */,
 				20DFD1EF1E5C1A3100D13921 /* ProfileViewController.m */,
+				2007E5961E7250750004DE37 /* BindPhoneViewController.h */,
+				2007E5971E7250750004DE37 /* BindPhoneViewController.m */,
 				20DFD1F11E5C1E1900D13921 /* CollectionViewController.h */,
 				20DFD1F21E5C1E1900D13921 /* CollectionViewController.m */,
 				20DFD1F41E5C1E2D00D13921 /* FeedbackViewController.h */,
@@ -1035,11 +1088,13 @@
 				20DFD1E21E5AE8F700D13921 /* IconTitleCell.m in Sources */,
 				20C19AEF1E56FDF10010CAF5 /* MCFBaseModel.m in Sources */,
 				20C49BDD1E55872B00196534 /* NTESHTTPClient.m in Sources */,
+				2007E57C1E6D6AC30004DE37 /* MCFAssetItemCell.m in Sources */,
 				2793547E1E542B48004ECB95 /* ViewController.m in Sources */,
 				20C49BD31E5575DD00196534 /* BaseViewController.m in Sources */,
 				2793547B1E542B48004ECB95 /* AppDelegate.m in Sources */,
 				20DFD1FF1E5C236C00D13921 /* RegistViewController.m in Sources */,
 				207D11D61E667B9400430F1D /* MCFCameraViewController.m in Sources */,
+				207D11E11E6D383600430F1D /* MCFPhotoLibrary.m in Sources */,
 				279354781E542B48004ECB95 /* main.m in Sources */,
 				20C19AE41E56FB400010CAF5 /* MCFNetworkManager+NaVi.m in Sources */,
 				20DFD2021E5C23A100D13921 /* LogInViewController.m in Sources */,
@@ -1061,18 +1116,23 @@
 				20DFD1FC1E5C1F7400D13921 /* SettingViewController.m in Sources */,
 				207D11DA1E67CF7E00430F1D /* MCFImagePreViewViewController.m in Sources */,
 				20DFD1C91E5AD30800D13921 /* ServiceViewController.m in Sources */,
+				2007E5821E6D6BB00004DE37 /* MCFAssetCollectionView.m in Sources */,
 				20DFD1B01E5A883D00D13921 /* MCFHomeViewController.m in Sources */,
 				20DFD1DE1E5AE83600D13921 /* BaseTableViewCell.m in Sources */,
+				2007E5851E6D6D400004DE37 /* MCFAssetCollecitonCell.m in Sources */,
 				20DFD1CF1E5AD92100D13921 /* MCFNetworkManager+User.m in Sources */,
+				2007E5951E7137540004DE37 /* GTMBase64.m in Sources */,
 				20C19AD41E56E57A0010CAF5 /* RootTabBarController.m in Sources */,
 				201425D21E568C0C00A1535E /* MCFNavigationController.m in Sources */,
 				20DFD1CC1E5AD6C000D13921 /* LifeViewController.m in Sources */,
 				20CC5DFE1E5D86BD002E8F38 /* ModifyPasswordViewController.m in Sources */,
 				20C19AF21E56FE4B0010CAF5 /* MCFNaviModel.m in Sources */,
 				20CC5E011E5E7B3E002E8F38 /* VerifyAccountView.m in Sources */,
+				2007E5791E6D6A440004DE37 /* MCFPhotoLibraryViewController.m in Sources */,
 				20DFD1BC1E5A973300D13921 /* MCFTools.m in Sources */,
 				20DFD1BF1E5AAF9900D13921 /* BaseWebViewController.m in Sources */,
 				207D11DD1E67F32C00430F1D /* MCFImageCropView.m in Sources */,
+				2007E5981E7250750004DE37 /* BindPhoneViewController.m in Sources */,
 				20DFD1D51E5ADC5800D13921 /* RegisterModel.m in Sources */,
 				20C49BE51E5599ED00196534 /* MCFConfigure.m in Sources */,
 			);

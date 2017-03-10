@@ -16,6 +16,7 @@
 #import "FeedbackViewController.h"
 #import "RegistViewController.h"
 #import "LogInViewController.h"
+#import "BaseWebViewController.h"
 
 @interface MineViewController ()<UITableViewDelegate, UITableViewDataSource, AvatarTapDelegate>
 
@@ -25,6 +26,11 @@
 @end
 
 @implementation MineViewController
+
+- (void)setUser:(MCFUserModel *)user {
+    _user = user;
+    [self.listTable reloadData];
+}
 
 - (UITableView *)listTable {
     if (_listTable == nil) {
@@ -41,24 +47,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.user = [[MCFUserModel alloc] init];
-    self.user.username = @"Jonh";
-    self.user.avatar = @"https://a-ssl.duitang.com/uploads/item/201702/16/20170216103533_aQmuJ.jpeg";
-    
     NSString *path = [[NSBundle mainBundle] pathForResource:@"Mine" ofType:@"plist"];
     self.optionArray = [NSArray arrayWithContentsOfFile:path];
     self.automaticallyAdjustsScrollViewInsets  =NO;
     [self.view addSubview:self.listTable];
+    [self checkLoginStatus];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+    self.user = [MCFTools getLoginUser];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self checkLoginStatus];
+    [self.listTable reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -68,25 +72,28 @@
 
 #pragma mark - avatarDelegate
 - (void)didTapAvatar:(MCFUserModel *)user {
+    if (![self checkLoginStatus]) return;
     ProfileViewController *profileVC = [[ProfileViewController alloc] initWithUser:user];
     profileVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:profileVC animated:YES];
 }
 //-------------取反
-- (void)checkLoginStatus {
-    if([MCFTools isLogined]){
+- (BOOL)checkLoginStatus {
+    if(![MCFTools isLogined]){
         LogInViewController *loginVC = [[LogInViewController alloc] init];
         loginVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:loginVC animated:NO];
-        return;
+        [self.navigationController pushViewController:loginVC animated:YES];
+        return NO;
     }
+    return YES;
 }
 
 #pragma mark - table delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (![self checkLoginStatus]) return;
     if (indexPath.section == 1) {
-        CollectionViewController *collectionVc = [[CollectionViewController alloc] init];
+        CollectionViewController *collectionVc = [[CollectionViewController alloc] initWithUrl:[MCFConfigure cfg].AppCollect];
         collectionVc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:collectionVc animated:YES];
     } else if (indexPath.section == 2) {

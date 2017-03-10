@@ -9,6 +9,7 @@
 #import "UserHeader.h"
 #import <YYKit.h>
 #import "MCFUserModel.h"
+#import "MCFTools.h"
 @interface UserHeader ()
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
@@ -21,7 +22,7 @@
 - (UILabel *)nameLabel {
     if (_nameLabel == nil) {
         _nameLabel = [[UILabel alloc] init];
-        _nameLabel.textColor = [UIColor blackColor];
+        _nameLabel.textColor = [UIColor whiteColor];
         _nameLabel.font = [UIFont systemFontOfSize:18.0f];
         _nameLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -80,7 +81,7 @@
    
     [self.avatarImageView setImageWithURL:[NSURL URLWithString:user.avatar]
                                   options:YYWebImageOptionProgressiveBlur];
-    self.nameLabel.text = user.username;
+    self.nameLabel.text = [MCFTools securityText:user.username];
     [self setNeedsLayout];
 }
 

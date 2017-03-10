@@ -6,8 +6,8 @@
 //  Copyright © 2017年 HLSS. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseWebViewController.h"
 
-@interface CollectionViewController : BaseViewController
+@interface CollectionViewController : BaseWebViewController
 
 @end

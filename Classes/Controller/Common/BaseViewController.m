@@ -20,6 +20,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [self randomColor];
+//    if (self != self.navigationController.viewControllers.firstObject) {
+//        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"]
+//                                                                                 style:UIBarButtonItemStylePlain
+//                                                                                target:self
+//                                                                                action:@selector(didTapBackButton)];
+//    }
+}
+
+- (void)didTapBackButton {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)showLoading{

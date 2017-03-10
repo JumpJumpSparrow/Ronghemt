@@ -10,6 +10,7 @@
 #import <WMPageController.h>
 #import "MCFNaviModel.h"
 #import "BaseWebViewController.h"
+#import <objc/runtime.h>
 
 @interface MCFHomeViewController ()<WMPageControllerDelegate, WMPageControllerDataSource>
 
@@ -56,7 +57,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"城市无线";
+    if (appType == AppEditionWF) {
+        [self resetNaviBar];
+    } else {
+        self.title = @"城市无线";
+    }
     [self addChildViewController:self.pageManagerController];
     [self.view addSubview:self.pageManagerController.view];
 }
@@ -67,6 +72,31 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.pageManagerController.selectIndex = (int)self.selectedIndex ;
+}
+
+- (void)resetNaviBar {
+    CGRect frame = self.navigationController.navigationBar.bounds;
+    frame.size.height += 5;
+    UIView *baseView = [[UIView alloc] initWithFrame:frame];
+    baseView.backgroundColor = [UIColor whiteColor];
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.font = [UIFont systemFontOfSize:20.0f];
+    titleLabel.textColor = [UIColor colorWithHexString:AppColorSelected];
+    titleLabel.textAlignment = NSTextAlignmentLeft;
+    titleLabel.text = @"今日潍坊";
+    [titleLabel sizeToFit];
+    titleLabel.center = CGPointMake(titleLabel.width/ 2 + 20.0f, baseView.height/2.0f);
+    [baseView addSubview:titleLabel];
+    
+    UILabel *SubTitleLabel = [[UILabel alloc] init];
+    SubTitleLabel.font = [UIFont systemFontOfSize:15.0f];
+    SubTitleLabel.textColor = [UIColor blackColor];
+    SubTitleLabel.textAlignment = NSTextAlignmentRight;
+    SubTitleLabel.text = @"潍坊报业集团主办";
+    [SubTitleLabel sizeToFit];
+    SubTitleLabel.center = CGPointMake(baseView.width - SubTitleLabel.width/2.0f - 20.0f, baseView.height - SubTitleLabel.height/2.0f - 12);
+    [baseView addSubview:SubTitleLabel];
+    [self.navigationController.navigationBar addSubview:baseView];
 }
 
 //重置

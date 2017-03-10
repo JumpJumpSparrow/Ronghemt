@@ -26,6 +26,7 @@
         _accountView.keyboardType = UIKeyboardTypeNumberPad;
         _accountView.lengthLimit = 11;
         _accountView.index = 1;
+        _accountView.delegate = self;
     }
     return _accountView;
 }
@@ -37,6 +38,7 @@
         _veriyCode.isVerify = YES;
         _veriyCode.lengthLimit = 4;
         _veriyCode.index = 2;
+        _veriyCode.delegate = self;
     }
     return _veriyCode;
 }
@@ -48,6 +50,7 @@
         _passwordView.lengthLimit = 16;
         _passwordView.isSecureText = YES;
         _passwordView.index = 3;
+        _passwordView.delegate = self;
     }
     return _passwordView;
 }
@@ -59,8 +62,16 @@
         _repassWordView.lengthLimit = 16;
         _repassWordView.isSecureText = YES;
         _repassWordView.index = 4;
+        _repassWordView.delegate = self;
     }
     return _repassWordView;
+}
+
+- (RegisterModel *)account {
+    if (_account == nil) {
+        _account = [[RegisterModel alloc] init];
+    }
+    return _account;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -86,16 +97,28 @@
             self.account.password = text;
             break;
         case 4:
-            self.account.repassword = text;
+            self.account.re_password = text;
             break;
         default:
             break;
     }
 }
 
-- (void)verifyTheAccount {
-    if ([self.delegate respondsToSelector:@selector(verifyTheAccount)]) {
-        [self.delegate verifyTheAccount];
+- (void)verifyTheAccount:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(verifyTheAccount:)]) {
+        [self.delegate verifyTheAccount:sender];
+        if(self.account.phone.length < 11) return;
+        __block NSInteger times = 40;
+        [NSTimer scheduledTimerWithTimeInterval:1 block:^(NSTimer * _Nonnull timer) {
+            sender.enabled = NO;
+            [sender setTitle:[NSString stringWithFormat:@"%ldS",times] forState:UIControlStateDisabled];
+            if (times == 0) {
+                times = 40;
+                sender.enabled = YES;
+                [timer invalidate];
+            }
+            times--;
+        } repeats:YES];
     }
 }
 

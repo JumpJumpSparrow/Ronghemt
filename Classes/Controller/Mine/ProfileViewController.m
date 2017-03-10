@@ -9,6 +9,9 @@
 #import "ProfileViewController.h"
 #import "MCFUserModel.h"
 #import "MCFPhotoKit.h"
+#import "BindPhoneViewController.h"
+#import "MCFNetworkManager+User.h"
+#import <YYKit.h>
 
 @interface TitleInputProfileView : UIView<UITextFieldDelegate>
 
@@ -186,7 +189,7 @@
 
 @end
 
-@interface ProfileViewController ()
+@interface ProfileViewController ()<UITextFieldDelegate>
 
 @property (nonatomic, strong) MCFUserModel *user;
 @property (nonatomic, strong) AvatarButton *avatarButton;
@@ -207,7 +210,14 @@
 
 - (TitleInputProfileView *)inputNameView {
     if (_inputNameView == nil) {
-        _inputNameView = [[TitleInputProfileView alloc] initWith:@"昵称" placeholder:@"小铲铲" frame:CGRectMake(0, self.avatarButton.bottom + 10, SCREEN_WIDTH, 50)];
+        MCFUserModel *user = [MCFTools getLoginUser];
+        NSString *placeHolder = user.username;
+        if (placeHolder.length == 0) {
+            placeHolder = [MCFTools securityText:user.phone];
+        }
+        _inputNameView = [[TitleInputProfileView alloc] initWith:@"昵称" placeholder:placeHolder frame:CGRectMake(0, self.avatarButton.bottom + 10, SCREEN_WIDTH, 50)];
+        _inputNameView.inputField.delegate = self;
+        _inputNameView.lengthLimit = 10;
     }
     return _inputNameView;
 }
@@ -240,7 +250,10 @@
     self.rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.rightButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self.rightButton setTitle:@"完成" forState:UIControlStateNormal];
+    [self.rightButton setTitleColor:[UIColor colorWithHexString:AppColorSelected] forState:UIControlStateNormal];
+    [self.rightButton setTitleColor:[UIColor colorWithHexString:AppColorNormal] forState:UIControlStateDisabled];
     [self.rightButton sizeToFit];
+    self.rightButton.enabled = NO;
     [self.rightButton addTarget:self action:@selector(didSelectDone) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:self.rightButton];
     self.navigationItem.rightBarButtonItem = rightBarButton;
@@ -258,6 +271,16 @@
 
 - (void)didSelectDone {
 
+    MCFUserModel *user = [MCFTools getLoginUser];
+    user.username = self.inputNameView.inputField.text;
+    [self showLoading];
+    [MCFNetworkManager updateUserProfile:user success:^(NSString *tip) {
+        [self hideLoading];
+        [self showTip:tip];
+    } failure:^(NSError *error) {
+        [self hideLoading];
+        [self showTip:@"网络错误"];
+    }];
 }
 
 - (void)didSelectAvatarButton {
@@ -268,7 +291,8 @@
         [self.navigationController pushViewController:cameraVC animated:YES];
     }];
     UIAlertAction *photoAction = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
+        MCFPhotoLibraryViewController *photoVC = [[MCFPhotoLibraryViewController alloc] init];
+        [self.navigationController pushViewController:photoVC animated:YES];
     }];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -281,8 +305,16 @@
     [self presentViewController:alertController animated:YES completion:NULL];
 }
 
-- (void)didSelectTitlebutton {
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    self.rightButton.enabled = textField.text.length > 0;
+    
+    return YES;
+}
 
+- (void)didSelectTitlebutton {
+    BindPhoneViewController *bindPhoneVc = [[BindPhoneViewController alloc] init];
+    [self.navigationController pushViewController:bindPhoneVc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -294,15 +326,5 @@
     [super touchesBegan:touches withEvent:event];
     [self.view endEditing:YES];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

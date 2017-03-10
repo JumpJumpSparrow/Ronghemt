@@ -8,16 +8,87 @@
 
 #import "MCFImagePreViewViewController.h"
 #import "MCFImageCropView.h"
+#import <YYKit.h>
+#import <RSKImageCropper/RSKImageCropper.h>
+#import "MCFNetworkManager+User.h"
 
 @interface MCFImagePreViewViewController ()
 
+@property (nonatomic, strong) UIImage *originImage;
+@property (nonatomic, strong) UIImageView *contentImageView;
+@property (nonatomic, strong) UIButton *nextStepButton;
+@property (nonatomic, strong) UIButton *cancelButton;
 @end
 
 @implementation MCFImagePreViewViewController
 
+- (UIImageView *)contentImageView {
+    if (_contentImageView == nil) {
+        _contentImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+        _contentImageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    return _contentImageView;
+}
+
+- (UIButton *)cancelButton {
+    if (!_cancelButton) {
+        _cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _cancelButton.frame = CGRectMake(0, 0, 44, 44);
+        [_cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+        [_cancelButton setTitleColor:[UIColor colorWithHexString:AppColorSelected] forState:UIControlStateNormal];
+        [_cancelButton addTarget:self action:@selector(didSelectCancel) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _cancelButton;
+}
+
+
+- (UIButton *)nextStepButton {
+    if (!_nextStepButton) {
+        _nextStepButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_nextStepButton setTitle:@"完成" forState:UIControlStateNormal];
+        [_nextStepButton setTitleColor:[UIColor colorWithHexString:AppColorSelected] forState:UIControlStateNormal];
+        [_nextStepButton sizeToFit];
+        [_nextStepButton addTarget:self action:@selector(didSelectDone) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _nextStepButton;
+}
+
+- (instancetype)initWithImage:(UIImage *)image {
+    self = [super init];
+    self.originImage = image;
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = @"预览";
+    [self.view addSubview:self.contentImageView];
+    self.contentImageView.image = self.originImage;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.nextStepButton];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillAppear:animated];
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    //[self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillDisappear:animated];
+}
+
+- (void)didSelectCancel {
+    [self.navigationController popViewControllerAnimated:YES];// to do
+    
+}
+
+- (void)didSelectDone {
+    [self showLoading];
+   [MCFNetworkManager uploadFile:self.originImage success:^(NSString *tip) {
+       [self hideLoading];
+       [self showTip:tip];
+   } failure:^(NSError *error) {
+       [self hideLoading];
+   }];
 }
 
 - (void)didReceiveMemoryWarning {

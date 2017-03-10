@@ -23,4 +23,25 @@ MJCodingImplementation // 归档、解归档
              };
 }
 
+- (void)setNick:(NSString *)nick {
+    _username = nick;
+}
+- (NSString *)nick {
+    return _username;
+}
+
+- (NSString *)photo {
+    return _avatar;
+}
+- (void)setPhoto:(NSString *)photo {
+    _avatar = photo;
+}
+
+- (NSString *)session {
+    return _sessionid;
+}
+- (void)setSession:(NSString *)session {
+    _sessionid = session;
+}
+
 @end

@@ -6,8 +6,9 @@
 //  Copyright © 2017年 HLSS. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface MCFImagePreViewViewController : UIViewController
+@interface MCFImagePreViewViewController : BaseViewController
 
+- (instancetype)initWithImage:(UIImage *)image;
 @end

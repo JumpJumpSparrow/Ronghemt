@@ -81,14 +81,29 @@ static CGFloat ProtocolFont = 13.0f;
     [self.view addSubview:self.protocolButton];
 }
 
-- (void)verifyTheAccount {
-    //请求验证码
+- (void)verifyTheAccount:(UIButton *)sender {
+    RegisterModel *account = self.accountView.account;
+    
+    if (account.phone.length == 0) {
+        [self showTip:@"请输入手机号码"];
+        return;
+    }
+    if (account.phone.length < 11) {
+        [self showTip:@"号码至少为11位"];
+        return;
+    }
+    [MCFNetworkManager requestVerifyCodeForPhone:account.phone success:^(NSString *code, NSString *message) {
+        [self showTip:message];
+        NSLog(@"%@",code);
+    } failure:^(NSError *error) {
+        [self showTip:@"网络错误"];
+    }];
 }
 
 - (void)registNewUser {
     
     RegisterModel *account = self.accountView.account;
-    
+    account.username = account.phone;
     if (account.phone.length == 0) {
         [self showTip:@"请输入手机号码"];
         return;
@@ -101,20 +116,20 @@ static CGFloat ProtocolFont = 13.0f;
         [self showTip:@"请输入验证码"];
         return;
     }
-    if (account.password.length == 0) {
-        [self showTip:@"请输入密码"];
+    if (![MCFTools verifyPassword:account.password lengthLimit:8]) {
+        [self showTip:@"密码为字母数字组合，长度至少8位"];
         return;
     }
-    if (account.repassword.length == 0) {
+    if (account.re_password.length == 0) {
         [self showTip:@"请再次输入密码"];
         return;
     }
     
-    if (![account.password isEqualToString:account.repassword]) {
+    if (![account.password isEqualToString:account.re_password]) {
         [self showTip:@"两次密码不一致"];
         return;
     }
-    if (self.checkButton.selected) {
+    if (!self.checkButton.selected) {
         [self showTip:@"请同意用户协议"];
         return;
     }
@@ -140,6 +155,11 @@ static CGFloat ProtocolFont = 13.0f;
 
 - (void)didSelectProtocol {
     
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    [self.view endEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning {
