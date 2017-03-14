@@ -9,6 +9,7 @@
 #import "BreakingNewsItemViewController.h"
 #import "MCFNetworkManager+User.h"
 #import "ImageBrowseViewController.h"
+#import "EditNewsViewController.h"
 #import <YYKit.h>
 #import "HeaderTitleCell.h"
 #import "TextContentCell.h"
@@ -131,7 +132,8 @@
 }
 
 - (void)didSelectPublishButton {
-    
+    EditNewsViewController *newsVC = [[EditNewsViewController alloc] init];
+    [self.navigationController pushViewController:newsVC animated:YES];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {

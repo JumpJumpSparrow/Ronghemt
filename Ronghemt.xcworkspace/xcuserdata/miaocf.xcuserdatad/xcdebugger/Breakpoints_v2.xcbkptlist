@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/Controller/Mine/BreakingNews/BreakingNewsItemViewController.m"
-            timestampString = "511170487.928084"
+            timestampString = "511175944.745819"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "-dealloc"
             landmarkType = "7">
          </BreakpointContent>

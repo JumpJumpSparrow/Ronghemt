@@ -57,7 +57,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = APPGRAY;
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.phoneView];
     [self.view addSubview:self.codeView];
     [self.view addSubview:self.commitButton];
