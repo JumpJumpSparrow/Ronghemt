@@ -15,6 +15,6 @@
 @property (nonatomic, strong) WKWebView *contentWebView;
 @property (nonatomic, assign) BOOL hideNavi;
 
-- (void)loadRequest:(NSString *)url;
+- (void)loadUrl:(NSString *)url;
 - (instancetype)initWithUrl:(NSString *)url;
 @end

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		
+	</head>
+	<body id="body">
+		
+	</body>
+</html>
+<script>
+var videoPath = android.showVideo();
+	var videoDiv = document.createElement("video");
+	videoDiv.setAttribute("src",videoPath);
+	videoDiv.setAttribute("autoplay","autoplay");
+	videoDiv.setAttribute("controls","controls");
+	var body = document.getElementById("body");
+	body.appendChild(videoDiv);
+	videoDiv.play();
+</script>

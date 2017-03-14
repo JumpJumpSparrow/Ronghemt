@@ -19,6 +19,7 @@ static NSString *updateProfile    = @"userinfo_modify.php";
 static NSString *bindPhone        = @"bind_phone.php";
 static NSString *updateUserInfo   = @"get_userinfo.php";
 static NSString *feedback         = @"feedback.php";
+static NSString *breakNews        = @"baoliao_list.php";
 
 @implementation MCFNetworkManager (User)
 
@@ -192,6 +193,35 @@ static NSString *feedback         = @"feedback.php";
         if (success) {
             success(sting);
         }
+    } failure:^(NSUInteger taskId, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
++ (void)requestBreakNewsPrivate:(BOOL)isPrivat
+                           page:(NSInteger)page
+                        success:(void (^)(NSInteger, NSInteger, NSArray *))success
+                        failure:(void (^)(NSError *))failure {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    if (isPrivat) {
+        [dict setObject:[MCFTools getLoginUser].session forKey:@"session"];
+    }
+    [dict setValue:@(page) forKey:@"page"];
+    [[MCFNetworkManager sharedManager] GET:breakNews
+                                parameters:dict
+                                   success:^(NSUInteger taskId, id responseObject) {
+        
+                                       NSDictionary *dict = [responseObject objectForKey:@"result"];
+                                       NSInteger page = [[dict objectForKey:@"page"] integerValue];
+                                       NSInteger total = [[dict objectForKey:@"total"] integerValue];
+                                       NSArray *items = [dict objectForKey:@"list"];
+                                       
+                                       NSArray *data = [BreakNews mj_objectArrayWithKeyValuesArray:items];
+                                       if (success) {
+                                           success(page, total, data);
+                                       }
     } failure:^(NSUInteger taskId, NSError *error) {
         if (failure) {
             failure(error);

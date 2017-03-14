@@ -9,6 +9,7 @@
 #import "MCFNetworkManager.h"
 #import "MCFUserModel.h"
 #import "RegisterModel.h"
+#import "BreakNews.h"
 
 @interface MCFNetworkManager (User)
 
@@ -45,6 +46,12 @@
 + (void)updateUserProfile:(MCFUserModel *)user
                   success:(void(^)(NSString *tip))success
                   failure:(void(^)(NSError *error))failure;
+
+// 爆料
++ (void)requestBreakNewsPrivate:(BOOL)isPrivat
+                           page:(NSInteger)page
+                        success:(void(^)(NSInteger page, NSInteger total, NSArray *itemList))success
+                        failure:(void(^)(NSError *error))failure;
 //绑定手机号码
 + (void)bindPhoneNumber:(NSString *)number
                    code:(NSString *)code

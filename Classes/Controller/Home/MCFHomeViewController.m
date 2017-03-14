@@ -17,6 +17,7 @@
 @property (nonatomic, strong) MCFNaviModel *naviModel;
 @property (nonatomic, strong) NSArray *channelsArray;// 二级导航各频道
 @property (nonatomic, strong) WMPageController *pageManagerController;
+@property (nonatomic, strong) UIView *titleItem;
 @end
 
 @implementation MCFHomeViewController
@@ -69,7 +70,17 @@
     [super viewWillAppear:animated];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    if (self.titleItem) {
+        self.titleItem.hidden = YES;
+    }
+    [super viewWillDisappear:animated];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
+    if (self.titleItem) {
+        self.titleItem.hidden = NO;
+    }
     [super viewDidAppear:animated];
     self.pageManagerController.selectIndex = (int)self.selectedIndex ;
 }
@@ -96,6 +107,7 @@
     [SubTitleLabel sizeToFit];
     SubTitleLabel.center = CGPointMake(baseView.width - SubTitleLabel.width/2.0f - 20.0f, baseView.height - SubTitleLabel.height/2.0f - 12);
     [baseView addSubview:SubTitleLabel];
+    self.titleItem = baseView;
     [self.navigationController.navigationBar addSubview:baseView];
 }
 

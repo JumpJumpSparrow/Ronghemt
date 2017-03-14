@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "MCFTools.h"
 #import "MCFUserModel.h"
+#import "BreakingNewsViewController.h"
 
 @interface BaseWebViewController ()<WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler>
 
@@ -71,7 +72,7 @@
 
     self.contentWebView.frame = self.view.bounds;
     dispatch_once(&_onceToken, ^{
-        if (self.url.length > 0) [self loadRequest:self.url];
+        if (self.url.length > 0) [self loadUrl:self.url];
     });
 }
 
@@ -80,7 +81,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillDisappear:animated];
 }
-- (void)loadRequest:(NSString *)url {
+- (void)loadUrl:(NSString *)url {
     if (url.length == 0) return;
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -133,11 +134,21 @@
     
     if ([message.name isEqualToString:@"goToBaoLiao"]) {
         
+        BreakingNewsViewController *breakVC = [[BreakingNewsViewController alloc] init];
+        breakVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:breakVC animated:YES];
     }
     if ([message.name isEqualToString:@"getValue"]) {
         [self callBackJS];
     }
    
+    if ([message.name isEqualToString:@"goToMoreProgram"]){
+        NSString *url = dict[@"loadUrl"];
+        BaseWebViewController *webVC = [[BaseWebViewController alloc] initWithUrl:url];
+        webVC.hidesBottomBarWhenPushed = YES;
+        webVC.hideNavi = YES;
+        [self.navigationController pushViewController:webVC animated:YES];
+    }
     if ([message.name isEqualToString:@"goBack"]) {
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -166,7 +177,7 @@
     [self hideLoading];
 }
 
-// realese the delegate here!
+// realese the delegate here! to
 - (void)dealloc {
     
 }
