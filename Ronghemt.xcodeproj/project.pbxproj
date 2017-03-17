@@ -103,6 +103,8 @@
 		20F25F041E7B8A8200C1480E /* CommentHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F25F031E7B8A8200C1480E /* CommentHeader.m */; };
 		20F25F071E7B8AA400C1480E /* CommentContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F25F061E7B8AA400C1480E /* CommentContentCell.m */; };
 		20F25F0A1E7B93BB00C1480E /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F25F091E7B93BB00C1480E /* CommentModel.m */; };
+		20F25F0E1E7BDD1000C1480E /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F25F0D1E7BDD1000C1480E /* ShareViewController.m */; };
+		20F25F111E7BDD6300C1480E /* ThirdLogInView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F25F101E7BDD6300C1480E /* ThirdLogInView.m */; };
 		279354781E542B48004ECB95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 279354771E542B48004ECB95 /* main.m */; };
 		2793547B1E542B48004ECB95 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2793547A1E542B48004ECB95 /* AppDelegate.m */; };
 		2793547E1E542B48004ECB95 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2793547D1E542B48004ECB95 /* ViewController.m */; };
@@ -319,6 +321,10 @@
 		20F25F061E7B8AA400C1480E /* CommentContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentContentCell.m; sourceTree = "<group>"; };
 		20F25F081E7B93BB00C1480E /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
 		20F25F091E7B93BB00C1480E /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
+		20F25F0C1E7BDD1000C1480E /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		20F25F0D1E7BDD1000C1480E /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		20F25F0F1E7BDD6300C1480E /* ThirdLogInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdLogInView.h; sourceTree = "<group>"; };
+		20F25F101E7BDD6300C1480E /* ThirdLogInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdLogInView.m; sourceTree = "<group>"; };
 		279354731E542B48004ECB95 /* Ronghemt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ronghemt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		279354771E542B48004ECB95 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		279354791E542B48004ECB95 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -473,6 +479,7 @@
 		2066D9C61E7A2B420095061C /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				20F25F0B1E7BDCF700C1480E /* share */,
 				20F25EF91E7B8A2600C1480E /* Comment */,
 			);
 			path = Feature;
@@ -832,6 +839,8 @@
 				20CC5E031E5E841C002E8F38 /* InputView.m */,
 				2066D9C31E79332B0095061C /* CommentBar.h */,
 				2066D9C41E79332B0095061C /* CommentBar.m */,
+				20F25F0F1E7BDD6300C1480E /* ThirdLogInView.h */,
+				20F25F101E7BDD6300C1480E /* ThirdLogInView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -867,6 +876,15 @@
 				20F25F061E7B8AA400C1480E /* CommentContentCell.m */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		20F25F0B1E7BDCF700C1480E /* share */ = {
+			isa = PBXGroup;
+			children = (
+				20F25F0C1E7BDD1000C1480E /* ShareViewController.h */,
+				20F25F0D1E7BDD1000C1480E /* ShareViewController.m */,
+			);
+			path = share;
 			sourceTree = "<group>";
 		};
 		2793546A1E542B48004ECB95 = {
@@ -1290,6 +1308,7 @@
 				20DFD1E81E5AF23400D13921 /* BaseTableViewHeaderFooterView.m in Sources */,
 				20DFD1DB1E5AE54C00D13921 /* BaseCollectionViewCell.m in Sources */,
 				20DFD1F31E5C1E1900D13921 /* CollectionViewController.m in Sources */,
+				20F25F0E1E7BDD1000C1480E /* ShareViewController.m in Sources */,
 				20DFD1B31E5A932D00D13921 /* MCFAlertController.m in Sources */,
 				20DFD1D21E5AD9BB00D13921 /* MCFUserModel.m in Sources */,
 				20C49BC41E554B7300196534 /* constants.m in Sources */,
@@ -1316,6 +1335,7 @@
 				2007E5951E7137540004DE37 /* GTMBase64.m in Sources */,
 				20C19AD41E56E57A0010CAF5 /* RootTabBarController.m in Sources */,
 				2007E5AC1E76689A0004DE37 /* ImageGridCell.m in Sources */,
+				20F25F111E7BDD6300C1480E /* ThirdLogInView.m in Sources */,
 				201425D21E568C0C00A1535E /* MCFNavigationController.m in Sources */,
 				20DFD1CC1E5AD6C000D13921 /* LifeViewController.m in Sources */,
 				20CC5DFE1E5D86BD002E8F38 /* ModifyPasswordViewController.m in Sources */,

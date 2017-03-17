@@ -35,6 +35,7 @@ static NSString *APPUserCollect           = @"http://app2.dev.ctvcloud.com/html/
 
 //Wifang====================================
 static NSString *NaviTypeWF               = @"http://app.dev.wfrbw.com/html/nav.html";
+//static NSString *NaviTypeWF               = @"http://stdapp-intra.ctv-cloud.com/api/append_nodes.php";
 static NSString *AppWFHost                = @"http://user.dev.ctvcloud.com/api/";//后续将有改变f
 static NSString *UMENG_CHANNEL_WF         = @"WeiFangRiBao";
 static NSString *AppIdWXWF                = @"wx709965163d15c292";

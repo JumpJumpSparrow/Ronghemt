@@ -10,6 +10,7 @@
 #import "MCFUserModel.h"
 #import "RegisterModel.h"
 #import "BreakNews.h"
+#import "CommentModel.h"
 
 @interface MCFNetworkManager (User)
 
@@ -21,6 +22,10 @@
 + (void)loginWithUser:(RegisterModel *)user
               success:(void(^)(MCFUserModel *user, NSString *tip))success
               failure:(void(^)(NSError *error))failure;
+// 验证登录是否有效
++ (void)verifySession:(void(^)())valid
+              invalid:(void(^)())invalid
+              failure:(void(^)(NSError *error))failure;
 //请求验证码
 + (void)requestVerifyCodeForPhone:(NSString *)phone
                           success:(void(^)(NSString *code, NSString *message))success
@@ -29,6 +34,10 @@
 + (void)modifyPassword:(RegisterModel *)newPassWord
                success:(void(^)(NSString *tip))success
                failure:(void(^)(NSError *error))failure;
+// 注销用户
++ (void)logOutUserSuccess:(void(^)(NSString *tip))success
+                  failure:(void(^)(NSError *error))failure;
+
 // 上传文件
 + (void)uploadFile:(NSObject *)file
             success:(void(^)(NSString *tip))success
@@ -73,7 +82,7 @@
 + (void)checkHasCollectedItem:(NSDictionary *)dict
                       success:(void(^)(BOOL isCollected))success
                       failure:(void(^)(NSError *error))failure;
-
+// 评论列表
 + (void)requestCommentList:(NSInteger)globalId
                       page:(NSInteger)page
                    success:(void(^)(NSInteger page, NSArray *commentList))success

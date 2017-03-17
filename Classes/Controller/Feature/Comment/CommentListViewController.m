@@ -17,6 +17,7 @@
 @property (nonatomic, strong) UICollectionView *contentCollectionView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, assign) NSInteger page;
+@property (nonatomic, assign) NSInteger globalID;
 @property (nonatomic, strong) UIButton *publishButton;
 @end
 
@@ -38,10 +39,15 @@
     return _contentCollectionView;
 }
 
+- (instancetype)initWithGlobalId:(NSInteger)globalId {
+    self = [super init];
+    self.globalID = globalId;
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self installParts];
-    
 }
 
 - (void)installParts {
@@ -60,28 +66,26 @@
 - (void)requestData:(NSInteger)page {
     
     [self showLoading];
-    
-    [MCFNetworkManager requestBreakNewsPrivate:self.isPrivate
-                                          page:page
-                                       success:^(NSInteger page, NSInteger total, NSArray *itemList) {
-                                           [self hideLoading];
-                                           [self endRefreshing];
-                                           if (page == 1) {
-                                               [self.dataArray removeAllObjects];
-                                               [self showEmptyView:(itemList.count != 0)];
-                                           }
-                                           if (itemList.count == 0) {
-                                               [self showTip:@"无更多数据"];
-                                               return;
-                                           }
-                                           self.page = page;
-                                           [self.dataArray addObjectsFromArray:itemList];
-                                           [self.contentCollectionView reloadData];
-                                       } failure:^(NSError *error) {
-                                           [self hideLoading];
-                                           [self endRefreshing];
-                                       }];
-    
+    [MCFNetworkManager requestCommentList:self.globalID
+                                     page:page
+                                  success:^(NSInteger page, NSArray *commentList) {
+                                      [self hideLoading];
+                                      [self endRefreshing];
+                                      if (page == 1) {
+                                          [self.dataArray removeAllObjects];
+                                      }
+                                      if (commentList.count == 0) {
+                                          [self showTip:@"暂无任何评论"];
+                                          return;
+                                      }
+                                      self.page = page;
+                                      [self.dataArray addObjectsFromArray:commentList];
+                                      [self.contentCollectionView reloadData];
+        
+    } failure:^(NSError *error) {
+        [self hideLoading];
+        [self endRefreshing];
+    }];
 }
 
 - (void)endRefreshing {
@@ -96,32 +100,19 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     NSInteger count = 2;
-    BreakNews *news = self.dataArray[section];
-    if (news.content.length > 0) {
-        count += 1;
-    }
-    if (news.photo1.length > 0) {
-        count += 1;
-    }
     return count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BaseCollectionViewCell *cell = nil;
     
-    BreakNews *news = [self.dataArray objectAtIndex:indexPath.section];
+    CommentModel *news = [self.dataArray objectAtIndex:indexPath.section];
     
     if (indexPath.item == 0) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CommentHeader" forIndexPath:indexPath];
     }
     else if (indexPath.item == 1) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CommentContentCell" forIndexPath:indexPath];
-    }
-    else if (indexPath.item == 2 && news.photo1.length > 0) {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageGridCell" forIndexPath:indexPath];
-    }
-    else if(indexPath.item == 3 || (indexPath.item == 2 && news.photo1.length == 0)) {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TimeLabelCell" forIndexPath:indexPath];
     }
     
     [cell bindWithModel:news];
@@ -140,6 +131,7 @@
     else if (indexPath.item == 1) {
         size = [CommentContentCell sizeWithModel:news];
     }
+    return size;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -8,6 +8,7 @@
 
 #import "SettingViewController.h"
 #import "AppDelegate.h"
+#import "MCFNetworkManager+User.h"
 #import <YYKit.h>
 
 @interface TitlesButton : UIButton
@@ -137,10 +138,16 @@
 }
 
 - (void)logOut {
-    [MCFTools clearLoginUser];
-    
-    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [delegate.rootVc switchToIndex:0 subIndex:0];
+    [self showLoading];
+    [MCFNetworkManager logOutUserSuccess:^(NSString *tip) {
+        [self hideLoading];
+        [self showTip:tip];
+        [MCFTools clearLoginUser];
+        AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [delegate.rootVc switchToIndex:0 subIndex:0];
+    } failure:^(NSError *error) {
+        [self hideLoading];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

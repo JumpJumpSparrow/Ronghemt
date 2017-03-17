@@ -12,6 +12,8 @@
 
 static NSString *LogIn            = @"login.php";
 static NSString *Regist           = @"register.php";
+static NSString *logOut           = @"logout.php";
+static NSString *checkSession     = @"login_verify.php";
 static NSString *verifyCode       = @"code.php";
 static NSString *modifyPass       = @"find_passwd.php";
 static NSString *uploadFile       = @"file_upload.php";
@@ -112,6 +114,44 @@ static NSString *commentList      = @"comment_list.php";
             failure (error);
         }
     }];
+}
+
++ (void)logOutUserSuccess:(void (^)(NSString *))success
+                  failure:(void (^)(NSError *))failure {
+    NSDictionary *dict = @{@"session" : [MCFTools getLoginUser] .session};
+    [[MCFNetworkManager sharedManager] GET:logOut
+                                parameters:dict
+                                   success:^(NSUInteger taskId, id responseObject) {
+                                       NSString *message = [responseObject objectForKey:@"message"];
+                                       if (success) {
+                                           success(message);
+                                       }
+                                   } failure:^(NSUInteger taskId, NSError *error) {
+                                       if (failure) {
+                                           failure (error);
+                                       }
+                                   }];
+}
+
++ (void)verifySession:(void (^)())valid
+              invalid:(void (^)())invalid
+              failure:(void (^)(NSError *))failure {
+    NSDictionary *dict = @{@"session" : [MCFTools getLoginUser] .session};
+    [[MCFNetworkManager sharedManager] GET:checkSession
+                                parameters:dict
+                                   success:^(NSUInteger taskId, id responseObject) {
+                                       NSInteger status = [[responseObject objectForKey:@"status"] integerValue];
+                                       if (status == 1 && valid) {
+                                           valid();
+                                       }
+                                       if (status == 0 && invalid) {
+                                           invalid();
+                                       }
+                                   } failure:^(NSUInteger taskId, NSError *error) {
+                                       if (failure) {
+                                           failure (error);
+                                       }
+                                   }];
 }
 
 + (void)updateUserProfile:(MCFUserModel *)user
@@ -359,8 +399,9 @@ static NSString *commentList      = @"comment_list.php";
                                        NSDictionary *resultDict = [responseObject objectForKey:@"result"];
                                        NSInteger page = [resultDict[@"page"] integerValue];
                                        NSArray *dataList = resultDict[@"list"];
+                                       NSArray *modleList = [CommentModel mj_objectArrayWithKeyValuesArray:dataList];
                                        if (success) {
-                                           success(page, dataList);
+                                           success(page, modleList);
                                        }
     } failure:^(NSUInteger taskId, NSError *error) {
         if (failure) {

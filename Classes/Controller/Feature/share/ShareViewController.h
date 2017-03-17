@@ -1,5 +1,5 @@
 //
-//  CommentListViewController.h
+//  ShareViewController.h
 //  Ronghemt
 //
 //  Created by MiaoCF on 2017/3/17.
@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 
-@interface CommentListViewController : BaseViewController
+@interface ShareViewController : BaseViewController
 
-- (instancetype)initWithGlobalId:(NSInteger)globalId;
+- (instancetype)initWithUrl:(NSString *)shareUrl;
 @end

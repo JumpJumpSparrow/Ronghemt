@@ -16,6 +16,8 @@
 #import "BreakingNewsViewController.h"
 #import "CommentBar.h"
 #import "CommentViewController.h"
+#import "CommentListViewController.h"
+#import "ShareViewController.h"
 
 @interface BaseWebViewController ()<WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler, CommentBarDelegate>
 
@@ -164,6 +166,18 @@
         } else {
             [self collectItem];
         }
+    } else if (sender.tag == 1) {
+        NSInteger globaleID = [self.currentPageInfo[@"globalId"] integerValue];
+        CommentListViewController *commentListVC = [[CommentListViewController alloc] initWithGlobalId:globaleID];
+        commentListVC.hidesBottomBarWhenPushed = YES;
+        commentListVC.title = @"所有评论";
+        [self.navigationController pushViewController:commentListVC animated:YES];
+    } else {
+        NSString *url = self.currentPageInfo[@"loadUrl"];
+        ShareViewController *shareVc = [[ShareViewController alloc] initWithUrl:url];
+        shareVc.hidesBottomBarWhenPushed = YES;
+        shareVc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+        [self presentViewController:shareVc animated:NO completion:NULL];
     }
 }
 
