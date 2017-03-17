@@ -20,6 +20,11 @@ static NSString *bindPhone        = @"bind_phone.php";
 static NSString *updateUserInfo   = @"get_userinfo.php";
 static NSString *feedback         = @"feedback.php";
 static NSString *breakNews        = @"baoliao_list.php";
+static NSString *commitComment    = @"comment.php";
+static NSString *removeCollect    = @"del_collect.php";
+static NSString *collectItem      = @"collect.php";
+static NSString *chechCollect     = @"has_collect.php";
+static NSString *commentList      = @"comment_list.php";
 
 @implementation MCFNetworkManager (User)
 
@@ -221,6 +226,141 @@ static NSString *breakNews        = @"baoliao_list.php";
                                        NSArray *data = [BreakNews mj_objectArrayWithKeyValuesArray:items];
                                        if (success) {
                                            success(page, total, data);
+                                       }
+    } failure:^(NSUInteger taskId, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
++ (void)commitComment:(NSString *)content
+                 dict:(NSDictionary *)dict
+              success:(void (^)(NSString *))success
+              failure:(void (^)(NSError *))failure {
+    if (content.length == 0 || dict == nil) {
+        return;
+    }
+    NSMutableDictionary *paramDict = [[NSMutableDictionary alloc] init];
+    [paramDict setValue:[MCFTools getLoginUser].session forKey:@"session"];
+    [paramDict setValue:dict[@"title"] forKey:@"title"];
+    [paramDict setValue:dict[@"globalId"] forKey:@"globalid"];
+    [paramDict setValue:content forKey:@"content"];
+    [paramDict setValue:dict[@"loadUrl"] forKey:@"url"];
+    
+    [[MCFNetworkManager sharedManager] POST:commitComment parameters:paramDict success:^(NSUInteger taskId, id responseObject) {
+        
+        NSString *sting = [responseObject objectForKey:@"message"];
+        if (success) {
+            success(sting);
+        }
+    } failure:^(NSUInteger taskId, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+    
+}
+
++ (void)collectItem:(NSDictionary *)dict
+            success:(void (^)(NSString *))success
+            failure:(void (^)(NSError *))failure {
+    if (dict == nil) {
+        return;
+    }
+    NSMutableDictionary *paramDict = [[NSMutableDictionary alloc] init];
+    [paramDict setValue:[MCFTools getLoginUser].session forKey:@"session"];
+    [paramDict setValue:dict[@"title"] forKey:@"title"];
+    [paramDict setValue:dict[@"globalId"] forKey:@"id"];
+    [paramDict setValue:@([[dict objectForKey:@"conType"] integerValue]) forKey:@"type"];
+    [paramDict setValue:dict[@"loadUrl"] forKey:@"url"];
+    
+    [[MCFNetworkManager sharedManager] POST:collectItem parameters:paramDict success:^(NSUInteger taskId, id responseObject) {
+        
+        NSString *sting = [responseObject objectForKey:@"message"];
+        if (success) {
+            success(sting);
+        }
+    } failure:^(NSUInteger taskId, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
++ (void)removeCollectItem:(NSDictionary *)dict
+                  success:(void (^)(NSString *))success
+                  failure:(void (^)(NSError *))failure {
+    if (dict == nil) {
+        return;
+    }
+    NSMutableDictionary *paramDict = [[NSMutableDictionary alloc] init];
+    [paramDict setValue:[MCFTools getLoginUser].session forKey:@"session"];
+    [paramDict setValue:dict[@"globalId"] forKey:@"globalid"];
+    
+    [[MCFNetworkManager sharedManager] POST:removeCollect
+                                 parameters:paramDict
+                                    success:^(NSUInteger taskId, id responseObject) {
+        
+        NSString *sting = [responseObject objectForKey:@"message"];
+        if (success) {
+            success(sting);
+        }
+    } failure:^(NSUInteger taskId, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
++ (void)checkHasCollectedItem:(NSDictionary *)dict
+                      success:(void (^)(BOOL))success
+                      failure:(void (^)(NSError *))failure {
+    if (dict == nil) {
+        return;
+    }
+    NSMutableDictionary *paramDict = [[NSMutableDictionary alloc] init];
+    [paramDict setValue:[MCFTools getLoginUser].session forKey:@"session"];
+    [paramDict setValue:dict[@"globalId"] forKey:@"id"];
+    
+    [[MCFNetworkManager sharedManager] POST:chechCollect
+                                 parameters:paramDict
+                                    success:^(NSUInteger taskId, id responseObject) {
+                                        
+                                        NSInteger isCollected = [[responseObject objectForKey:@"status"] integerValue];
+                                        if (success) {
+                                            success(isCollected == 1);
+                                        }
+                                    } failure:^(NSUInteger taskId, NSError *error) {
+                                        if (failure) {
+                                            failure(error);
+                                        }
+                                    }];
+}
+
++ (void)requestCommentList:(NSInteger)globalId
+                      page:(NSInteger)page
+                   success:(void (^)(NSInteger, NSArray *))success
+                   failure:(void (^)(NSError *))failure {
+    if (globalId == 0 || page == 0) {
+        return;
+    }
+    NSDictionary *dict = @{
+                           @"session" : [MCFTools getLoginUser].session,
+                           @"globalid" : @(globalId),
+                           @"page" : @(page),
+                           @"per_num" : @(20)
+                           };
+    
+    [[MCFNetworkManager sharedManager] GET:commentList
+                                parameters:dict
+                                   success:^(NSUInteger taskId, id responseObject) {
+        
+                                       NSDictionary *resultDict = [responseObject objectForKey:@"result"];
+                                       NSInteger page = [resultDict[@"page"] integerValue];
+                                       NSArray *dataList = resultDict[@"list"];
+                                       if (success) {
+                                           success(page, dataList);
                                        }
     } failure:^(NSUInteger taskId, NSError *error) {
         if (failure) {

@@ -14,6 +14,7 @@
 @property (nonatomic, copy) NSString *url;
 @property (nonatomic, strong) WKWebView *contentWebView;
 @property (nonatomic, assign) BOOL hideNavi;
+@property (nonatomic, assign) BOOL showCommentBar;
 
 - (void)loadUrl:(NSString *)url;
 - (instancetype)initWithUrl:(NSString *)url;

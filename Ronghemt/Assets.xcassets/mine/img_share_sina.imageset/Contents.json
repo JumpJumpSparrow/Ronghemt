@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "img_share_sina.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "img_share_sina.png",
       "scale" : "2x"
     },
     {

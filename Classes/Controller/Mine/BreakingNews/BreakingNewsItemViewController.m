@@ -47,6 +47,7 @@
         _contentCollectionView.backgroundColor = APPGRAY;
         _contentCollectionView.dataSource = self;
         _contentCollectionView.delegate = self;
+        _contentCollectionView.showsVerticalScrollIndicator = NO;
         [_contentCollectionView registerClass:[HeaderTitleCell class] forCellWithReuseIdentifier:@"HeaderTitleCell"];
         [_contentCollectionView registerClass:[TextContentCell class] forCellWithReuseIdentifier:@"TextContentCell"];
         [_contentCollectionView registerClass:[ImageGridCell class] forCellWithReuseIdentifier:@"ImageGridCell"];
@@ -59,10 +60,6 @@
     [super viewDidLoad];
     [self installParts];
     
-    [self.contentCollectionView addObserver:self
-                                 forKeyPath:@"contentOffset"
-                                    options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
-                                    context:nil];
 }
 
 - (void)installParts {
@@ -81,6 +78,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.contentCollectionView addObserver:self
+                                 forKeyPath:@"contentOffset"
+                                    options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
+                                    context:nil];
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
     [keyWindow addSubview:self.publishButton];
     [keyWindow bringSubviewToFront:self.publishButton];
@@ -88,6 +89,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [self.contentCollectionView removeObserver:self forKeyPath:@"contentOffset"];
     [self.publishButton removeFromSuperview];
 }
 

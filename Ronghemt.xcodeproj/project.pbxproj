@@ -31,6 +31,7 @@
 		2007E5DA1E77DB1B0004DE37 /* EditNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2007E5D91E77DB1B0004DE37 /* EditNewsViewController.m */; };
 		201425D21E568C0C00A1535E /* MCFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 201425D11E568C0C00A1535E /* MCFNavigationController.m */; };
 		204FCEB91E5EBF6D000CB793 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 204FCEB81E5EBF6D000CB793 /* test.html */; };
+		2066D9C51E79332B0095061C /* CommentBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2066D9C41E79332B0095061C /* CommentBar.m */; };
 		207D11B31E65774500430F1D /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 207D118B1E65774500430F1D /* libSocialQQ.a */; };
 		207D11B41E65774500430F1D /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207D118C1E65774500430F1D /* TencentOpenAPI.framework */; };
 		207D11B51E65774500430F1D /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 207D118D1E65774500430F1D /* TencentOpenApi_IOS_Bundle.bundle */; };
@@ -97,6 +98,11 @@
 		20DFD1FC1E5C1F7400D13921 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1FB1E5C1F7400D13921 /* SettingViewController.m */; };
 		20DFD1FF1E5C236C00D13921 /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD1FE1E5C236C00D13921 /* RegistViewController.m */; };
 		20DFD2021E5C23A100D13921 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DFD2011E5C23A100D13921 /* LogInViewController.m */; };
+		20F25F001E7B8A2700C1480E /* CommentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F25EFB1E7B8A2600C1480E /* CommentListViewController.m */; };
+		20F25F011E7B8A2700C1480E /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F25EFD1E7B8A2600C1480E /* CommentViewController.m */; };
+		20F25F041E7B8A8200C1480E /* CommentHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F25F031E7B8A8200C1480E /* CommentHeader.m */; };
+		20F25F071E7B8AA400C1480E /* CommentContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F25F061E7B8AA400C1480E /* CommentContentCell.m */; };
+		20F25F0A1E7B93BB00C1480E /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F25F091E7B93BB00C1480E /* CommentModel.m */; };
 		279354781E542B48004ECB95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 279354771E542B48004ECB95 /* main.m */; };
 		2793547B1E542B48004ECB95 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2793547A1E542B48004ECB95 /* AppDelegate.m */; };
 		2793547E1E542B48004ECB95 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2793547D1E542B48004ECB95 /* ViewController.m */; };
@@ -172,6 +178,8 @@
 		201425D01E568C0C00A1535E /* MCFNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFNavigationController.h; sourceTree = "<group>"; };
 		201425D11E568C0C00A1535E /* MCFNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFNavigationController.m; sourceTree = "<group>"; };
 		204FCEB81E5EBF6D000CB793 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
+		2066D9C31E79332B0095061C /* CommentBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentBar.h; sourceTree = "<group>"; };
+		2066D9C41E79332B0095061C /* CommentBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentBar.m; sourceTree = "<group>"; };
 		207D118B1E65774500430F1D /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
 		207D118C1E65774500430F1D /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		207D118D1E65774500430F1D /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
@@ -301,6 +309,16 @@
 		20DFD1FE1E5C236C00D13921 /* RegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistViewController.m; sourceTree = "<group>"; };
 		20DFD2001E5C23A100D13921 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		20DFD2011E5C23A100D13921 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
+		20F25EFA1E7B8A2600C1480E /* CommentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentListViewController.h; sourceTree = "<group>"; };
+		20F25EFB1E7B8A2600C1480E /* CommentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentListViewController.m; sourceTree = "<group>"; };
+		20F25EFC1E7B8A2600C1480E /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
+		20F25EFD1E7B8A2600C1480E /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
+		20F25F021E7B8A8200C1480E /* CommentHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentHeader.h; sourceTree = "<group>"; };
+		20F25F031E7B8A8200C1480E /* CommentHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentHeader.m; sourceTree = "<group>"; };
+		20F25F051E7B8AA400C1480E /* CommentContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentContentCell.h; sourceTree = "<group>"; };
+		20F25F061E7B8AA400C1480E /* CommentContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentContentCell.m; sourceTree = "<group>"; };
+		20F25F081E7B93BB00C1480E /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
+		20F25F091E7B93BB00C1480E /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		279354731E542B48004ECB95 /* Ronghemt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ronghemt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		279354771E542B48004ECB95 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		279354791E542B48004ECB95 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -450,6 +468,14 @@
 				2007E5CB1E779D510004DE37 /* timg.gif */,
 			);
 			path = img;
+			sourceTree = "<group>";
+		};
+		2066D9C61E7A2B420095061C /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				20F25EF91E7B8A2600C1480E /* Comment */,
+			);
+			path = Feature;
 			sourceTree = "<group>";
 		};
 		207D11881E65774500430F1D /* UMSocial */ = {
@@ -674,6 +700,7 @@
 		20C49BCF1E5574FC00196534 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2066D9C61E7A2B420095061C /* Feature */,
 				20DFD1C11E5AC57F00D13921 /* Life */,
 				20DFD1C21E5AC57F00D13921 /* Mine */,
 				20DFD1C31E5AC57F00D13921 /* Video */,
@@ -803,6 +830,41 @@
 				20CC5E001E5E7B3E002E8F38 /* VerifyAccountView.m */,
 				20CC5E021E5E841C002E8F38 /* InputView.h */,
 				20CC5E031E5E841C002E8F38 /* InputView.m */,
+				2066D9C31E79332B0095061C /* CommentBar.h */,
+				2066D9C41E79332B0095061C /* CommentBar.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		20F25EF91E7B8A2600C1480E /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				20F25EFA1E7B8A2600C1480E /* CommentListViewController.h */,
+				20F25EFB1E7B8A2600C1480E /* CommentListViewController.m */,
+				20F25EFC1E7B8A2600C1480E /* CommentViewController.h */,
+				20F25EFD1E7B8A2600C1480E /* CommentViewController.m */,
+				20F25EFE1E7B8A2700C1480E /* modle */,
+				20F25EFF1E7B8A2700C1480E /* view */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		20F25EFE1E7B8A2700C1480E /* modle */ = {
+			isa = PBXGroup;
+			children = (
+				20F25F081E7B93BB00C1480E /* CommentModel.h */,
+				20F25F091E7B93BB00C1480E /* CommentModel.m */,
+			);
+			path = modle;
+			sourceTree = "<group>";
+		};
+		20F25EFF1E7B8A2700C1480E /* view */ = {
+			isa = PBXGroup;
+			children = (
+				20F25F021E7B8A8200C1480E /* CommentHeader.h */,
+				20F25F031E7B8A8200C1480E /* CommentHeader.m */,
+				20F25F051E7B8AA400C1480E /* CommentContentCell.h */,
+				20F25F061E7B8AA400C1480E /* CommentContentCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1211,6 +1273,7 @@
 				20C49BDD1E55872B00196534 /* NTESHTTPClient.m in Sources */,
 				2007E57C1E6D6AC30004DE37 /* MCFAssetItemCell.m in Sources */,
 				2793547E1E542B48004ECB95 /* ViewController.m in Sources */,
+				20F25F041E7B8A8200C1480E /* CommentHeader.m in Sources */,
 				20C49BD31E5575DD00196534 /* BaseViewController.m in Sources */,
 				2007E5A61E7668720004DE37 /* HeaderTitleCell.m in Sources */,
 				2793547B1E542B48004ECB95 /* AppDelegate.m in Sources */,
@@ -1238,7 +1301,9 @@
 				20C49BDF1E55872B00196534 /* NTESHTTPTask.m in Sources */,
 				20DFD1F01E5C1A3100D13921 /* ProfileViewController.m in Sources */,
 				20C49BDE1E55872B00196534 /* NTESHTTPSessionManager.m in Sources */,
+				20F25F071E7B8AA400C1480E /* CommentContentCell.m in Sources */,
 				20DFD1FC1E5C1F7400D13921 /* SettingViewController.m in Sources */,
+				2066D9C51E79332B0095061C /* CommentBar.m in Sources */,
 				207D11DA1E67CF7E00430F1D /* MCFImagePreViewViewController.m in Sources */,
 				20DFD1C91E5AD30800D13921 /* ServiceViewController.m in Sources */,
 				2007E5821E6D6BB00004DE37 /* MCFAssetCollectionView.m in Sources */,
@@ -1255,6 +1320,7 @@
 				20DFD1CC1E5AD6C000D13921 /* LifeViewController.m in Sources */,
 				20CC5DFE1E5D86BD002E8F38 /* ModifyPasswordViewController.m in Sources */,
 				20C19AF21E56FE4B0010CAF5 /* MCFNaviModel.m in Sources */,
+				20F25F011E7B8A2700C1480E /* CommentViewController.m in Sources */,
 				20CC5E011E5E7B3E002E8F38 /* VerifyAccountView.m in Sources */,
 				2007E5D71E77BFC70004DE37 /* ImageBrowseViewController.m in Sources */,
 				2007E5791E6D6A440004DE37 /* MCFPhotoLibraryViewController.m in Sources */,
@@ -1264,6 +1330,8 @@
 				207D11DD1E67F32C00430F1D /* MCFImageCropView.m in Sources */,
 				2007E5981E7250750004DE37 /* BindPhoneViewController.m in Sources */,
 				20DFD1D51E5ADC5800D13921 /* RegisterModel.m in Sources */,
+				20F25F0A1E7B93BB00C1480E /* CommentModel.m in Sources */,
+				20F25F001E7B8A2700C1480E /* CommentListViewController.m in Sources */,
 				20C49BE51E5599ED00196534 /* MCFConfigure.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

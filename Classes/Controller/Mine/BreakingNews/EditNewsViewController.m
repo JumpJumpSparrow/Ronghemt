@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UIView *baseView;
 @property (nonatomic, strong) YYTextView *inputView;
 @property (nonatomic, strong) UILabel *countLabel;
+@property (nonatomic, strong) UITableView *photoListView;
 @end
 
 @implementation EditNewsViewController

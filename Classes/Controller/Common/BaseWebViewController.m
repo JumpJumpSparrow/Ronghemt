@@ -8,19 +8,32 @@
 
 #import "BaseWebViewController.h"
 #import "MCFNetworkManager.h"
+#import "MCFNetworkManager+User.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "AppDelegate.h"
 #import "MCFTools.h"
 #import "MCFUserModel.h"
 #import "BreakingNewsViewController.h"
+#import "CommentBar.h"
+#import "CommentViewController.h"
 
-@interface BaseWebViewController ()<WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler>
+@interface BaseWebViewController ()<WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler, CommentBarDelegate>
 
 @property (nonatomic, assign) dispatch_once_t onceToken;
 @property (nonatomic, strong) WKWebViewConfiguration *configuration;
+@property (nonatomic, strong) CommentBar *commentBar;
+@property (nonatomic, strong) NSDictionary *currentPageInfo;
 @end
 
 @implementation BaseWebViewController
+
+- (CommentBar *)commentBar {
+    if (_commentBar == nil) {
+        _commentBar = [[CommentBar alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 55.0f, SCREEN_WIDTH, 55.0f)];
+        _commentBar.delegate = self;
+    }
+    return _commentBar;
+}
 
 - (WKWebViewConfiguration *)configuration {
     if (_configuration == nil) {
@@ -32,6 +45,7 @@
         [_configuration.userContentController addScriptMessageHandler:self name:@"goToMoreProgram"];
         [_configuration.userContentController addScriptMessageHandler:self name:@"goBack"];
         [_configuration.userContentController addScriptMessageHandler:self name:@"getValue"];
+        [_configuration.userContentController addScriptMessageHandler:self name:@"getJs"];
     }
     return _configuration;
 }
@@ -45,8 +59,7 @@
     }
     return _contentWebView;
 }
-
-- (instancetype)initWithUrl:(NSString *)url {
+ - (instancetype)initWithUrl:(NSString *)url {
     self = [super init];
     if (self) {
         self.url = url;
@@ -58,13 +71,23 @@
     [super viewDidLoad];
     
     [self.view addSubview:self.contentWebView];
+    if(self.showCommentBar){
+        [self.view addSubview:self.commentBar];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     if (self.hideNavi) {
         [self.navigationController setNavigationBarHidden:YES animated:animated];
     }
+    if (self.showCommentBar) {
+        [self.contentWebView.scrollView addObserver:self
+                                         forKeyPath:@"contentOffset"
+                                            options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
+                                            context:nil];
+    }
     [super viewWillAppear:animated];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -79,8 +102,12 @@
 - (void)viewWillDisappear:(BOOL)animated {
     
     [self.navigationController setNavigationBarHidden:NO animated:animated];
+    if (self.showCommentBar) {
+        [self.contentWebView.scrollView removeObserver:self forKeyPath:@"contentOffset"];
+    }
     [super viewWillDisappear:animated];
 }
+
 - (void)loadUrl:(NSString *)url {
     if (url.length == 0) return;
     
@@ -98,6 +125,72 @@
     return dict;
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if (self.showCommentBar) {
+        CGPoint newPoint = [[change objectForKey:@"new"] CGPointValue];
+        CGRect frame = self.commentBar.frame;
+        if (newPoint.y > 100) { // up
+            if (frame.origin.y < SCREEN_HEIGHT) {
+                frame.origin.y = SCREEN_HEIGHT + 10.0f;
+                [UIView animateWithDuration:0.5 animations:^{
+                    self.commentBar.frame = frame;
+                }];
+            }
+        } else {
+            if (frame.origin.y > SCREEN_HEIGHT) {
+                frame.origin.y = SCREEN_HEIGHT - 55.0f;
+                [UIView animateWithDuration:0.5 animations:^{
+                    self.commentBar.frame = frame;
+                }];
+            }
+        }
+
+    }
+    NSLog(@"%@",change);
+    
+}
+
+#pragma mark - CommentBarDelegate
+
+- (void)didSelectCommentIndex:(UIButton *)sender {
+    
+    if (sender.tag == 0 && self.currentPageInfo != nil) {
+        CommentViewController *commentVC = [[CommentViewController alloc] initWithDict:self.currentPageInfo];
+        commentVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+        [self presentViewController:commentVC animated:NO completion:NULL];
+    } else if (sender.tag == 2) {
+        if(sender.selected) {
+            [self removeCollect];
+        } else {
+            [self collectItem];
+        }
+    }
+}
+
+- (void)collectItem {
+    [self showLoading];
+    [MCFNetworkManager collectItem:self.currentPageInfo
+                           success:^(NSString *tip) {
+        [self hideLoading];
+        [self showTip:@"收藏成功"];
+    } failure:^(NSError *error) {
+        [self hideLoading];
+        [self showTip:@"请求失败"];
+    }];
+}
+
+- (void)removeCollect {
+    [self showLoading];
+    [MCFNetworkManager removeCollectItem:self.currentPageInfo
+                                 success:^(NSString *tip) {
+        [self hideLoading];
+        [self showTip:@"已移除收藏"];
+    } failure:^(NSError *error) {
+        [self hideLoading];
+        [self showTip:@"请求失败"];
+    }];
+}
+
 #pragma mark - WKWebViewDelegate
 
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
@@ -108,11 +201,10 @@
     
     if ([message.name isEqualToString:@"goDetail"]) {
         NSString *url = dict[@"loadUrl"];
-        //NSString *title = dict[@"title"];
         BaseWebViewController *webVC = [[BaseWebViewController alloc] initWithUrl:url];
-        //webVC.title = title;
-        webVC.hidesBottomBarWhenPushed = YES;
+        webVC.showCommentBar = YES;
         webVC.hideNavi = YES;
+        webVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:webVC animated:YES];
     }
     if ([message.name isEqualToString:@"goNavigationDetail"]) {
@@ -152,6 +244,19 @@
     if ([message.name isEqualToString:@"goBack"]) {
         [self.navigationController popViewControllerAnimated:YES];
     }
+    if ([message.name isEqualToString:@"getJs"]) {
+        self.currentPageInfo = dict;
+        [self checkCollectStatus];
+    }
+}
+
+- (void)checkCollectStatus {
+    [MCFNetworkManager checkHasCollectedItem:self.currentPageInfo
+                                     success:^(BOOL isCollected) {
+                                         [self.commentBar setCollectButtonSellected:isCollected];
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (void)callBackJS {
@@ -177,7 +282,7 @@
     [self hideLoading];
 }
 
-// realese the delegate here! to
+// realese the delegate here! to do 
 - (void)dealloc {
     
 }

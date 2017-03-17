@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/Controller/Common/BaseWebViewController.m"
-            timestampString = "511091239.294977"
+            timestampString = "511409932.438714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "287"
+            endingLineNumber = "287"
             landmarkName = "-dealloc"
             landmarkType = "7">
          </BreakpointContent>
@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/Controller/Mine/BreakingNews/BreakingNewsItemViewController.m"
-            timestampString = "511175944.745819"
+            timestampString = "511262026.313169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
             landmarkName = "-dealloc"
             landmarkType = "7">
          </BreakpointContent>
