@@ -138,13 +138,18 @@
 }
 
 - (void)logOut {
+    
+    if(![MCFTools isLogined]) return;
     [self showLoading];
     [MCFNetworkManager logOutUserSuccess:^(NSString *tip) {
         [self hideLoading];
         [self showTip:tip];
         [MCFTools clearLoginUser];
-        AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        [delegate.rootVc switchToIndex:0 subIndex:0];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+        //AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        //[delegate.rootVc switchToIndex:0 subIndex:0];
     } failure:^(NSError *error) {
         [self hideLoading];
     }];

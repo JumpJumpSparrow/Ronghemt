@@ -25,6 +25,7 @@ UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) UIButton *collectionSelectButton;
 @property (nonatomic, strong) UILabel *photoCountLabel;
 @property (nonatomic, strong) UIButton *nextStepButton;
+@property (nonatomic, strong) NSMutableArray *selectedImage;
 
 @property (nonatomic, strong) MCFAssetCollectionView *collectionSelectView;
 
@@ -32,6 +33,13 @@ UICollectionViewDelegateFlowLayout>
 @end
 
 @implementation MCFPhotoLibraryViewController
+
+- (NSMutableArray *)selectedImage {
+    if (_selectedImage == nil) {
+        _selectedImage = [NSMutableArray arrayWithCapacity:0];
+    }
+    return _selectedImage;
+}
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -89,6 +97,8 @@ UICollectionViewDelegateFlowLayout>
     self.navigationItem.titleView = self.collectionSelectButton;
     
     [self.view addSubview:self.assetsCollectionView];
+    
+//    self.navigationItem.rightBarButtonItems = 
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -191,6 +201,11 @@ UICollectionViewDelegateFlowLayout>
     
     MCFAssetItemCell *cell = (MCFAssetItemCell *)[collectionView cellForItemAtIndexPath:indexPath];
     PHAsset *asset = (PHAsset *)cell.model;
+    if (self.selectImageToCrop) {
+        
+    } else {
+    
+    }
     [MCFPhotoLibrary requestImageForAsset:asset completion:^(UIImage *image, NSDictionary *infor) {
         MCFImagePreViewViewController *preViewVc = [[MCFImagePreViewViewController alloc] initWithImage:image];
         [self.navigationController pushViewController:preViewVc animated:YES];

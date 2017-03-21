@@ -22,6 +22,7 @@
         _thirdLogInView = [[ThirdLogInView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 160.0f, SCREEN_WIDTH, SCREEN_HEIGHT - 160.0f)];
         _thirdLogInView.delegate = self;
         _thirdLogInView.backgroundColor = [UIColor whiteColor];
+        _thirdLogInView.titleLabel.hidden = YES;
     }
     return _thirdLogInView;
 }
@@ -50,7 +51,7 @@
             platformType = UMSocialPlatformType_Sina;
             break;
         case 3: // weixin
-            platformType = UMSocialPlatformType_WechatSession;
+            platformType = UMSocialPlatformType_WechatTimeLine;
             break;
         default:
             break;

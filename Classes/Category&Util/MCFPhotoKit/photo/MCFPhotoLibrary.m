@@ -43,13 +43,14 @@ static NSString *MCFPhotoPath = @"MCFPhotoLibrary";
         PHFetchResult *cameraRoll = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
                                                                              subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary
                                                                              options:nil];
-        [cameraRoll enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([obj isKindOfClass:[PHAssetCollection class]]) {
-                PHAssetCollection *assetCollection = (PHAssetCollection *)obj;
+        
+        for (PHCollection *collection in cameraRoll) {
+            if ([collection isKindOfClass:[PHAssetCollection class]]) {
+                PHAssetCollection *assetCollection = (PHAssetCollection *)collection;
                 PHFetchResult *result = [MCFPhotoLibrary fetchAssetsInAssetCollection:assetCollection];
-                if (result.count > 0)[collections addObject:assetCollection];
+                if (result.count > 0) [collections addObject:assetCollection];
             }
-        }];
+        }
     }
     
     //智能相册
@@ -57,24 +58,24 @@ static NSString *MCFPhotoPath = @"MCFPhotoLibrary";
         PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
                                                                               subtype:PHAssetCollectionSubtypeAlbumRegular
                                                                               options:nil];
-        [smartAlbums enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([obj isKindOfClass:[PHAssetCollection class]]) {
-                PHAssetCollection *assetCollection = (PHAssetCollection *)obj;
+        for (PHCollection *collection in smartAlbums) {
+            if ([collection isKindOfClass:[PHAssetCollection class]]) {
+                PHAssetCollection *assetCollection = (PHAssetCollection *)collection;
                 PHFetchResult *result = [MCFPhotoLibrary fetchAssetsInAssetCollection:assetCollection];
                 if (result.count > 0) [collections addObject:assetCollection];
             }
-        }];
+        }
     }
     // 用户
     {
         PHFetchResult *userCollection = [PHCollection fetchTopLevelUserCollectionsWithOptions:nil];
-        [userCollection enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([obj isKindOfClass:[PHAssetCollection class]]) {
-                PHAssetCollection *assetCollection = (PHAssetCollection *)obj;
+        for (PHCollection *collection in userCollection) {
+            if ([collection isKindOfClass:[PHAssetCollection class]]) {
+                PHAssetCollection *assetCollection = (PHAssetCollection *)collection;
                 PHFetchResult *result = [MCFPhotoLibrary fetchAssetsInAssetCollection:assetCollection];
                 if (result.count > 0) [collections addObject:assetCollection];
             }
-        }];
+        }
     }
     
     return collections;
@@ -98,11 +99,15 @@ static NSString *MCFPhotoPath = @"MCFPhotoLibrary";
                 completion(image);
             }
         }];
+    }else {
+        if (completion) {
+            completion(nil);
+        }
     }
 }
 
 + (void)requsetThumbnailForAsset:(PHAsset *)asset completion:(void (^)(UIImage *))completion {
-    CGFloat expecteWitdh = 320.0f;
+    CGFloat expecteWitdh = 220.0f;
     CGSize size = CGSizeMake(expecteWitdh, expecteWitdh);
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
     options.resizeMode = PHImageRequestOptionsResizeModeFast;

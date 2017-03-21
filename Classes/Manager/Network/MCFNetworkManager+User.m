@@ -15,6 +15,8 @@ static NSString *Regist           = @"register.php";
 static NSString *logOut           = @"logout.php";
 static NSString *checkSession     = @"login_verify.php";
 static NSString *verifyCode       = @"code.php";
+static NSString *registThird      = @"third_register.php";
+static NSString *loginThird       = @"third_login.php";
 static NSString *modifyPass       = @"find_passwd.php";
 static NSString *uploadFile       = @"file_upload.php";
 static NSString *updateProfile    = @"userinfo_modify.php";
@@ -38,6 +40,26 @@ static NSString *commentList      = @"comment_list.php";
     
     [[MCFNetworkManager sharedManager] POST:LogIn
                                  parameters:paramDict
+                                    success:^(NSUInteger taskId, id responseObject) {
+                                        NSDictionary *dataDict = [responseObject objectForKey:@"result"];
+                                        NSString *tip = [responseObject objectForKey:@"message"];
+                                        MCFUserModel *user = [MCFUserModel mj_objectWithKeyValues:dataDict];
+                                        [MCFTools saveLoginUser:user];
+                                        if (success) {
+                                            success(user, tip);
+                                        }
+    } failure:^(NSUInteger taskId, NSError *error) {
+        if (failure) {
+            failure (error);
+        }
+    }];
+}
+
++ (void)loginWithThird:(NSDictionary *)third
+               success:(void (^)(MCFUserModel *, NSString *))success
+               failure:(void (^)(NSError *))failure {
+    [[MCFNetworkManager sharedManager] POST:loginThird
+                                 parameters:third
                                     success:^(NSUInteger taskId, id responseObject) {
                                         NSDictionary *dataDict = [responseObject objectForKey:@"result"];
                                         NSString *tip = [responseObject objectForKey:@"message"];

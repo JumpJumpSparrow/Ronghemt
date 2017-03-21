@@ -33,7 +33,6 @@
         [_checkImageView sizeToFit];
         _checkImageView.center = CGPointMake(self.contentView.width - 5 - _checkImageView.width/2,
                                              5 + _checkImageView.height/2);
-        _checkImageView.hidden = YES;
     }
     return _checkImageView;
 }

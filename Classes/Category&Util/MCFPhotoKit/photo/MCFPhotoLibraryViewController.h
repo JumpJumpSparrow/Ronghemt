@@ -10,4 +10,7 @@
 
 @interface MCFPhotoLibraryViewController : UIViewController
 
+@property (nonatomic, assign) NSInteger selectLimit;
+@property (nonatomic, assign) BOOL selectImageToCrop;
+@property (nonatomic, copy) void(^didSelectedImages)(NSArray *images);
 @end

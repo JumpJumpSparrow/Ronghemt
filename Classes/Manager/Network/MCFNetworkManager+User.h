@@ -30,6 +30,10 @@
 + (void)requestVerifyCodeForPhone:(NSString *)phone
                           success:(void(^)(NSString *code, NSString *message))success
                           failure:(void(^)(NSError *error))failure;
+// 三方登录
++ (void)loginWithThird:(NSDictionary *)third
+               success:(void(^)(MCFUserModel *user, NSString *tip))success
+               failure:(void(^)(NSError *error))failure;
 //更改密码
 + (void)modifyPassword:(RegisterModel *)newPassWord
                success:(void(^)(NSString *tip))success

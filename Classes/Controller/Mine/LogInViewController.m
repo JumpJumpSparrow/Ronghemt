@@ -196,7 +196,7 @@
     [self.view addSubview:self.logInButton];
     [self.view addSubview:self.registButton];
     [self.view addSubview:self.forgotButton];
-    [self.view addSubview:self.thirdLogInView];
+    //[self.view addSubview:self.thirdLogInView];
 }
 
 - (void)logIn {
@@ -261,6 +261,21 @@
         NSLog(@" accessToken: %@", resp.accessToken);
         NSLog(@" refreshToken: %@", resp.refreshToken);
         NSLog(@" expiration: %@", resp.expiration);
+        NSString *platform = nil;
+        switch (resp.platformType) {
+            case UMSocialPlatformType_QQ: // QQ
+                platform = @"qq";
+                break;
+                
+            case UMSocialPlatformType_Sina: // weibo
+                platform = @"sina";
+                break;
+            case UMSocialPlatformType_WechatSession: // weixin
+                platform = @"weixin";
+                break;
+            default:
+                break;
+        }
         
         // 用户数据
         NSLog(@" name: %@", resp.name);
