@@ -19,15 +19,22 @@ MJCodingImplementation // 归档、解归档
                 @"email" : @"email",
                 @"phone" : @"phone",
             @"sessionid" : @"sessionid",
-               @"userId" : @"id"
+               @"userId" : @"id",
+                @"photo" : @"photo",
+             @"username" : @"nick"
              };
 }
 
 - (void)setNick:(NSString *)nick {
     _username = nick;
 }
+
 - (NSString *)nick {
     return _username;
+}
+
+- (void)setAvatar:(NSString *)avatar {
+    _avatar = avatar;
 }
 
 - (NSString *)photo {
@@ -35,6 +42,7 @@ MJCodingImplementation // 归档、解归档
 }
 - (void)setPhoto:(NSString *)photo {
     _avatar = photo;
+    
 }
 
 - (NSString *)session {

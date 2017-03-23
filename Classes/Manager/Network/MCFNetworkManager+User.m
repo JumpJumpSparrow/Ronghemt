@@ -185,7 +185,7 @@ static NSString *commentList      = @"comment_list.php";
     [[MCFNetworkManager sharedManager] POST:updateProfile
                                  parameters:dict
                                     success:^(NSUInteger taskId, id responseObject) {
-        
+                                        
                                         NSString *tip = [responseObject objectForKey:@"message"];
                                         if (success) {
                                             success(tip);
@@ -461,7 +461,8 @@ static NSString *commentList      = @"comment_list.php";
         
         //请求成功
         NSLog(@"请求成功：%@",responseObject);
-        NSString *sting = [responseObject objectForKey:@"message"];
+        NSDictionary *dict = responseObject[@"result"];
+        NSString *sting = [dict objectForKey:@"url"];
         if (success) {
             success(sting);
         }

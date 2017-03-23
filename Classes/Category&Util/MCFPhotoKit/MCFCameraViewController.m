@@ -58,7 +58,9 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     [super viewWillAppear:animated];
+    [self showLoading];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didAVCaptureSessionStartRunning:)
                                                  name:AVCaptureSessionDidStartRunningNotification
@@ -66,6 +68,7 @@
 }
 
 - (void)didAVCaptureSessionStartRunning:(NSNotification *)notification {
+    [self hideLoading];
     self.cancelButton.hidden =
     self.torchButton.hidden =
     self.switchButton.hidden =
@@ -123,7 +126,15 @@
 - (void)cameraController:(id<FastttCameraInterface>)cameraController didFinishNormalizingCapturedImage:(FastttCapturedImage *)capturedImage {
     MCFImagePreViewViewController *previewVC = [[MCFImagePreViewViewController alloc] initWithImage:capturedImage.fullImage];
     previewVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:previewVC animated:YES];
+    previewVC.cropImage = self.isCropView;
+    @weakify(self)
+    previewVC.didSelectImage = ^(UIImage *image) {
+        @strongify(self)
+        if ([self.delegate respondsToSelector:@selector(cameraDidSelectImage:)]) {
+            [self.delegate cameraDidSelectImage:image];
+        }
+    };
+    [self.navigationController pushViewController:previewVC animated:NO];
     if (self.previewImageView) {
         [self.previewImageView removeFromSuperview];
     }

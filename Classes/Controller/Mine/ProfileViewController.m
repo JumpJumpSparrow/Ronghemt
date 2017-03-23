@@ -189,7 +189,7 @@
 
 @end
 
-@interface ProfileViewController ()<UITextFieldDelegate>
+@interface ProfileViewController ()<UITextFieldDelegate, CameraDataDelegate>
 
 @property (nonatomic, strong) MCFUserModel *user;
 @property (nonatomic, strong) AvatarButton *avatarButton;
@@ -273,7 +273,12 @@
 
     MCFUserModel *user = [MCFTools getLoginUser];
     user.username = self.inputNameView.inputField.text;
+    [self updateUser:user];
+}
+
+- (void)updateUser:(MCFUserModel *)user {
     [self showLoading];
+    [MCFTools saveLoginUser:user];
     [MCFNetworkManager updateUserProfile:user success:^(NSString *tip) {
         [self hideLoading];
         [self showTip:tip];
@@ -283,11 +288,27 @@
     }];
 }
 
+#pragma mark - cameraDelegate
+
+- (void)cameraDidSelectImage:(UIImage *)image {
+    [self showLoading];
+    [MCFNetworkManager uploadFile:image success:^(NSString *url) {
+        [self hideLoading];
+        MCFUserModel *user = [MCFTools getLoginUser];
+        user.photo = url;
+        [self updateUser:user];
+    } failure:^(NSError *error) {
+        [self hideLoading];
+    }];
+}
+
 - (void)didSelectAvatarButton {
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择照片源" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"相机" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         MCFCameraViewController *cameraVC = [[MCFCameraViewController alloc] init];
+        cameraVC.delegate = self;
+        cameraVC.isCropView = YES;
         [self.navigationController pushViewController:cameraVC animated:YES];
     }];
     UIAlertAction *photoAction = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

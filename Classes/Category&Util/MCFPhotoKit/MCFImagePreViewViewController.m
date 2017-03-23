@@ -11,6 +11,7 @@
 #import <YYKit.h>
 #import <RSKImageCropper/RSKImageCropper.h>
 #import "MCFNetworkManager+User.h"
+#import "MCFImageCropViewController.h"
 
 @interface MCFImagePreViewViewController ()
 
@@ -45,7 +46,7 @@
 - (UIButton *)nextStepButton {
     if (!_nextStepButton) {
         _nextStepButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_nextStepButton setTitle:@"完成" forState:UIControlStateNormal];
+        [_nextStepButton setTitle:@"选取" forState:UIControlStateNormal];
         [_nextStepButton setTitleColor:[UIColor colorWithHexString:AppColorSelected] forState:UIControlStateNormal];
         [_nextStepButton sizeToFit];
         [_nextStepButton addTarget:self action:@selector(didSelectDone) forControlEvents:UIControlEventTouchUpInside];
@@ -82,13 +83,19 @@
 }
 
 - (void)didSelectDone {
-    [self showLoading];
-   [MCFNetworkManager uploadFile:self.originImage success:^(NSString *tip) {
-       [self hideLoading];
-       [self showTip:tip];
-   } failure:^(NSError *error) {
-       [self hideLoading];
-   }];
+    
+    if (self.cropImage) {
+        MCFImageCropViewController *imageCropVC = [[MCFImageCropViewController alloc] initWithImage:self.originImage];
+        imageCropVC.didCropImage = self.didSelectImage;
+        [self.navigationController pushViewController:imageCropVC animated:YES];
+    } else {
+        if (self.didSelectImage) {
+            self.didSelectImage(self.originImage);
+        }
+        UIViewController *vc = [self.navigationController.childViewControllers objectAtIndex:1];
+        [self.navigationController popToViewController:vc animated:YES];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

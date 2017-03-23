@@ -10,5 +10,8 @@
 
 @interface MCFImagePreViewViewController : BaseViewController
 
+@property (nonatomic, assign) BOOL cropImage;
+@property (nonatomic, copy) void(^didSelectImage)(UIImage *image);
+
 - (instancetype)initWithImage:(UIImage *)image;
 @end

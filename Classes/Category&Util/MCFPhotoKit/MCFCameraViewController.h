@@ -6,8 +6,15 @@
 //  Copyright © 2017年 HLSS. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface MCFCameraViewController : UIViewController
+@protocol CameraDataDelegate <NSObject>
 
+- (void)cameraDidSelectImage:(UIImage *)image;
+@end
+
+@interface MCFCameraViewController : BaseViewController
+
+@property (nonatomic, assign) BOOL isCropView;
+@property (nonatomic, weak) id<CameraDataDelegate>delegate;
 @end
