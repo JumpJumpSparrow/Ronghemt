@@ -6,11 +6,16 @@
 //  Copyright © 2017年 HLSS. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface MCFPhotoLibraryViewController : UIViewController
+@protocol MCFPhotoDelegate <NSObject>
 
-@property (nonatomic, assign) NSInteger selectLimit;
+- (void)MCFPhotoLibraryDidSelectImages:(NSArray *)images;
+@end
+
+@interface MCFPhotoLibraryViewController : BaseViewController
+
+@property (nonatomic, assign) NSInteger limitCount;
 @property (nonatomic, assign) BOOL selectImageToCrop;
-@property (nonatomic, copy) void(^didSelectedImages)(NSArray *images);
+@property (nonatomic, weak) id<MCFPhotoDelegate>delegate;
 @end

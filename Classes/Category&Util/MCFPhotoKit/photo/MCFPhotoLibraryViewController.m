@@ -16,7 +16,7 @@
 
 @interface MCFPhotoLibraryViewController ()<UICollectionViewDelegate,
 UICollectionViewDataSource,
-UICollectionViewDelegateFlowLayout>
+UICollectionViewDelegateFlowLayout, AssetSelectionDelegate>
 
 @property (nonatomic, strong) PHAssetCollection *assetCollection;
 @property (nonatomic, strong) PHFetchResult *assets;
@@ -25,7 +25,7 @@ UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) UIButton *collectionSelectButton;
 @property (nonatomic, strong) UILabel *photoCountLabel;
 @property (nonatomic, strong) UIButton *nextStepButton;
-@property (nonatomic, strong) NSMutableArray *selectedImage;
+@property (nonatomic, strong) NSMutableArray *selectedImages;
 
 @property (nonatomic, strong) MCFAssetCollectionView *collectionSelectView;
 
@@ -34,11 +34,35 @@ UICollectionViewDelegateFlowLayout>
 
 @implementation MCFPhotoLibraryViewController
 
-- (NSMutableArray *)selectedImage {
-    if (_selectedImage == nil) {
-        _selectedImage = [NSMutableArray arrayWithCapacity:0];
+- (NSMutableArray *)selectedImages {
+    if (_selectedImages == nil) {
+        _selectedImages = [NSMutableArray arrayWithCapacity:0];
     }
-    return _selectedImage;
+    return _selectedImages;
+}
+
+- (UILabel *)photoCountLabel {
+    if (_photoCountLabel == nil) {
+        _photoCountLabel = [[UILabel alloc] init];
+        _photoCountLabel.textColor = [UIColor colorWithHexString:AppColorSelected];
+        _photoCountLabel.font = [UIFont systemFontOfSize:15.0f];
+        _photoCountLabel.text = [NSString stringWithFormat:@"0/%ld",self.limitCount];
+        [_photoCountLabel sizeToFit];
+    }
+    return _photoCountLabel;
+}
+
+- (UIButton *)nextStepButton {
+    if (_nextStepButton == nil) {
+        _nextStepButton = [[UIButton alloc] init];
+        [_nextStepButton setTitle:@"完成" forState:UIControlStateNormal];
+        [_nextStepButton sizeToFit];
+        [_nextStepButton setTitleColor:[UIColor colorWithHexString:AppColorSelected] forState:UIControlStateNormal];
+        [_nextStepButton setTitleColor:[UIColor colorWithHexString:AppColorNormal] forState:UIControlStateDisabled];
+        _nextStepButton.enabled = NO;
+        [_nextStepButton addTarget:self action:@selector(didSelectNextButton) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _nextStepButton;
 }
 
 - (instancetype)init {
@@ -46,6 +70,7 @@ UICollectionViewDelegateFlowLayout>
         NSArray<PHAssetCollection *> *assetCollections = [MCFPhotoLibrary fetchAssetCollections];
         self.assetCollection = [assetCollections firstObject];
         self.assets = [MCFPhotoLibrary fetchAssetsInAssetCollection:self.assetCollection];
+        self.limitCount = 1;
     }
     return self;
 }
@@ -93,12 +118,15 @@ UICollectionViewDelegateFlowLayout>
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.cancelButton];
-    self.navigationItem.titleView = self.collectionSelectButton;
-    
     [self.view addSubview:self.assetsCollectionView];
     
-//    self.navigationItem.rightBarButtonItems = 
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.cancelButton];
+    self.navigationItem.titleView = self.collectionSelectButton;
+    if (!self.selectImageToCrop){
+        UIBarButtonItem *rightCount = [[UIBarButtonItem alloc] initWithCustomView:self.photoCountLabel];
+        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:self.nextStepButton];
+        self.navigationItem.rightBarButtonItems = @[rightButton, rightCount];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -109,6 +137,26 @@ UICollectionViewDelegateFlowLayout>
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+}
+
+- (void)didSelectNextButton {
+    
+}
+
+- (void)assetItemCell:(MCFAssetItemCell *)cell didSelect:(BOOL)isSelected {
+    PHAsset *asset = (PHAsset *)cell.model;
+    if (isSelected) {
+        if (self.selectedImages.count >= self.limitCount) {
+            [self showTip:[NSString stringWithFormat:@"最多能选择%ld张照片",self.limitCount]];
+            [cell markCheck:NO];
+            return;
+        }
+        [self.selectedImages addObject:asset];
+    } else if ([self.selectedImages containsObject:asset]) {
+        [self.selectedImages removeObject:asset];
+    }
+    self.photoCountLabel.text = [NSString stringWithFormat:@"%ld/%ld",self.selectedImages.count, self.limitCount];
+    [self.photoCountLabel sizeToFit];
 }
 
 - (void)didSelectCancel {
@@ -186,6 +234,8 @@ UICollectionViewDelegateFlowLayout>
     
     PHAsset *asset = [self.assets objectAtIndex:indexPath.item];
     MCFAssetItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MCFAssetItemCell" forIndexPath:indexPath];
+    cell.delegate = self;
+    [cell hideSelectButton:self.selectImageToCrop];
     [cell bindWithModel:asset];
     return cell;
 }
@@ -201,13 +251,16 @@ UICollectionViewDelegateFlowLayout>
     
     MCFAssetItemCell *cell = (MCFAssetItemCell *)[collectionView cellForItemAtIndexPath:indexPath];
     PHAsset *asset = (PHAsset *)cell.model;
-    if (self.selectImageToCrop) {
-        
-    } else {
-    
-    }
     [MCFPhotoLibrary requestImageForAsset:asset completion:^(UIImage *image, NSDictionary *infor) {
         MCFImagePreViewViewController *preViewVc = [[MCFImagePreViewViewController alloc] initWithImage:image];
+        preViewVc.cropImage = self.selectImageToCrop;
+        @weakify(self)
+        preViewVc.didSelectImage = ^(UIImage *image) {
+            @strongify(self)
+            if ([self.delegate respondsToSelector:@selector(MCFPhotoLibraryDidSelectImages:)]) {
+                [self.delegate MCFPhotoLibraryDidSelectImages:@[image]];
+            }
+        };
         [self.navigationController pushViewController:preViewVc animated:YES];
     }];
 }

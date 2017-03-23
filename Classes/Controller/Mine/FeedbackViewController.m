@@ -134,7 +134,7 @@
         [self showTip:@"建议不要少于12个字"];
         return;
     }
-    if (self.inputBar.inputField.text == 0) {
+    if (self.inputBar.inputField.text.length == 0) {
         [self showTip:@"请输入联系方式"];
         return;
     }

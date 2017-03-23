@@ -111,13 +111,6 @@
     [self.navigationController.navigationBar addSubview:baseView];
 }
 
-//重置
-//- (NSInteger)selectedIndex {
-//    NSInteger index = _selectedIndex;
-//    _selectedIndex = 0;
-//    return index;
-//}
-
 - (NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController {
     return self.channelsArray.count;
 }
@@ -128,6 +121,11 @@
     BaseWebViewController *webViewController = [[BaseWebViewController alloc] initWithUrl:naviModel.navigationUrl];
     
     return webViewController;
+}
+
+- (void)pageController:(WMPageController *)pageController didEnterViewController:(__kindof UIViewController *)viewController withInfo:(NSDictionary *)info {
+    NSInteger index = [[info objectForKey:@"index"] integerValue];
+    self.selectedIndex = index;
 }
 
 - (NSString *)pageController:(WMPageController *)pageController titleAtIndex:(NSInteger)index {

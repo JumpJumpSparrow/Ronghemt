@@ -19,8 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [self randomColor];
-
+    //self.view.backgroundColor = [self randomColor];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)didTapBackButton {

@@ -8,7 +8,15 @@
 
 #import "BaseCollectionViewCell.h"
 
+@class MCFAssetItemCell;
+@protocol AssetSelectionDelegate <NSObject>
+
+- (void)assetItemCell:(MCFAssetItemCell *)cell didSelect:(BOOL)isSelected;
+@end
+
 @interface MCFAssetItemCell : BaseCollectionViewCell
 
+@property (nonatomic, weak) id<AssetSelectionDelegate>delegate;
 - (void)markCheck:(BOOL)check;
+- (void)hideSelectButton:(BOOL)hide;
 @end

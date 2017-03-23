@@ -13,7 +13,7 @@
 
 @interface MCFAssetItemCell ()
 @property (nonatomic, strong) UIImageView *assetImageView;
-@property (nonatomic, strong) UIImageView *checkImageView;
+@property (nonatomic, strong) UIButton *checkImageView;
 @end
 
 @implementation MCFAssetItemCell
@@ -27,12 +27,16 @@
     return _assetImageView;
 }
 
-- (UIImageView *)checkImageView {
+- (UIButton *)checkImageView {
     if (!_checkImageView) {
-        _checkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asset_check_normal"]];
+        _checkImageView = [[UIButton alloc] init];
+        [_checkImageView setImage:[UIImage imageNamed:@"asset_check_unSelect"] forState:UIControlStateNormal];
+        
+        [_checkImageView setImage:[UIImage imageNamed:@"asset_check_select"] forState:UIControlStateSelected];
         [_checkImageView sizeToFit];
         _checkImageView.center = CGPointMake(self.contentView.width - 5 - _checkImageView.width/2,
                                              5 + _checkImageView.height/2);
+        [_checkImageView addTarget:self action:@selector(didSelectButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _checkImageView;
 }
@@ -41,7 +45,6 @@
     [super prepareForReuse];
     
     self.assetImageView.image = nil;
-    self.checkImageView.hidden = YES;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -66,7 +69,18 @@
     }];
 }
 
+- (void)didSelectButton:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if ([self.delegate respondsToSelector:@selector(assetItemCell:didSelect:)]) {
+        [self.delegate assetItemCell:self didSelect:sender.selected];
+    }
+}
+
+- (void)hideSelectButton:(BOOL)hide {
+    self.checkImageView.hidden = hide;
+}
+
 - (void)markCheck:(BOOL)check {
-    self.checkImageView.hidden = !check;
+    self.checkImageView.selected = check;
 }
 @end

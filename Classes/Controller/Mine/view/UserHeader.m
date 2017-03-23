@@ -81,7 +81,7 @@
    
     [self.avatarImageView setImageWithURL:[NSURL URLWithString:user.avatar]
                                   options:YYWebImageOptionProgressiveBlur];
-    self.nameLabel.text = [MCFTools securityText:user.username];
+    self.nameLabel.text = user.username;
     [self setNeedsLayout];
 }
 

@@ -171,6 +171,12 @@
     
     CGRect frame = self.commentBar.frame;
     frame.origin.y -= height;
+    
+    if(height>0) {
+    
+        if(frame.origin.y < 200) return;
+    }
+    
     [UIView animateWithDuration:0.25 animations:^{
         self.commentBar.frame = frame;
     }];

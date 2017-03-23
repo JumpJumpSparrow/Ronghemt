@@ -247,26 +247,6 @@ static NSString *commentList      = @"comment_list.php";
                                     }];
 }
 
-+ (void)upLoadImage:(UIImage *)image
-            success:(void (^)(NSString *))success
-            failure:(void (^)(NSError *))failure {
-    NSData *data = UIImageJPEGRepresentation(image, 0.5);
-    //NSString *fileStr = [GTMBase64 stringByEncodingData:data];
-    NSDictionary *dict = @{@"file" : data};
-    
-    [[MCFNetworkManager sharedManager] POST:uploadFile parameters:dict success:^(NSUInteger taskId, id responseObject) {
-        
-        NSString *sting = [responseObject objectForKey:@"message"];
-        if (success) {
-            success(sting);
-        }
-    } failure:^(NSUInteger taskId, NSError *error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
-}
-
 + (void)requestBreakNewsPrivate:(BOOL)isPrivat
                            page:(NSInteger)page
                         success:(void (^)(NSInteger, NSInteger, NSArray *))success
@@ -432,6 +412,69 @@ static NSString *commentList      = @"comment_list.php";
     }];
 }
 
++ (void)uploadImages:(NSArray <UIImage *>*)imageList
+          completion:(void (^)(NSArray<NSString *> *urls))completion{
+    NSMutableArray *imageArray = [[NSMutableArray alloc] initWithArray:imageList];
+    NSMutableArray *urlArray = [NSMutableArray arrayWithCapacity:0];
+    [self uploadImages:imageArray
+                  urls:urlArray
+            completion:^(NSArray<NSString *> *urlList) {
+                if (completion) {
+                    completion(urlList);
+                }
+            }];
+}
+
++ (void)uploadImages:(NSMutableArray <UIImage *>*)images
+                urls:(NSMutableArray *)urlArray
+          completion:(void(^)(NSArray <NSString *>*))completion{
+    
+    if (images.count == 0) {
+        NSLog(@"所有图片上传完毕");
+        //返回URL
+        if (completion) {
+            completion(urlArray);
+        }
+    }
+    UIImage *image = [images firstObject];
+    [images removeObject:image];
+    
+    [MCFNetworkManager uploadFile:image success:^(NSString *tip) {
+        
+        [urlArray addObject:tip];
+        [self uploadImages:images
+                      urls:urlArray
+                completion:completion];
+        
+    } failure:^(NSError *error) {
+        
+        [self uploadImages:images
+                      urls:urlArray
+                completion:completion];
+    }];
+}
+
++ (void)upLoadImage:(UIImage *)image
+            success:(void (^)(NSString *))success
+            failure:(void (^)(NSError *))failure {
+    NSData *data = UIImageJPEGRepresentation(image, 0.5);
+    //NSString *fileStr = [GTMBase64 stringByEncodingData:data];
+    NSDictionary *dict = @{@"file" : data};
+    
+    [[MCFNetworkManager sharedManager] POST:uploadFile parameters:dict success:^(NSUInteger taskId, id responseObject) {
+        
+        NSString *sting = [responseObject objectForKey:@"message"];
+        if (success) {
+            success(sting);
+        }
+    } failure:^(NSUInteger taskId, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+
 + (void)uploadFile:(NSObject *)file
            success:(void (^)(NSString *))success
            failure:(void (^)(NSError *))failure {
@@ -447,7 +490,6 @@ static NSString *commentList      = @"comment_list.php";
     [manager POST:url parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         //上传文件参数
-        
         NSData *data = UIImageJPEGRepresentation((UIImage *)file, 0.3);
         [formData appendPartWithFileData:data name:@"file" fileName:@"imagefile.jpg" mimeType:@"image/jpeg"];
         

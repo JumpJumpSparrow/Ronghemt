@@ -55,6 +55,11 @@
 + (void)upLoadImage:(UIImage *)image
             success:(void(^)(NSString *tip))success
             failure:(void(^)(NSError *error))failure;
+
+/**上传多张照片*/
++ (void)uploadImages:(NSArray <UIImage *>*)imageList
+          completion:(void (^)(NSArray<NSString *> *urls))completion;
+
 //更新用户信息
 + (void)updateUserProfile:(MCFUserModel *)user
                   success:(void(^)(NSString *tip))success

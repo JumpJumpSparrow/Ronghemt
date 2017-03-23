@@ -172,7 +172,7 @@
         commentListVC.hidesBottomBarWhenPushed = YES;
         commentListVC.title = @"所有评论";
         [self.navigationController pushViewController:commentListVC animated:YES];
-    } else {
+    } else if (sender.tag == 3){
         NSString *url = self.currentPageInfo[@"loadUrl"];
         ShareViewController *shareVc = [[ShareViewController alloc] initWithUrl:url];
         shareVc.hidesBottomBarWhenPushed = YES;
@@ -252,6 +252,7 @@
         NSString *url = dict[@"loadUrl"];
         BaseWebViewController *webVC = [[BaseWebViewController alloc] initWithUrl:url];
         webVC.hidesBottomBarWhenPushed = YES;
+        webVC.showCommentBar = YES;
         webVC.hideNavi = YES;
         [self.navigationController pushViewController:webVC animated:YES];
     }

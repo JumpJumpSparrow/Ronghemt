@@ -189,7 +189,7 @@
 
 @end
 
-@interface ProfileViewController ()<UITextFieldDelegate, CameraDataDelegate>
+@interface ProfileViewController ()<UITextFieldDelegate, CameraDataDelegate, MCFPhotoDelegate>
 
 @property (nonatomic, strong) MCFUserModel *user;
 @property (nonatomic, strong) AvatarButton *avatarButton;
@@ -203,6 +203,7 @@
 - (AvatarButton *)avatarButton {
     if (_avatarButton == nil) {
         _avatarButton = [[AvatarButton alloc] initWithFrame:CGRectMake(0, 64.0f + 10.0f, SCREEN_WIDTH, 100)];
+        [_avatarButton.avatarView setImageURL:[NSURL URLWithString:[MCFTools getLoginUser].avatar]];
         [_avatarButton addTarget:self action:@selector(didSelectAvatarButton) forControlEvents:UIControlEventTouchUpInside];
     }
     return _avatarButton;
@@ -302,6 +303,11 @@
     }];
 }
 
+- (void)MCFPhotoLibraryDidSelectImages:(NSArray *)images {
+    UIImage *image = (UIImage *)[images firstObject];
+    [self cameraDidSelectImage:image];
+}
+
 - (void)didSelectAvatarButton {
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择照片源" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
@@ -313,6 +319,8 @@
     }];
     UIAlertAction *photoAction = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         MCFPhotoLibraryViewController *photoVC = [[MCFPhotoLibraryViewController alloc] init];
+        photoVC.selectImageToCrop = YES;
+        photoVC.delegate = self;
         [self.navigationController pushViewController:photoVC animated:YES];
     }];
     

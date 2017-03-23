@@ -16,7 +16,6 @@ typedef NS_ENUM(NSInteger, AppEdition) {
 static const AppEdition appType = AppEditionWF;// 更改应用版本 注意事项：1>URL scheme 2>bundleID 3
 
 
-
 static NSString *AppColorSelected         =@"#ef7032";
 static NSString *AppColorNormal           =@"#929292";
 #define APPGRAY     [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1]
@@ -24,8 +23,10 @@ static NSString *AppColorNormal           =@"#929292";
 static NSString *AppUserKey               = @"AppUserKeyAppUserKey";
 
 //standard==================================
-static NSString *AppStandardHost          = @"http://user.dev.ctvcloud.com/api/";
-static NSString *NaviTypeStandard         = @"http://app2.dev.ctvcloud.com/html/nav.html";
+//static NSString *AppStandardHost          = @"http://user.dev.ctvcloud.com/api/";
+//static NSString *NaviTypeStandard         = @"http://app2.dev.ctvcloud.com/html/nav.html";
+static NSString *AppStandardHost          = @"http://api.ctv-cloud.com/api/";
+static NSString *NaviTypeStandard         = @"http://app-intra.ctv-cloud.com/api/append_nodes.php";
 static NSString *umengAppKey              = @"58b3a5598f4a9d0ba100114a";
 static NSString *UMENG_CHANNEL            = @"RongHeMeiTi";
 static NSString *AppIdWX                  = @"wx8b0671c98908cef7";
@@ -35,7 +36,6 @@ static NSString *APPUserCollect           = @"http://app2.dev.ctvcloud.com/html/
 
 //Wifang====================================
 static NSString *NaviTypeWF               = @"http://app.dev.wfrbw.com/html/nav.html";
-//static NSString *NaviTypeWF               = @"http://stdapp-intra.ctv-cloud.com/api/append_nodes.php";
 static NSString *AppWFHost                = @"http://user.dev.ctvcloud.com/api/";//后续将有改变f
 static NSString *UMENG_CHANNEL_WF         = @"WeiFangRiBao";
 static NSString *AppIdWXWF                = @"wx709965163d15c292";

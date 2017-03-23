@@ -82,6 +82,11 @@
     return webViewController;
 }
 
+- (void)pageController:(WMPageController *)pageController didEnterViewController:(__kindof UIViewController *)viewController withInfo:(NSDictionary *)info {
+    NSInteger index = [[info objectForKey:@"index"] integerValue];
+    self.selectedIndex = index;
+}
+
 - (NSString *)pageController:(WMPageController *)pageController titleAtIndex:(NSInteger)index {
     MCFNaviModel *naviModel = [self.channelsArray objectAtIndex:index];
     return naviModel.navigationName;
