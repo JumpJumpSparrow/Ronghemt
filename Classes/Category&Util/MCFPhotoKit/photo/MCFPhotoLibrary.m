@@ -12,7 +12,76 @@ static NSString *MCFPhotoPath = @"MCFPhotoLibrary";
 @implementation MCFPhotoLibrary
 
 //  请求权限
-+ (void)checkAuthorizationCompletion:(void (^)(PHAuthorizationStatus))completion {
+
+
++ (void)checkCameraAuthorization:(UIViewController *)viewController
+                      completion:(void (^)(AVAuthorizationStatus))completion {
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    
+    switch (authStatus) {
+        case AVAuthorizationStatusNotDetermined: {
+            [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+                
+                if (completion) {
+                    completion(authStatus);
+                }
+            }];
+            break;
+        }
+        case AVAuthorizationStatusAuthorized:{
+            if (completion) {
+                completion(authStatus);
+            }
+            break;
+        }
+        case AVAuthorizationStatusRestricted: {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示"
+                                                                                     message:@"无法授权使用相机"
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"我知道了"
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * _Nonnull action) {
+                                                                  if (completion) {
+                                                                      completion(authStatus);
+                                                                  }
+                                                              }]];
+            [viewController presentViewController:alertController animated:YES completion:NULL];
+            break;
+        }
+        case AVAuthorizationStatusDenied:{
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示"
+                                                                                     message:@"请先授权\"新闻媒体\"使用\"相机\""
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"暂不允许"
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * _Nonnull action) {
+                                                                  if (completion) {
+                                                                      completion(authStatus);
+                                                                  }
+                                                              }]];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"马上设置"
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * _Nonnull action) {
+                                                                  if (completion) {
+                                                                      completion(authStatus);
+                                                                  }
+                                                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=com.hlss.Ronghemt"]];
+                                                              }]];
+            [viewController presentViewController:alertController animated:YES completion:NULL];
+            
+            if (completion) {
+                completion(authStatus);
+            }
+            break;
+        }
+        default:
+            break;
+    }
+}
+
++ (void)checkAuthorization:(UIViewController *)viewController
+                completion:(void (^)(PHAuthorizationStatus))completion {
+    
     PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
     switch (status) {
         case PHAuthorizationStatusNotDetermined: {
@@ -23,10 +92,47 @@ static NSString *MCFPhotoPath = @"MCFPhotoLibrary";
             }];
             break;
         }
-        case PHAuthorizationStatusAuthorized:
-        case PHAuthorizationStatusDenied:
-        case PHAuthorizationStatusRestricted:{
-            
+        case PHAuthorizationStatusAuthorized:{
+            if (completion) {
+                completion(status);
+            }
+            break;
+        }
+        case PHAuthorizationStatusRestricted: {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示"
+                                                                                     message:@"无法授权使用相册"
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"我知道了"
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * _Nonnull action) {
+                                                                  if (completion) {
+                                                                      completion(PHAuthorizationStatusRestricted);
+                                                                  }
+                                                              }]];
+            [viewController presentViewController:alertController animated:YES completion:NULL];
+            break;
+        }
+        case PHAuthorizationStatusDenied:{
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示"
+                                                                                     message:@"请先授权\"新闻媒体\"使用\"照片\""
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"暂不允许"
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * _Nonnull action) {
+                                                                  if (completion) {
+                                                                      completion(PHAuthorizationStatusDenied);
+                                                                  }
+                                                              }]];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"马上设置"
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * _Nonnull action) {
+                                                                  if (completion) {
+                                                                      completion(PHAuthorizationStatusDenied);
+                                                                  }
+                                                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=com.hlss.Ronghemt"]];
+                                                              }]];
+            [viewController presentViewController:alertController animated:YES completion:NULL];
+
             if (completion) {
                 completion(status);
             }

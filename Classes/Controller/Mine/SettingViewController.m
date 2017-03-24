@@ -131,6 +131,7 @@
     [self.view addSubview:self.recommandButton];
     [self.view addSubview:self.cacheButton];
     [self.view addSubview:self.editionButton];
+    self.logoutButton.hidden = ![MCFTools isLogined];
 }
 
 - (void)didSelectButton {

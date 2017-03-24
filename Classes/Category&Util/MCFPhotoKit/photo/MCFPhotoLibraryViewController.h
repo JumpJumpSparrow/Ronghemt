@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "MCFPhotoLibrary.h"
 
 @protocol MCFPhotoDelegate <NSObject>
 

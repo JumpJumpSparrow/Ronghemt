@@ -24,6 +24,7 @@ static NSString *bindPhone        = @"bind_phone.php";
 static NSString *updateUserInfo   = @"get_userinfo.php";
 static NSString *feedback         = @"feedback.php";
 static NSString *breakNews        = @"baoliao_list.php";
+static NSString *publishBreakNews = @"baoliao.php";
 static NSString *commitComment    = @"comment.php";
 static NSString *removeCollect    = @"del_collect.php";
 static NSString *collectItem      = @"collect.php";
@@ -269,6 +270,23 @@ static NSString *commentList      = @"comment_list.php";
                                        if (success) {
                                            success(page, total, data);
                                        }
+    } failure:^(NSUInteger taskId, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
++ (void)publishBreakNews:(NSDictionary *)news
+                 success:(void (^)(NSString *))success
+                 failure:(void (^)(NSError *))failure {
+    [[MCFNetworkManager sharedManager] POST:publishBreakNews
+                                 parameters:news
+                                    success:^(NSUInteger taskId, id responseObject) {
+                                        NSString *sting = [responseObject objectForKey:@"message"];
+                                        if (success) {
+                                            success(sting);
+                                        }
     } failure:^(NSUInteger taskId, NSError *error) {
         if (failure) {
             failure(error);

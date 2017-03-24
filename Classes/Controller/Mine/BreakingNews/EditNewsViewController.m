@@ -70,19 +70,25 @@
     [publishButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:publishButton];
     self.navigationItem.rightBarButtonItem = rightButton;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
+        [self.view endEditing:YES];
+    }];
+    [self.navigationController.navigationBar addGestureRecognizer:tap];
 }
 
 - (void)didSelectPublish {
     
+    
+    
 }
 
 - (BOOL)textView:(YYTextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    
-    NSInteger length = textView.text.length + range.length;
-    if (length > 160) {
+    NSString *toBeString = [textView.text stringByReplacingCharactersInRange:range withString:text];
+    if (toBeString.length > 160) {
+        [self showTip:@"输入内容限制在160字"];
         return NO;
     }
-    self.countLabel.text = [NSString stringWithFormat:@"%ld/160字", length];
+    self.countLabel.text = [NSString stringWithFormat:@"%ld/160字", toBeString.length];
     return YES;
 }
 

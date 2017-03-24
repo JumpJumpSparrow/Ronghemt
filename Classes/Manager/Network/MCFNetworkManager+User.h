@@ -69,6 +69,17 @@
                            page:(NSInteger)page
                         success:(void(^)(NSInteger page, NSInteger total, NSArray *itemList))success
                         failure:(void(^)(NSError *error))failure;
+
+/*** 发布爆料
+ session
+ title
+ content
+ type
+ file
+ */
++ (void)publishBreakNews:(NSDictionary *)news
+                 success:(void(^)(NSString *tip))success
+                 failure:(void(^)(NSError *error))failure;
 //绑定手机号码
 + (void)bindPhoneNumber:(NSString *)number
                    code:(NSString *)code

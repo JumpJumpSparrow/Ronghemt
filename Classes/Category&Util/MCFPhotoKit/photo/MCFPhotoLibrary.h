@@ -8,21 +8,29 @@
 
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
-
+#import <AVFoundation/AVFoundation.h>
 @interface MCFPhotoLibrary : NSObject
 
-+ (void)checkAuthorizationCompletion:(void (^)(PHAuthorizationStatus status))completion;
++ (void)checkCameraAuthorization:(UIViewController *)viewController
+                      completion:(void (^)(AVAuthorizationStatus status))completion;
+
++ (void)checkAuthorization:(UIViewController *)viewController
+                completion:(void (^)(PHAuthorizationStatus status))completion;
 
 + (NSArray<PHAssetCollection *> *)fetchAssetCollections;
 
 + (PHFetchResult *)fetchAssetsInAssetCollection:(PHAssetCollection *)assetCollection;
 
-+ (void)requestThumbnailForAssetCollection:(PHAssetCollection *)assetCollection completion:(void (^)(UIImage *image))completion;
++ (void)requestThumbnailForAssetCollection:(PHAssetCollection *)assetCollection
+                                completion:(void (^)(UIImage *image))completion;
 
-+ (void)requsetThumbnailForAsset:(PHAsset *)asset completion:(void (^)(UIImage *image))completion;
++ (void)requsetThumbnailForAsset:(PHAsset *)asset
+                      completion:(void (^)(UIImage *image))completion;
 
-+ (void)requestImageForAsset:(PHAsset *)asset completion:(void (^)(UIImage *image, NSDictionary *infor))completion;
++ (void)requestImageForAsset:(PHAsset *)asset
+                  completion:(void (^)(UIImage *image, NSDictionary *infor))completion;
 
-+ (void)saveImage:(UIImage *)image completion:(void(^)(PHAsset * asset))completion;
++ (void)saveImage:(UIImage *)image
+       completion:(void(^)(PHAsset * asset))completion;
 
 @end

@@ -10,7 +10,6 @@
 #import "MCFAssetItemCell.h"
 #import "MCFAssetCollecitonCell.h"
 #import "MCFAssetCollectionView.h"
-#import "MCFPhotoLibrary.h"
 #import <YYKit.h>
 #import "MCFImagePreViewViewController.h"
 

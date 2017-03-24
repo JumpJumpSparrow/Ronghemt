@@ -91,13 +91,15 @@
 #pragma mark - table delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (![self checkLoginStatus]) return;
+    
     if (indexPath.section == 1) {
+        if (![self checkLoginStatus]) return;
         CollectionViewController *collectionVc = [[CollectionViewController alloc] initWithUrl:[MCFConfigure cfg].AppCollect];
         collectionVc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:collectionVc animated:YES];
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
+            if (![self checkLoginStatus]) return;
             FeedbackViewController *feedVc = [[FeedbackViewController alloc] init];
             feedVc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:feedVc animated:YES];

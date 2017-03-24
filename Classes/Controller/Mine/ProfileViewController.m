@@ -41,7 +41,6 @@
         _inputField = [[UITextField alloc] init];
         _inputField.font = [UIFont systemFontOfSize:15.0f];
         _inputField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _inputField.delegate = self;
     }
     return _inputField;
 }
@@ -62,16 +61,6 @@
     self.inputField.placeholder = holder;
     self.lengthLimit = 20;
     return self;
-}
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    
-    NSString *toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    
-    if (toBeString.length > self.lengthLimit) {
-        return NO;
-    }
-    return YES;
 }
 
 - (void)layoutSubviews {
@@ -248,16 +237,19 @@
     self.inputNameView.backgroundColor  = [UIColor whiteColor];
     self.phoneButton.backgroundColor = [UIColor whiteColor];
     
+    
+    self.phoneButton.subTilteLabel.text = [MCFTools securityText:[MCFTools getLoginUser].phone];
+    
     self.rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.rightButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self.rightButton setTitle:@"完成" forState:UIControlStateNormal];
     [self.rightButton setTitleColor:[UIColor colorWithHexString:AppColorSelected] forState:UIControlStateNormal];
     [self.rightButton setTitleColor:[UIColor colorWithHexString:AppColorNormal] forState:UIControlStateDisabled];
     [self.rightButton sizeToFit];
-    self.rightButton.enabled = NO;
     [self.rightButton addTarget:self action:@selector(didSelectDone) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:self.rightButton];
     self.navigationItem.rightBarButtonItem = rightBarButton;
+    self.rightButton.enabled = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -297,6 +289,7 @@
         [self hideLoading];
         MCFUserModel *user = [MCFTools getLoginUser];
         user.photo = url;
+        [self.avatarButton.avatarView setImageURL:[NSURL URLWithString:url]];
         [self updateUser:user];
     } failure:^(NSError *error) {
         [self hideLoading];
@@ -312,16 +305,11 @@
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择照片源" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"相机" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        MCFCameraViewController *cameraVC = [[MCFCameraViewController alloc] init];
-        cameraVC.delegate = self;
-        cameraVC.isCropView = YES;
-        [self.navigationController pushViewController:cameraVC animated:YES];
+        
+        [self requestCameraAuthority];
     }];
     UIAlertAction *photoAction = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        MCFPhotoLibraryViewController *photoVC = [[MCFPhotoLibraryViewController alloc] init];
-        photoVC.selectImageToCrop = YES;
-        photoVC.delegate = self;
-        [self.navigationController pushViewController:photoVC animated:YES];
+        [self requestPhotoAuthority];
     }];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -334,10 +322,35 @@
     [self presentViewController:alertController animated:YES completion:NULL];
 }
 
+- (void)requestCameraAuthority {
+    [MCFPhotoLibrary checkCameraAuthorization:self completion:^(AVAuthorizationStatus status) {
+        MCFCameraViewController *cameraVC = [[MCFCameraViewController alloc] init];
+        cameraVC.delegate = self;
+        cameraVC.isCropView = YES;
+        [self.navigationController pushViewController:cameraVC animated:YES];
+    }];
+}
+
+- (void)requestPhotoAuthority {
+    [MCFPhotoLibrary checkAuthorization:self completion:^(PHAuthorizationStatus status) {
+        if (status == PHAuthorizationStatusAuthorized) {
+            MCFPhotoLibraryViewController *photoVC = [[MCFPhotoLibraryViewController alloc] init];
+            photoVC.selectImageToCrop = YES;
+            photoVC.delegate = self;
+            [self.navigationController pushViewController:photoVC animated:YES];
+        }
+    }];
+}
+
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
-    self.rightButton.enabled = textField.text.length > 0;
-    
+    NSString *toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    self.rightButton.enabled = toBeString.length > 0;
+    if (toBeString.length >10) {
+        [self showTip:@"昵称应少于10个字"];
+        return NO;
+    }
     return YES;
 }
 

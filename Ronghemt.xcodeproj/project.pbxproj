@@ -61,6 +61,7 @@
 		207D11DD1E67F32C00430F1D /* MCFImageCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 207D11DC1E67F32C00430F1D /* MCFImageCropView.m */; };
 		207D11E11E6D383600430F1D /* MCFPhotoLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 207D11E01E6D383600430F1D /* MCFPhotoLibrary.m */; };
 		209F5CBC1E82104400185B24 /* MCFImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209F5CBB1E82104400185B24 /* MCFImageCropViewController.m */; };
+		209F5CBF1E84D02200185B24 /* ImageGrideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 209F5CBE1E84D02200185B24 /* ImageGrideView.m */; };
 		20C19AD41E56E57A0010CAF5 /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19AD31E56E57A0010CAF5 /* RootTabBarController.m */; };
 		20C19AE41E56FB400010CAF5 /* MCFNetworkManager+NaVi.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19AE31E56FB400010CAF5 /* MCFNetworkManager+NaVi.m */; };
 		20C19AE91E56FBE90010CAF5 /* MCFTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19AE81E56FBE90010CAF5 /* MCFTabBar.m */; };
@@ -236,6 +237,8 @@
 		207D11E01E6D383600430F1D /* MCFPhotoLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFPhotoLibrary.m; sourceTree = "<group>"; };
 		209F5CBA1E82104400185B24 /* MCFImageCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFImageCropViewController.h; sourceTree = "<group>"; };
 		209F5CBB1E82104400185B24 /* MCFImageCropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFImageCropViewController.m; sourceTree = "<group>"; };
+		209F5CBD1E84D02200185B24 /* ImageGrideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGrideView.h; sourceTree = "<group>"; };
+		209F5CBE1E84D02200185B24 /* ImageGrideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGrideView.m; sourceTree = "<group>"; };
 		20C19AD21E56E57A0010CAF5 /* RootTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarController.h; sourceTree = "<group>"; };
 		20C19AD31E56E57A0010CAF5 /* RootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarController.m; sourceTree = "<group>"; };
 		20C19AE21E56FB400010CAF5 /* MCFNetworkManager+NaVi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MCFNetworkManager+NaVi.h"; sourceTree = "<group>"; };
@@ -436,6 +439,8 @@
 				2007E5AB1E76689A0004DE37 /* ImageGridCell.m */,
 				2007E5AD1E7668AE0004DE37 /* TimeLabelCell.h */,
 				2007E5AE1E7668AE0004DE37 /* TimeLabelCell.m */,
+				209F5CBD1E84D02200185B24 /* ImageGrideView.h */,
+				209F5CBE1E84D02200185B24 /* ImageGrideView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1328,6 +1333,7 @@
 				20F25F071E7B8AA400C1480E /* CommentContentCell.m in Sources */,
 				20DFD1FC1E5C1F7400D13921 /* SettingViewController.m in Sources */,
 				2066D9C51E79332B0095061C /* CommentBar.m in Sources */,
+				209F5CBF1E84D02200185B24 /* ImageGrideView.m in Sources */,
 				207D11DA1E67CF7E00430F1D /* MCFImagePreViewViewController.m in Sources */,
 				20DFD1C91E5AD30800D13921 /* ServiceViewController.m in Sources */,
 				2007E5821E6D6BB00004DE37 /* MCFAssetCollectionView.m in Sources */,
