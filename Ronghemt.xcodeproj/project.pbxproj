@@ -61,7 +61,9 @@
 		207D11DD1E67F32C00430F1D /* MCFImageCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 207D11DC1E67F32C00430F1D /* MCFImageCropView.m */; };
 		207D11E11E6D383600430F1D /* MCFPhotoLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 207D11E01E6D383600430F1D /* MCFPhotoLibrary.m */; };
 		209F5CBC1E82104400185B24 /* MCFImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209F5CBB1E82104400185B24 /* MCFImageCropViewController.m */; };
-		209F5CBF1E84D02200185B24 /* ImageGrideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 209F5CBE1E84D02200185B24 /* ImageGrideView.m */; };
+		209F5CC21E850D8000185B24 /* ImageGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 209F5CC11E850D8000185B24 /* ImageGridView.m */; };
+		209F5CC51E88A4D500185B24 /* MCFCacheUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 209F5CC41E88A4D500185B24 /* MCFCacheUtil.m */; };
+		209F5CCB1E88BD4000185B24 /* MCFShareUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 209F5CCA1E88BD4000185B24 /* MCFShareUtil.m */; };
 		20C19AD41E56E57A0010CAF5 /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19AD31E56E57A0010CAF5 /* RootTabBarController.m */; };
 		20C19AE41E56FB400010CAF5 /* MCFNetworkManager+NaVi.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19AE31E56FB400010CAF5 /* MCFNetworkManager+NaVi.m */; };
 		20C19AE91E56FBE90010CAF5 /* MCFTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19AE81E56FBE90010CAF5 /* MCFTabBar.m */; };
@@ -110,7 +112,6 @@
 		279354781E542B48004ECB95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 279354771E542B48004ECB95 /* main.m */; };
 		2793547B1E542B48004ECB95 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2793547A1E542B48004ECB95 /* AppDelegate.m */; };
 		2793547E1E542B48004ECB95 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2793547D1E542B48004ECB95 /* ViewController.m */; };
-		279354811E542B48004ECB95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2793547F1E542B48004ECB95 /* Main.storyboard */; };
 		279354831E542B48004ECB95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 279354821E542B48004ECB95 /* Assets.xcassets */; };
 		279354861E542B48004ECB95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 279354841E542B48004ECB95 /* LaunchScreen.storyboard */; };
 		279354911E542B49004ECB95 /* RonghemtTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 279354901E542B49004ECB95 /* RonghemtTests.m */; };
@@ -237,8 +238,12 @@
 		207D11E01E6D383600430F1D /* MCFPhotoLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFPhotoLibrary.m; sourceTree = "<group>"; };
 		209F5CBA1E82104400185B24 /* MCFImageCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFImageCropViewController.h; sourceTree = "<group>"; };
 		209F5CBB1E82104400185B24 /* MCFImageCropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFImageCropViewController.m; sourceTree = "<group>"; };
-		209F5CBD1E84D02200185B24 /* ImageGrideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGrideView.h; sourceTree = "<group>"; };
-		209F5CBE1E84D02200185B24 /* ImageGrideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGrideView.m; sourceTree = "<group>"; };
+		209F5CC01E850D8000185B24 /* ImageGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGridView.h; sourceTree = "<group>"; };
+		209F5CC11E850D8000185B24 /* ImageGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGridView.m; sourceTree = "<group>"; };
+		209F5CC31E88A4D400185B24 /* MCFCacheUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFCacheUtil.h; sourceTree = "<group>"; };
+		209F5CC41E88A4D500185B24 /* MCFCacheUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFCacheUtil.m; sourceTree = "<group>"; };
+		209F5CC91E88BD4000185B24 /* MCFShareUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCFShareUtil.h; sourceTree = "<group>"; };
+		209F5CCA1E88BD4000185B24 /* MCFShareUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFShareUtil.m; sourceTree = "<group>"; };
 		20C19AD21E56E57A0010CAF5 /* RootTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarController.h; sourceTree = "<group>"; };
 		20C19AD31E56E57A0010CAF5 /* RootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarController.m; sourceTree = "<group>"; };
 		20C19AE21E56FB400010CAF5 /* MCFNetworkManager+NaVi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MCFNetworkManager+NaVi.h"; sourceTree = "<group>"; };
@@ -337,7 +342,6 @@
 		2793547A1E542B48004ECB95 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2793547C1E542B48004ECB95 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		2793547D1E542B48004ECB95 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		279354801E542B48004ECB95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		279354821E542B48004ECB95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		279354851E542B48004ECB95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		279354871E542B48004ECB95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -431,6 +435,8 @@
 		2007E5A31E7667D90004DE37 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				209F5CC01E850D8000185B24 /* ImageGridView.h */,
+				209F5CC11E850D8000185B24 /* ImageGridView.m */,
 				2007E5A41E7668720004DE37 /* HeaderTitleCell.h */,
 				2007E5A51E7668720004DE37 /* HeaderTitleCell.m */,
 				2007E5A71E7668850004DE37 /* TextContentCell.h */,
@@ -439,8 +445,6 @@
 				2007E5AB1E76689A0004DE37 /* ImageGridCell.m */,
 				2007E5AD1E7668AE0004DE37 /* TimeLabelCell.h */,
 				2007E5AE1E7668AE0004DE37 /* TimeLabelCell.m */,
-				209F5CBD1E84D02200185B24 /* ImageGrideView.h */,
-				209F5CBE1E84D02200185B24 /* ImageGrideView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -693,6 +697,10 @@
 				20DFD1B21E5A932D00D13921 /* MCFAlertController.m */,
 				20DFD1BA1E5A973300D13921 /* MCFTools.h */,
 				20DFD1BB1E5A973300D13921 /* MCFTools.m */,
+				209F5CC31E88A4D400185B24 /* MCFCacheUtil.h */,
+				209F5CC41E88A4D500185B24 /* MCFCacheUtil.m */,
+				209F5CC91E88BD4000185B24 /* MCFShareUtil.h */,
+				209F5CCA1E88BD4000185B24 /* MCFShareUtil.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -810,12 +818,12 @@
 				20DFD1FE1E5C236C00D13921 /* RegistViewController.m */,
 				20CC5DFC1E5D86BD002E8F38 /* ModifyPasswordViewController.h */,
 				20CC5DFD1E5D86BD002E8F38 /* ModifyPasswordViewController.m */,
+				2007E5961E7250750004DE37 /* BindPhoneViewController.h */,
+				2007E5971E7250750004DE37 /* BindPhoneViewController.m */,
 				20DFD2001E5C23A100D13921 /* LogInViewController.h */,
 				20DFD2011E5C23A100D13921 /* LogInViewController.m */,
 				20DFD1EE1E5C1A3100D13921 /* ProfileViewController.h */,
 				20DFD1EF1E5C1A3100D13921 /* ProfileViewController.m */,
-				2007E5961E7250750004DE37 /* BindPhoneViewController.h */,
-				2007E5971E7250750004DE37 /* BindPhoneViewController.m */,
 				20DFD1F11E5C1E1900D13921 /* CollectionViewController.h */,
 				20DFD1F21E5C1E1900D13921 /* CollectionViewController.m */,
 				20DFD1F41E5C1E2D00D13921 /* FeedbackViewController.h */,
@@ -928,7 +936,6 @@
 				2793547A1E542B48004ECB95 /* AppDelegate.m */,
 				2793547C1E542B48004ECB95 /* ViewController.h */,
 				2793547D1E542B48004ECB95 /* ViewController.m */,
-				2793547F1E542B48004ECB95 /* Main.storyboard */,
 				279354821E542B48004ECB95 /* Assets.xcassets */,
 				279354841E542B48004ECB95 /* LaunchScreen.storyboard */,
 				279354871E542B48004ECB95 /* Info.plist */,
@@ -1130,7 +1137,6 @@
 				204FCEB91E5EBF6D000CB793 /* test.html in Resources */,
 				2007E5D21E779D520004DE37 /* timg.gif in Resources */,
 				207D11BC1E65774500430F1D /* read_me.txt in Resources */,
-				279354811E542B48004ECB95 /* Main.storyboard in Resources */,
 				2007E5D41E779D520004DE37 /* video.html in Resources */,
 				2007E5D31E779D520004DE37 /* img.html in Resources */,
 			);
@@ -1324,8 +1330,10 @@
 				20C49BC41E554B7300196534 /* constants.m in Sources */,
 				20DFD1EB1E5AF27C00D13921 /* UserHeader.m in Sources */,
 				20DFD1F61E5C1E2D00D13921 /* FeedbackViewController.m in Sources */,
+				209F5CC21E850D8000185B24 /* ImageGridView.m in Sources */,
 				20DFD1D81E5AE4BB00D13921 /* MineViewController.m in Sources */,
 				20CC5E041E5E841C002E8F38 /* InputView.m in Sources */,
+				209F5CCB1E88BD4000185B24 /* MCFShareUtil.m in Sources */,
 				20DFD1C61E5AC5AE00D13921 /* VideoViewController.m in Sources */,
 				20C49BDF1E55872B00196534 /* NTESHTTPTask.m in Sources */,
 				20DFD1F01E5C1A3100D13921 /* ProfileViewController.m in Sources */,
@@ -1333,7 +1341,6 @@
 				20F25F071E7B8AA400C1480E /* CommentContentCell.m in Sources */,
 				20DFD1FC1E5C1F7400D13921 /* SettingViewController.m in Sources */,
 				2066D9C51E79332B0095061C /* CommentBar.m in Sources */,
-				209F5CBF1E84D02200185B24 /* ImageGrideView.m in Sources */,
 				207D11DA1E67CF7E00430F1D /* MCFImagePreViewViewController.m in Sources */,
 				20DFD1C91E5AD30800D13921 /* ServiceViewController.m in Sources */,
 				2007E5821E6D6BB00004DE37 /* MCFAssetCollectionView.m in Sources */,
@@ -1357,6 +1364,7 @@
 				2007E5791E6D6A440004DE37 /* MCFPhotoLibraryViewController.m in Sources */,
 				20DFD1BC1E5A973300D13921 /* MCFTools.m in Sources */,
 				20DFD1BF1E5AAF9900D13921 /* BaseWebViewController.m in Sources */,
+				209F5CC51E88A4D500185B24 /* MCFCacheUtil.m in Sources */,
 				2007E5AF1E7668AE0004DE37 /* TimeLabelCell.m in Sources */,
 				207D11DD1E67F32C00430F1D /* MCFImageCropView.m in Sources */,
 				2007E5981E7250750004DE37 /* BindPhoneViewController.m in Sources */,
@@ -1400,14 +1408,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		2793547F1E542B48004ECB95 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				279354801E542B48004ECB95 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		279354841E542B48004ECB95 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

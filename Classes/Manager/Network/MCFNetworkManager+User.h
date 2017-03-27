@@ -83,7 +83,7 @@
 //绑定手机号码
 + (void)bindPhoneNumber:(NSString *)number
                    code:(NSString *)code
-                success:(void(^)(NSString *tip))success
+                success:(void(^)(NSInteger status, NSString *tip))success
                 failure:(void(^)(NSError *error))failure;
 //提交评论
 + (void)commitComment:(NSString *)content

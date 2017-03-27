@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UIImageView *contentImageView;
 @property (nonatomic, copy) NSString *url;
 @property (nonatomic, strong) UIButton *backButton;
+@property (nonatomic, strong) UIImage *image;
 @end
 
 @implementation ImageBrowseViewController
@@ -41,6 +42,12 @@
     return self;
 }
 
+- (instancetype)initWithImage:(UIImage *)displayImage {
+    self = [super init];
+    self.image = displayImage;
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
@@ -51,6 +58,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+    if (self.image) {
+        self.contentImageView.image = self.image;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {

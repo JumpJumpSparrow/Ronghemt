@@ -324,10 +324,12 @@
 
 - (void)requestCameraAuthority {
     [MCFPhotoLibrary checkCameraAuthorization:self completion:^(AVAuthorizationStatus status) {
-        MCFCameraViewController *cameraVC = [[MCFCameraViewController alloc] init];
-        cameraVC.delegate = self;
-        cameraVC.isCropView = YES;
-        [self.navigationController pushViewController:cameraVC animated:YES];
+        if (status == AVAuthorizationStatusAuthorized) {            
+            MCFCameraViewController *cameraVC = [[MCFCameraViewController alloc] init];
+            cameraVC.delegate = self;
+            cameraVC.isCropView = YES;
+            [self.navigationController pushViewController:cameraVC animated:YES];
+        }
     }];
 }
 

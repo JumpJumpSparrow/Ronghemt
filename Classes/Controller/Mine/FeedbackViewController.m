@@ -10,7 +10,7 @@
 #import <YYKit.h>
 #import "MCFNetworkManager+User.h"
 
-@interface TextInputView : UIView<YYTextViewDelegate>
+@interface TextInputView : UIView
 
 @property (nonatomic, strong) YYTextView *inputView;
 @end
@@ -23,7 +23,6 @@
         _inputView.placeholderText = @"请输入您遇到的问题...";
         _inputView.textVerticalAlignment = YYTextVerticalAlignmentTop;
         _inputView.textAlignment = NSTextAlignmentLeft;
-        _inputView.delegate = self;
         _inputView.font = [UIFont systemFontOfSize:15.0f];
     }
     return _inputView;
@@ -37,11 +36,6 @@
     [self addSubview:self.inputView];
     return self;
 }
-
-- (BOOL)textView:(YYTextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    return YES;
-}
-
 
 @end
 
@@ -80,10 +74,11 @@
 @end
 
 
-@interface FeedbackViewController ()
+@interface FeedbackViewController ()<YYTextViewDelegate>
 
 @property (nonatomic, strong) TextInputView *mainInputView;
 @property (nonatomic, strong) Textinputbar *inputBar;
+@property (nonatomic, strong) UILabel *countLabel;
 @property (nonatomic, strong) UIButton *commitButton;
 @end
 
@@ -92,15 +87,27 @@
 - (TextInputView *)mainInputView {
     if (_mainInputView == nil) {
         _mainInputView = [[TextInputView alloc] initWithFrame:CGRectMake(10, 64.0f + 10, SCREEN_WIDTH - 20, 250)];
+        _mainInputView.inputView.delegate = self;
     }
     return _mainInputView;
 }
 
 - (Textinputbar *)inputBar {
     if (_inputBar == nil) {
-        _inputBar = [[Textinputbar alloc] initWithFrame:CGRectMake(10, self.mainInputView.bottom + 20, SCREEN_WIDTH - 20, 50)];
+        _inputBar = [[Textinputbar alloc] initWithFrame:CGRectMake(10, self.countLabel.bottom, SCREEN_WIDTH - 20, 50)];
     }
     return _inputBar;
+}
+
+- (UILabel *)countLabel {
+    if (_countLabel == nil) {
+        _countLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.mainInputView.bottom, SCREEN_WIDTH - 20, 44)];
+        _countLabel.textColor = [UIColor blackColor];
+        _countLabel.textAlignment = NSTextAlignmentRight;
+        _countLabel.text = @"0/160字";
+        _countLabel.font = [UIFont systemFontOfSize:13.0f];
+    }
+    return _countLabel;
 }
 
 - (UIButton *)commitButton {
@@ -119,6 +126,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.mainInputView];
+    [self.view addSubview:self.countLabel];
     [self.view addSubview:self.inputBar];
     [self.view addSubview:self.commitButton];
     
@@ -134,10 +142,7 @@
         [self showTip:@"建议不要少于12个字"];
         return;
     }
-    if (self.inputBar.inputField.text.length == 0) {
-        [self showTip:@"请输入联系方式"];
-        return;
-    }
+
     [self showLoading];
 
     [MCFNetworkManager feedBack:self.mainInputView.inputView.text
@@ -151,6 +156,17 @@
     } failure:^(NSError *error) {
         [self hideLoading];
     }];
+}
+
+- (BOOL)textView:(YYTextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    NSString *toBeString = [textView.text stringByReplacingCharactersInRange:range withString:text];
+    if (toBeString.length > 160) {
+        [self showTip:@"输入内容限制在160字"];
+        return NO;
+    }
+    self.countLabel.text = [NSString stringWithFormat:@"%ld/160字", toBeString.length];
+    
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {

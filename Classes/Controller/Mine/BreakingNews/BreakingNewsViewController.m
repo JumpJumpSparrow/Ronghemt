@@ -47,6 +47,11 @@
     [self.view addSubview:self.pageManagerController.view];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [super viewWillAppear:animated];
+}
+
 - (NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController {
     return 2;
 }

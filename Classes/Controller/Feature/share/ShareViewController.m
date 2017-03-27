@@ -9,6 +9,7 @@
 #import "ShareViewController.h"
 #import "ThirdLogInView.h"
 #import <UMSocialCore/UMSocialCore.h>
+#import <UShareUI/UShareUI.h>
 
 @interface ShareViewController ()<ThirdLogInDelegate>
 @property (nonatomic, strong) ThirdLogInView *thirdLogInView;
@@ -36,26 +37,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-    [self.view addSubview:self.thirdLogInView];
+    //[self.view addSubview:self.thirdLogInView];
+    
 }
 
-- (void)didSelectLoginMethod:(NSInteger)index {
-    UMSocialPlatformType platformType;
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Sina),@(UMSocialPlatformType_QQ),@(UMSocialPlatformType_WechatSession)]];
+    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+        // 根据获取的platformType确定所选平台进行下一步操作
+        [self didSelectPlatformType:platformType];
+    }];
+}
+
+- (void)didSelectPlatformType:(UMSocialPlatformType )platformType {
+
     
-    switch (index) {
-        case 1: // QQ
-            platformType = UMSocialPlatformType_QQ;
-            break;
-            
-        case 2: // weibo
-            platformType = UMSocialPlatformType_Sina;
-            break;
-        case 3: // weixin
-            platformType = UMSocialPlatformType_WechatTimeLine;
-            break;
-        default:
-            break;
-    }
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     
@@ -70,6 +67,7 @@
     
     //调用分享接口
     [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        [self dismissViewControllerAnimated:NO completion:NULL];
         if (error) {
             UMSocialLogInfo(@"************Share fail with error %@*********",error);
         }else{

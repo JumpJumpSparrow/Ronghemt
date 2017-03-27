@@ -18,6 +18,8 @@
 #import "CommentViewController.h"
 #import "CommentListViewController.h"
 #import "ShareViewController.h"
+#import <MJRefresh.h>
+#import "MCFShareUtil.h"
 
 @interface BaseWebViewController ()<WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler, CommentBarDelegate>
 
@@ -76,6 +78,10 @@
     if(self.showCommentBar){
         [self.view addSubview:self.commentBar];
     }
+    
+    self.contentWebView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self loadUrl:self.url];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -174,10 +180,7 @@
         [self.navigationController pushViewController:commentListVC animated:YES];
     } else if (sender.tag == 3){
         NSString *url = self.currentPageInfo[@"loadUrl"];
-        ShareViewController *shareVc = [[ShareViewController alloc] initWithUrl:url];
-        shareVc.hidesBottomBarWhenPushed = YES;
-        shareVc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-        [self presentViewController:shareVc animated:NO completion:NULL];
+        [MCFShareUtil showShareMenuToShareUrl:url];
     }
 }
 
@@ -291,10 +294,12 @@
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [self hideLoading];
+    [self.contentWebView.scrollView.mj_header endRefreshing];
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     [self hideLoading];
+    [self.contentWebView.scrollView.mj_header endRefreshing];
 }
 
 // realese the delegate here! to do 

@@ -18,6 +18,7 @@ static CGFloat ProtocolFont = 13.0f;
 @property (nonatomic, strong) UIButton *checkButton;
 @property (nonatomic, strong) UILabel *textLabel;
 @property (nonatomic, strong) UIButton *protocolButton;
+@property (nonatomic, copy) NSString *code;
 @end
 
 @implementation RegistViewController
@@ -25,8 +26,8 @@ static CGFloat ProtocolFont = 13.0f;
 - (UIButton *)checkButton {
     if (_checkButton == nil) {
         _checkButton = [[UIButton alloc] initWithFrame:CGRectMake(self.commitButton.left, self.commitButton.bottom + 10, 20.0f, 20.0f)];
-        [_checkButton setImage:[UIImage imageNamed:@"collection_nor"] forState:UIControlStateSelected];
-        [_checkButton setImage:[UIImage imageNamed:@"collection_sel"] forState:UIControlStateNormal];
+        [_checkButton setImage:[UIImage imageNamed:@"mi"] forState:UIControlStateNormal];
+        [_checkButton setImage:[UIImage imageNamed:@"collection_sel"] forState:UIControlStateSelected];
         [_checkButton addTarget:self action:@selector(didSeleCheckBtn:) forControlEvents:UIControlEventTouchUpInside];
         _checkButton.selected = YES;
         _checkButton.titleLabel.font = [UIFont systemFontOfSize:ProtocolFont];
@@ -94,6 +95,7 @@ static CGFloat ProtocolFont = 13.0f;
     }
     [MCFNetworkManager requestVerifyCodeForPhone:account.phone success:^(NSString *code, NSString *message) {
         [self showTip:message];
+        self.code = code;
         NSLog(@"%@",code);
     } failure:^(NSError *error) {
         [self showTip:@"网络错误"];
@@ -133,19 +135,26 @@ static CGFloat ProtocolFont = 13.0f;
         [self showTip:@"请同意用户协议"];
         return;
     }
-    [self showLoading];
-    [MCFNetworkManager registerUser:account success:^(MCFUserModel *user, NSString *tip) {
-        [self hideLoading];
-        [self showTip:tip];
-        if (user.userId > 0) {
-            dispatch_after(dispatch_time_delay(2), dispatch_get_main_queue(), ^{
-                [self.navigationController popViewControllerAnimated:YES];
-            });
-        }
+    
+    if (self.code.integerValue == account.code) {
         
-    } failure:^(NSError *error) {
-        [self hideLoading];
-    }];
+        [self showLoading];
+        [MCFNetworkManager registerUser:account success:^(MCFUserModel *user, NSString *tip) {
+            [self hideLoading];
+            [self showTip:tip];
+            if (user.userId > 0) {
+                dispatch_after(dispatch_time_delay(2), dispatch_get_main_queue(), ^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
+            }
+            
+        } failure:^(NSError *error) {
+            [self hideLoading];
+        }];
+    } else {
+        [self showTip:@"验证码错误"];
+    }
+    
 }
 
 - (void)didSeleCheckBtn:(UIButton *)sender {

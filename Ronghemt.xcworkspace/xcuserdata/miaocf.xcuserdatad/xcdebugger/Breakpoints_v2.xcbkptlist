@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Classes/Category&amp;Util/Categorys/UITabBar+MCF.m"
-            timestampString = "509007260.946798"
+            filePath = "Classes/Manager/Network/MCFNetworkManager+User.m"
+            timestampString = "512292571.151435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "-setIsUp:"
+            startingLineNumber = "453"
+            endingLineNumber = "453"
+            landmarkName = "+uploadImages:urls:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Classes/Controller/Common/BaseWebViewController.m"
-            timestampString = "511944729.004236"
+            filePath = "Classes/Manager/Network/MCFNetworkManager+User.m"
+            timestampString = "512292571.151435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
-            landmarkName = "-dealloc"
+            startingLineNumber = "440"
+            endingLineNumber = "440"
+            landmarkName = "+uploadImages:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,13 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Classes/Controller/Mine/BreakingNews/BreakingNewsItemViewController.m"
-            timestampString = "511262026.313169"
+            filePath = "Classes/Manager/Network/MCFNetworkManager+User.m"
+            timestampString = "512292571.151435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
-            landmarkName = "-dealloc"
+            startingLineNumber = "467"
+            endingLineNumber = "467"
+            landmarkName = "+uploadImages:urls:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -67,13 +67,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Ronghemt/AppDelegate.m"
-            timestampString = "511433445.172007"
+            filePath = "Classes/Controller/Feature/share/ShareViewController.m"
+            timestampString = "512277453.787861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "-application:handleOpenURL:"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "-viewDidAppear:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -83,13 +83,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Ronghemt/AppDelegate.m"
-            timestampString = "511433445.172007"
+            filePath = "Classes/Controller/Feature/share/ShareViewController.m"
+            timestampString = "512277461.563402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "-application:openURL:sourceApplication:annotation:"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "-didSelectPlatformType:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -10,6 +10,10 @@
 #import "AppDelegate.h"
 #import "MCFNetworkManager+User.h"
 #import <YYKit.h>
+#import "MCFCacheUtil.h"
+#import <MBProgressHUD.h>
+#import "ShareViewController.h"
+#import "MCFShareUtil.h"
 
 @interface TitlesButton : UIButton
 
@@ -87,7 +91,8 @@
     if (_recommandButton == nil) {
         _recommandButton = [[TitlesButton alloc] initWithFrame:CGRectMake(0, 74.0f, SCREEN_WIDTH, 44.0f)];
         _recommandButton.title = @"推荐好友";
-        [_recommandButton addTarget:self action:@selector(didSelectButton) forControlEvents:UIControlEventTouchUpInside];
+        _recommandButton.tag = 0;
+        [_recommandButton addTarget:self action:@selector(didSelectButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _recommandButton;
 }
@@ -97,7 +102,8 @@
         _cacheButton = [[TitlesButton alloc] initWithFrame:CGRectMake(0, self.recommandButton.bottom + 10, SCREEN_WIDTH, 44.0f)];
         _cacheButton.title = @"清除缓存";
         _cacheButton.subTitle = @"0.00M";
-        [_cacheButton addTarget:self action:@selector(didSelectButton) forControlEvents:UIControlEventTouchUpInside];
+        _cacheButton.tag = 1;
+        [_cacheButton addTarget:self action:@selector(didSelectButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _cacheButton;
 }
@@ -107,7 +113,8 @@
         _editionButton = [[TitlesButton alloc] initWithFrame:CGRectMake(0, self.cacheButton.bottom + 10, SCREEN_WIDTH, 44.0f)];
         _editionButton.title = @"版本号";
         _editionButton.subTitle = @"V1.01";
-        [_editionButton addTarget:self action:@selector(didSelectButton) forControlEvents:UIControlEventTouchUpInside];
+        _editionButton.tag = 3;
+        [_editionButton addTarget:self action:@selector(didSelectButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _editionButton;
 }
@@ -134,8 +141,37 @@
     self.logoutButton.hidden = ![MCFTools isLogined];
 }
 
-- (void)didSelectButton {
-    
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.cacheButton.subTitle = [self calculateCacheSize];
+}
+
+- (void)didSelectButton:(TitlesButton *)sender {
+    if (sender.tag == 1) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.label.text = @"正在清理内存";
+        [MCFCacheUtil cleanCacheInPath:kPathLibraryCacheDirectory];
+        [MCFCacheUtil cleanCacheInTemporaryDirectory];
+        hud.label.text = [NSString stringWithFormat:@"已清理%@内存空间", self.cacheButton.subTitle];
+        self.cacheButton.subTitle = @"0.0MB";
+        [hud hideAnimated:YES afterDelay:2.0f];
+    } else if (sender.tag == 0) {
+        [MCFShareUtil showShareMenuToShareUrl:@"www.baidu.com"];
+    }
+}
+
+- (NSString *)calculateCacheSize {
+    double sizeInCache = [MCFCacheUtil cacheSizeInPath:kPathLibraryCacheDirectory];
+    double sizeInTemp = [MCFCacheUtil cacheSizeInTemporaryDirectory];
+    double size = sizeInCache + sizeInTemp;
+    NSString *sizeString = @"";
+    if (size < 1) {
+        sizeString = [NSString stringWithFormat:@"%.2fKB", size*1000];
+    } else {
+        sizeString = [NSString stringWithFormat:@"%.2fMB", size];
+    }
+    return sizeString;
 }
 
 - (void)logOut {
@@ -160,15 +196,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

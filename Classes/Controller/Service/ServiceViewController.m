@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.contentWebView.backgroundColor = [UIColor whiteColor];
-    //self.contentWebView.scrollView.scrollEnabled = NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

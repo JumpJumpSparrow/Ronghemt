@@ -159,6 +159,9 @@ static NSString *commentList      = @"comment_list.php";
 + (void)verifySession:(void (^)())valid
               invalid:(void (^)())invalid
               failure:(void (^)(NSError *))failure {
+    if (![MCFTools isLogined]) {
+        return;
+    }
     NSDictionary *dict = @{@"session" : [MCFTools getLoginUser] .session};
     [[MCFNetworkManager sharedManager] GET:checkSession
                                 parameters:dict
@@ -166,8 +169,8 @@ static NSString *commentList      = @"comment_list.php";
                                        NSInteger status = [[responseObject objectForKey:@"status"] integerValue];
                                        if (status == 1 && valid) {
                                            valid();
-                                       }
-                                       if (status == 0 && invalid) {
+                                       } else if (status == 0 && invalid) {
+                                           [MCFTools clearLoginUser];
                                            invalid();
                                        }
                                    } failure:^(NSUInteger taskId, NSError *error) {
@@ -200,7 +203,7 @@ static NSString *commentList      = @"comment_list.php";
 
 + (void)bindPhoneNumber:(NSString *)number
                    code:(NSString *)code
-                success:(void (^)(NSString *))success
+                success:(void (^)(NSInteger, NSString *))success
                 failure:(void (^)(NSError *))failure {
     
     if (number.length == 0 || code.length == 0) return;
@@ -211,16 +214,17 @@ static NSString *commentList      = @"comment_list.php";
     
     [[MCFNetworkManager sharedManager] POST:bindPhone parameters:dict
                                     success:^(NSUInteger taskId, id responseObject) {
-        
-        NSString *sting = [responseObject objectForKey:@"message"];
-        if (success) {
-            success(sting);
-        }
-    } failure:^(NSUInteger taskId, NSError *error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
+                                        
+                                        NSString *sting = [responseObject objectForKey:@"message"];
+                                        NSInteger status = [[responseObject objectForKey:@"status"] integerValue];
+                                        if (success) {
+                                            success(status, sting);
+                                        }
+                                    } failure:^(NSUInteger taskId, NSError *error) {
+                                        if (failure) {
+                                            failure(error);
+                                        }
+                                    }];
 }
 
 + (void)feedBack:(NSString *)content
@@ -228,9 +232,9 @@ static NSString *commentList      = @"comment_list.php";
          success:(void (^)(NSString *))success
          failure:(void (^)(NSError *))failure {
 
-    if (contact.length == 0 || content.length == 0) return;
+    if (content.length == 0) return;
     MCFUserModel *user = [MCFTools getLoginUser];
-    NSDictionary *dict = @{@"contact" : contact ,
+    NSDictionary *dict = @{@"contact" : contact == nil ? @"null" :  contact,
                            @"content" : content,
                            @"session" : user.session};
     
@@ -453,6 +457,7 @@ static NSString *commentList      = @"comment_list.php";
         if (completion) {
             completion(urlArray);
         }
+        return;
     }
     UIImage *image = [images firstObject];
     [images removeObject:image];
@@ -496,7 +501,7 @@ static NSString *commentList      = @"comment_list.php";
 + (void)uploadFile:(NSObject *)file
            success:(void (^)(NSString *))success
            failure:(void (^)(NSError *))failure {
-    
+    if(file == nil) return;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <UMSocialCore/UMSocialCore.h>
+#import "MCFNetworkManager+User.h"
 
 @interface AppDelegate ()
 
@@ -21,7 +22,7 @@
     [MCFConfigure cfg];//初始化配置
     
     [self UMSetUp];
-    
+    [self chekeAccount];
     self.rootVc = [[RootTabBarController alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window setRootViewController:self.rootVc];
@@ -72,7 +73,16 @@
     return result;
 }
 
-// 缺少QQ sina 
+- (void)chekeAccount{
+    [MCFNetworkManager verifySession:^{
+        
+    } invalid:^{
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+  // 缺少QQ sina 
 - (void)UMSetUp {
     [[UMSocialManager defaultManager] openLog:YES];
     [[UMSocialManager defaultManager] setUmSocialAppkey:[MCFConfigure cfg].umengAppKey];

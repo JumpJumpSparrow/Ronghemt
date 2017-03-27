@@ -51,7 +51,7 @@
     self.optionArray = [NSArray arrayWithContentsOfFile:path];
     self.automaticallyAdjustsScrollViewInsets  =NO;
     [self.view addSubview:self.listTable];
-    [self checkLoginStatus];
+    //[self checkLoginStatus];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

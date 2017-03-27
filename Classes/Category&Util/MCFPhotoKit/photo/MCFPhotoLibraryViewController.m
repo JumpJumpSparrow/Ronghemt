@@ -140,6 +140,10 @@ UICollectionViewDelegateFlowLayout, AssetSelectionDelegate>
 
 - (void)didSelectNextButton {
     
+    if([self.delegate respondsToSelector:@selector(MCFPhotoLibraryDidSelectImages:)]){
+        [self.delegate MCFPhotoLibraryDidSelectImages:self.selectedImages];
+    }
+    [self didSelectCancel];
 }
 
 - (void)assetItemCell:(MCFAssetItemCell *)cell didSelect:(BOOL)isSelected {

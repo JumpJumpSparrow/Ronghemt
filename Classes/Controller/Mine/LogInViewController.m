@@ -219,11 +219,16 @@
         return;
     }
     [MCFNetworkManager loginWithUser:user success:^(MCFUserModel *user, NSString *tip) {
-        [self showTip:@"登录成功"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (user.userId > 0) {
             
-            [self.navigationController popViewControllerAnimated:YES];
-        });
+            [self showTip:@"登录成功"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+        } else {
+            [self showTip:tip];
+        }
     } failure:^(NSError *error) {
         [self showTip:@"登录失败请稍后再试"];
     }];

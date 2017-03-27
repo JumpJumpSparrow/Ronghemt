@@ -65,7 +65,12 @@ static NSString *MCFPhotoPath = @"MCFPhotoLibrary";
                                                                   if (completion) {
                                                                       completion(authStatus);
                                                                   }
-                                                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=com.hlss.Ronghemt"]];
+                                                                  if (SYSTEM_VERSION_NOT_LESS_THAN(@"10.0")){
+                                                                      NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                                                                      [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:NULL];
+                                                                  } else if (SYSTEM_VERSION_NOT_LESS_THAN(@"8.0")) {
+                                                                      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=com.hlss.Ronghemt"]];
+                                                                  }
                                                               }]];
             [viewController presentViewController:alertController animated:YES completion:NULL];
             
@@ -129,7 +134,12 @@ static NSString *MCFPhotoPath = @"MCFPhotoLibrary";
                                                                   if (completion) {
                                                                       completion(PHAuthorizationStatusDenied);
                                                                   }
-                                                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=com.hlss.Ronghemt"]];
+                                                                  if (SYSTEM_VERSION_NOT_LESS_THAN(@"10.0")){
+                                                                      NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                                                                      [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:NULL];
+                                                                  } else if (SYSTEM_VERSION_NOT_LESS_THAN(@"8.0")) {
+                                                                      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=com.hlss.Ronghemt"]];
+                                                                  }
                                                               }]];
             [viewController presentViewController:alertController animated:YES completion:NULL];
 

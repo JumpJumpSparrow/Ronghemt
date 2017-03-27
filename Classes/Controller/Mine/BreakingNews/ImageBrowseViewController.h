@@ -10,6 +10,6 @@
 
 @interface ImageBrowseViewController : BaseViewController
 
-
+- (instancetype)initWithImage:(UIImage *)displayImage;
 - (instancetype)initWithImageUrl:(NSString *)imageUrl;
 @end

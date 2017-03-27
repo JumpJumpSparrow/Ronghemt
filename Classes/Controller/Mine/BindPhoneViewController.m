@@ -9,14 +9,16 @@
 #import "BindPhoneViewController.h"
 #import "InputView.h"
 #import "MCFUserModel.h"
-#import "MCFNetworkManager.h"
+#import "MCFNetworkManager+User.h"
 #import <YYKit.h>
+#import "RegisterModel.h"
 
 @interface BindPhoneViewController ()<VerifyDelegate>
 
 @property (nonatomic, strong) InputView *phoneView;
 @property (nonatomic, strong) InputView *codeView;
 @property (nonatomic, strong) UIButton *commitButton;
+@property (nonatomic, strong) RegisterModel *userRegist;
 @end
 
 @implementation BindPhoneViewController
@@ -58,9 +60,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"绑定手机号";
     [self.view addSubview:self.phoneView];
     [self.view addSubview:self.codeView];
     [self.view addSubview:self.commitButton];
+    self.userRegist = [[RegisterModel alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -78,16 +82,46 @@
         [self showTip:@"请输入验证码"];
         return;
     }
-    MCFUserModel *user = [MCFTools getLoginUser];
-    user.username = self.phoneView.inputField.text;
+    [self showLoading];
+    [MCFNetworkManager bindPhoneNumber:self.userRegist.phone
+                                  code:[NSString stringWithFormat:@"%ld",self.userRegist.code]
+                               success:^(NSInteger staus, NSString *tip) {
+                                   [self hideLoading];
+                                   [self showTip:tip];
+                                   if (staus == 1) {
+                                       MCFUserModel *user = [MCFTools getLoginUser];
+                                       user.phone = self.userRegist.phone;
+                                       [MCFTools saveLoginUser:user];
+                                       
+                                       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                           [self.navigationController popViewControllerAnimated:YES];
+                                       });
+                                   }
+    } failure:^(NSError *error) {
+        [self hideLoading];
+        [self showTip:@"网络错误"];
+    }];
+    
 }
 
 - (void)verifyTheAccount:(UIButton *)sender {
     
+    [MCFNetworkManager requestVerifyCodeForPhone:self.userRegist.phone
+                                         success:^(NSString *code, NSString *message) {
+        [self showTip:message];
+        NSLog(@"%@",code);
+    } failure:^(NSError *error) {
+        [self showTip:@"网络错误"];
+    }];
 }
 
 - (void)didInputText:(NSString *)text index:(NSInteger)index {
-
+    
+    if (index == 1) {
+        self.userRegist.phone = text;
+    } else if (index == 2) {
+        self.userRegist.code = [text integerValue];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

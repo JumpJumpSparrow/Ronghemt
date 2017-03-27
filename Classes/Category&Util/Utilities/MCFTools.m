@@ -55,7 +55,7 @@
         return [NSKeyedUnarchiver unarchiveObjectWithData:userData];
     } else {
         MCFUserModel *user = [[MCFUserModel alloc] init];
-        user.username = @"暂未登录";
+        user.username = @"点击头像进行登录";
         user.avatar = @"http://app1.dev.ctvcloud.com/img/img_moren.png";
         return user;
     }
