@@ -64,6 +64,7 @@
 
 - (void)didSelectCommitButton {
     if ([self.delegate respondsToSelector:@selector(publishComment:)]) {
+        
         [self.delegate publishComment:self.inputView.text];
     }
 }
@@ -79,30 +80,58 @@
 
 @end
 
-@interface CommentViewController ()<CommitCommentDelegate>
+@interface CommentViewController ()<YYTextViewDelegate>
 
-@property (nonatomic, strong) CommentBarView *commentBar;
-@property (nonatomic, strong) UIButton *colseButton;
+@property (nonatomic, strong) UIView *baseView;
+@property (nonatomic, strong) YYTextView *inputView;
+@property (nonatomic, strong) UILabel *countLabel;
+@property (nonatomic, strong) UIButton *commitButton;
 @property (nonatomic, strong) NSDictionary *infoDict;
 @end
 
 @implementation CommentViewController
 
-- (CommentBarView *)commentBar {
-    if (_commentBar == nil) {
-        _commentBar = [[CommentBarView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 100.0f, self.view.width, 100)];
-        _commentBar.delegate = self;
+- (UILabel *)countLabel {
+    if (_countLabel == nil) {
+        _countLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.baseView.bottom, SCREEN_WIDTH - 20, 44)];
+        _countLabel.textColor = [UIColor blackColor];
+        _countLabel.textAlignment = NSTextAlignmentRight;
+        _countLabel.text = @"0/160字";
+        _countLabel.font = [UIFont systemFontOfSize:13.0f];
     }
-    return _commentBar;
+    return _countLabel;
 }
 
-- (UIButton *)colseButton {
-    if (_colseButton == nil) {
-        _colseButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width - 64.0f, 20.0f, 54.0f, 54.0f)];
-        [_colseButton setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
-        [_colseButton addTarget:self action:@selector(closeController) forControlEvents:UIControlEventTouchUpInside];
+- (YYTextView *)inputView {
+    if (_inputView == nil) {
+        _inputView = [[YYTextView alloc] initWithFrame:CGRectMake(self.baseView.left + 10.0f, self.baseView.top + 10.0f, self.baseView.width - 20, self.baseView.height - 20)];
+        _inputView.placeholderText = @"请输入你想说的话";
+        _inputView.textVerticalAlignment = YYTextVerticalAlignmentTop;
+        _inputView.textAlignment = NSTextAlignmentLeft;
+        _inputView.delegate = self;
+        _inputView.font = [UIFont systemFontOfSize:15.0f];
     }
-    return _colseButton;
+    return _inputView;
+}
+
+- (UIView *)baseView {
+    if (_baseView == nil) {
+        _baseView = [[UIView alloc] initWithFrame:CGRectMake(10, 74.0f, SCREEN_WIDTH - 20, 200)];
+        _baseView.layer.cornerRadius = 10.0f;
+        _baseView.backgroundColor = APPGRAY;
+        _baseView.clipsToBounds = YES;
+    }
+    return _baseView;
+}
+
+- (UIButton *)commitButton {
+    if (_commitButton == nil) {
+        _commitButton = [[UIButton alloc] initWithFrame:CGRectMake(10, self.countLabel.bottom + 20, SCREEN_WIDTH - 20, 40)];
+        [_commitButton setTitle:@"提交" forState:UIControlStateNormal];
+        [_commitButton setBackgroundImage:[UIImage imageNamed:@"commit_bg"] forState:UIControlStateNormal];
+        [_commitButton addTarget:self action:@selector(commitComment) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _commitButton;
 }
 
 - (instancetype)initWithDict:(NSDictionary *)dict {
@@ -113,15 +142,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
-    [self.view addSubview:self.commentBar];
-    [self.view addSubview:self.colseButton];
-    [self addObserver];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.title = @"评论";
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.baseView];
+    [self.view addSubview:self.inputView];
+    [self.view addSubview:self.countLabel];
+    [self.view addSubview:self.commitButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.commentBar.inputView becomeFirstResponder];
+    [self.inputView becomeFirstResponder];
+}
+
+- (void)commitComment {
+    [self publishComment:self.inputView.text];
 }
 
 - (void)publishComment:(NSString *)content {
@@ -134,7 +171,7 @@
         [self hideLoading];
         [self showTip:@"评论成功"];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self dismissViewControllerAnimated:NO completion:NULL];
+            [self.navigationController popViewControllerAnimated:YES];
         });
     } failure:^(NSError *error) {
         [self hideLoading];
@@ -142,48 +179,15 @@
     }];
 }
 
-- (void)addObserver {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
-}
-
-- (void)keyboardWillShow:(NSNotification *)aNotification{
-    NSDictionary *userInfo = [aNotification userInfo];
-    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect keyboardRect = [aValue CGRectValue];
-    CGFloat height = keyboardRect.size.height;
-    [self liftCommentBar:height];
-}
-
-- (void)keyboardWillHide:(NSNotification *)aNotification{
-    CGFloat height = self.view.height - self.commentBar.bottom;
-    [self liftCommentBar:-height];
-}
-
-- (void)liftCommentBar:(CGFloat)height {
-    
-    CGRect frame = self.commentBar.frame;
-    frame.origin.y -= height;
-    
-    if(height>0) {
-    
-        if(frame.origin.y < 200) return;
+- (BOOL)textView:(YYTextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    NSString *toBeString = [textView.text stringByReplacingCharactersInRange:range withString:text];
+    if (toBeString.length > 160) {
+        [self showTip:@"输入内容限制在160字"];
+        return NO;
     }
+    self.countLabel.text = [NSString stringWithFormat:@"%ld/160字", toBeString.length];
     
-    [UIView animateWithDuration:0.25 animations:^{
-        self.commentBar.frame = frame;
-    }];
-}
-
-- (void)closeController {
-    [self dismissViewControllerAnimated:NO completion:NULL];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -195,20 +199,5 @@
     [super touchesBegan:touches withEvent:event];
     [self.view endEditing:YES];
 }
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

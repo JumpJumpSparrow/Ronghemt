@@ -21,6 +21,7 @@ static NSString *modifyPass       = @"find_passwd.php";
 static NSString *uploadFile       = @"file_upload.php";
 static NSString *updateProfile    = @"userinfo_modify.php";
 static NSString *bindPhone        = @"bind_phone.php";
+static NSString *rebindPhone      = @"unbind.php";
 static NSString *updateUserInfo   = @"get_userinfo.php";
 static NSString *feedback         = @"feedback.php";
 static NSString *breakNews        = @"baoliao_list.php";
@@ -227,6 +228,30 @@ static NSString *commentList      = @"comment_list.php";
                                     }];
 }
 
++ (void)rebindPhoneSuccess:(void (^)(NSInteger, NSString *))success
+                   failure:(void (^)(NSError *))failure {
+    
+    MCFUserModel *user = [MCFTools getLoginUser];
+    NSDictionary *dict = @{@"type" : @(1) ,
+                           @"session" : user.session};
+    
+    [[MCFNetworkManager sharedManager] POST:rebindPhone
+                                 parameters:dict
+                                    success:^(NSUInteger taskId, id responseObject) {
+                                        
+                                        NSString *sting = [responseObject objectForKey:@"message"];
+                                        NSInteger status = [[responseObject objectForKey:@"status"] integerValue];
+                                        if (success) {
+                                            success(status, sting);
+                                        }
+                                    } failure:^(NSUInteger taskId, NSError *error) {
+                                        if (failure) {
+                                            failure(error);
+                                        }
+                                    }];
+
+}
+
 + (void)feedBack:(NSString *)content
          contact:(NSString *)contact
          success:(void (^)(NSString *))success
@@ -257,7 +282,7 @@ static NSString *commentList      = @"comment_list.php";
                         success:(void (^)(NSInteger, NSInteger, NSArray *))success
                         failure:(void (^)(NSError *))failure {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    if (isPrivat) {
+    if (isPrivat && [MCFTools isLogined]) {
         [dict setObject:[MCFTools getLoginUser].session forKey:@"session"];
     }
     [dict setValue:@(page) forKey:@"page"];

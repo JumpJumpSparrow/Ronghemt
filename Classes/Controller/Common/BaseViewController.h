@@ -11,8 +11,9 @@
 #import "MCFTools.h"
 @interface BaseViewController : UIViewController
 
-- (void)showTip:(NSString *)tip;
+@property (nonatomic, assign) BOOL showBarCover;
 
+- (void)showTip:(NSString *)tip;
 - (void)showLoading;
 - (void)hideLoading;
 @end

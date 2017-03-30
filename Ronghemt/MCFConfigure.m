@@ -25,6 +25,7 @@
             cfg.AppSecretWX       = AppSecretWX;
             cfg.UMChannel         = UMENG_CHANNEL;
             cfg.AppCollect        = APPUserCollect;
+            cfg.registProtocol    = registProtocol;
             
         } else if (appType == AppEditionWF) {
             cfg.APPNetHost        = AppWFHost;
@@ -33,9 +34,14 @@
             cfg.AppSecretWX       = AppSecretWXWF;
             cfg.UMChannel         = UMENG_CHANNEL_WF;
             cfg.AppCollect        = APPUserCollect;
+            cfg.registProtocol    = registProtocolwf;
         }
     });
     return cfg;
+}
+
+- (void)setRegistProtocol:(NSString *)registProtocol {
+    _registProtocol = registProtocol;
 }
 
 - (void)setAPPNetHost:(NSString *)APPNetHost {

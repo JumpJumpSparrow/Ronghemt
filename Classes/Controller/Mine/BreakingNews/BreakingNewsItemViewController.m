@@ -10,6 +10,7 @@
 #import "MCFNetworkManager+User.h"
 #import "ImageBrowseViewController.h"
 #import "EditNewsViewController.h"
+#import "LogInViewController.h"
 #import <YYKit.h>
 #import "HeaderTitleCell.h"
 #import "TextContentCell.h"
@@ -24,6 +25,7 @@
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, assign) NSInteger page;
 @property (nonatomic, strong) UIButton *publishButton;
+@property (nonatomic, strong) UIImageView *emptyImageView;
 @end
 
 @implementation BreakingNewsItemViewController
@@ -59,7 +61,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self installParts];
-    
 }
 
 - (void)installParts {
@@ -85,6 +86,16 @@
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
     [keyWindow addSubview:self.publishButton];
     [keyWindow bringSubviewToFront:self.publishButton];
+    
+    if (self.isPrivate && ![MCFTools isLogined]) {
+        [self showEmptyView:YES];
+        self.contentCollectionView.scrollEnabled = NO;
+        [self .dataArray removeAllObjects];
+        [self.contentCollectionView reloadData];
+        [self endRefreshing];
+    } else {
+        self.contentCollectionView.scrollEnabled = YES;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -104,7 +115,7 @@
                                            [self endRefreshing];
                                            if (page == 1) {
                                                [self.dataArray removeAllObjects];
-                                               [self showEmptyView:(itemList.count != 0)];
+                                               [self showEmptyView:(itemList.count == 0)];
                                            }
                                            if (itemList.count == 0) {
                                                [self showTip:@"无更多数据"];
@@ -121,11 +132,15 @@
 }
 
 - (void)showEmptyView:(BOOL)isEmpty {
+    if (self.emptyImageView) {
+        [self.emptyImageView removeFromSuperview];
+    }
     UIImageView *emptyImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"baoliao_null"]];
     [emptyImageView sizeToFit];
-    emptyImageView.center = self.view.center;
+    emptyImageView.center = CGPointMake(SCREEN_WIDTH/2.0f, SCREEN_HEIGHT/2.0);
     [self.view addSubview:emptyImageView];
-    emptyImageView.hidden = isEmpty;
+    self.emptyImageView = emptyImageView;
+    emptyImageView.hidden = !isEmpty;
 }
 
 - (void)endRefreshing {
@@ -134,8 +149,18 @@
 }
 
 - (void)didSelectPublishButton {
-    EditNewsViewController *newsVC = [[EditNewsViewController alloc] init];
-    [self.navigationController pushViewController:newsVC animated:YES];
+    
+    if ([MCFTools isLogined]) {
+        
+        EditNewsViewController *newsVC = [[EditNewsViewController alloc] init];
+        newsVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:newsVC animated:YES];
+    } else {
+        LogInViewController *logVC = [[LogInViewController alloc] init];
+        logVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:logVC animated:YES];
+    }
+    
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {

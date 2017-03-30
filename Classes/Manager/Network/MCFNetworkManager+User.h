@@ -85,6 +85,9 @@
                    code:(NSString *)code
                 success:(void(^)(NSInteger status, NSString *tip))success
                 failure:(void(^)(NSError *error))failure;
+
++ (void)rebindPhoneSuccess:(void(^)(NSInteger status, NSString *tip))success
+                   failure:(void(^)(NSError *error))failure;
 //提交评论
 + (void)commitComment:(NSString *)content
                  dict:(NSDictionary *)dict

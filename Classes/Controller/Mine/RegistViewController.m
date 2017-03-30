@@ -8,6 +8,7 @@
 
 #import "RegistViewController.h"
 #import "VerifyAccountView.h"
+#import "BaseWebViewController.h"
 #import "MCFNetworkManager+User.h"
 static CGFloat ProtocolFont = 13.0f;
 
@@ -26,8 +27,8 @@ static CGFloat ProtocolFont = 13.0f;
 - (UIButton *)checkButton {
     if (_checkButton == nil) {
         _checkButton = [[UIButton alloc] initWithFrame:CGRectMake(self.commitButton.left, self.commitButton.bottom + 10, 20.0f, 20.0f)];
-        [_checkButton setImage:[UIImage imageNamed:@"mi"] forState:UIControlStateNormal];
-        [_checkButton setImage:[UIImage imageNamed:@"collection_sel"] forState:UIControlStateSelected];
+        [_checkButton setImage:[UIImage imageNamed:@"icon_normal"] forState:UIControlStateNormal];
+        [_checkButton setImage:[UIImage imageNamed:@"icon_selected"] forState:UIControlStateSelected];
         [_checkButton addTarget:self action:@selector(didSeleCheckBtn:) forControlEvents:UIControlEventTouchUpInside];
         _checkButton.selected = YES;
         _checkButton.titleLabel.font = [UIFont systemFontOfSize:ProtocolFont];
@@ -164,6 +165,10 @@ static CGFloat ProtocolFont = 13.0f;
 
 - (void)didSelectProtocol {
     
+    BaseWebViewController *protocolVC = [[BaseWebViewController alloc] initWithUrl:[MCFConfigure cfg].registProtocol];
+    protocolVC.title = @"注册协议";
+    protocolVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:protocolVC animated:YES];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

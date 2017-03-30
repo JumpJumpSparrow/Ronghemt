@@ -58,7 +58,7 @@
 
 - (UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
     BreakingNewsItemViewController *itemVc = [[BreakingNewsItemViewController alloc] init];
-    itemVc.isPrivate = index == 1;
+    itemVc.isPrivate = (index == 1);
     return itemVc;
 }
 

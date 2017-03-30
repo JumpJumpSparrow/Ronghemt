@@ -32,7 +32,7 @@ static NSString *UMENG_CHANNEL            = @"RongHeMeiTi";
 static NSString *AppIdWX                  = @"wx8b0671c98908cef7";
 static NSString *AppSecretWX              = @"50e4894fca6ee406679198a580c325bf";
 static NSString *APPUserCollect           = @"http://app2.dev.ctvcloud.com/html/shoucang.html";
-
+static NSString *registProtocol           = @"http://api.cdn.ctv-cloud.com/appinfomation.php?id=2";
 
 //Wifang====================================
 static NSString *NaviTypeWF               = @"http://app.dev.wfrbw.com/html/nav.html";
@@ -40,7 +40,7 @@ static NSString *AppWFHost                = @"http://user.dev.ctvcloud.com/api/"
 static NSString *UMENG_CHANNEL_WF         = @"WeiFangRiBao";
 static NSString *AppIdWXWF                = @"wx709965163d15c292";
 static NSString *AppSecretWXWF            = @"26195ef0259d9e9ff2df47a23977b495";
-
+static NSString *registProtocolwf         = @"http://api.cdn.ctv-cloud.com/appinfomation.php?id=4";
 
 
 @interface constants : NSObject

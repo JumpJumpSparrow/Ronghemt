@@ -19,6 +19,7 @@
 @property (nonatomic, strong) InputView *codeView;
 @property (nonatomic, strong) UIButton *commitButton;
 @property (nonatomic, strong) RegisterModel *userRegist;
+@property (nonatomic, copy) NSString *code;
 @end
 
 @implementation BindPhoneViewController
@@ -49,7 +50,7 @@
 - (UIButton *)commitButton {
     if (_commitButton == nil) {
         _commitButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 162.0f, SCREEN_WIDTH - 20, 40)];
-        [_commitButton setTitle:@"登录" forState:UIControlStateNormal];
+        [_commitButton setTitle:@"绑定" forState:UIControlStateNormal];
         [_commitButton setBackgroundImage:[UIImage imageNamed:@"commit_bg"] forState:UIControlStateNormal];
         [_commitButton addTarget:self action:@selector(didSelectCommitButton) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -82,7 +83,28 @@
         [self showTip:@"请输入验证码"];
         return;
     }
+    if (self.code.integerValue != self.codeView.inputField.text.integerValue) {
+        [self showTip:@"验证码错误"];
+        return;
+    }
     [self showLoading];
+    
+    [MCFNetworkManager rebindPhoneSuccess:^(NSInteger status, NSString *tip) {
+        if (status == 1) {
+            [self bindPhone];
+        } else {
+            [self hideLoading];
+            [self showTip:tip];
+        }
+    } failure:^(NSError *error) {
+        [self hideLoading];
+        [self showTip:@"网络错误"];
+    }];
+    
+}
+
+- (void)bindPhone {
+
     [MCFNetworkManager bindPhoneNumber:self.userRegist.phone
                                   code:[NSString stringWithFormat:@"%ld",self.userRegist.code]
                                success:^(NSInteger staus, NSString *tip) {
@@ -97,19 +119,36 @@
                                            [self.navigationController popViewControllerAnimated:YES];
                                        });
                                    }
-    } failure:^(NSError *error) {
-        [self hideLoading];
-        [self showTip:@"网络错误"];
-    }];
-    
+                               } failure:^(NSError *error) {
+                                   [self hideLoading];
+                                   [self showTip:@"网络错误"];
+                               }];
+
 }
 
 - (void)verifyTheAccount:(UIButton *)sender {
+    if (self.phoneView.inputField.text.length == 0) {
+        [self showTip:@"请输入手机号码"];
+        return;
+    }
+
+    __block NSInteger times = 40;
+    sender.enabled = NO;
+    [NSTimer scheduledTimerWithTimeInterval:1 block:^(NSTimer * _Nonnull timer) {
+        [sender setTitle:[NSString stringWithFormat:@"%ldS",times] forState:UIControlStateDisabled];
+        if (times == 0) {
+            times = 40;
+            sender.enabled = YES;
+            [timer invalidate];
+        }
+        times--;
+    } repeats:YES];
     
     [MCFNetworkManager requestVerifyCodeForPhone:self.userRegist.phone
                                          success:^(NSString *code, NSString *message) {
-        [self showTip:message];
-        NSLog(@"%@",code);
+                                             [self showTip:message];
+                                             self.code = code;
+                                             NSLog(@"%@",code);
     } failure:^(NSError *error) {
         [self showTip:@"网络错误"];
     }];

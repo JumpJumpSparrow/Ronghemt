@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.contentWebView.backgroundColor = [UIColor whiteColor];
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.showBarCover = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

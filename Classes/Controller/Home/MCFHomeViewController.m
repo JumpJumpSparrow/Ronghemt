@@ -92,7 +92,7 @@
     baseView.backgroundColor = [UIColor whiteColor];
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.font = [UIFont systemFontOfSize:20.0f];
-    titleLabel.textColor = [UIColor colorWithHexString:AppColorSelected];
+    titleLabel.textColor = [UIColor colorWithHexString:@"#ff0000"];
     titleLabel.textAlignment = NSTextAlignmentLeft;
     titleLabel.text = @"今日潍坊";
     [titleLabel sizeToFit];

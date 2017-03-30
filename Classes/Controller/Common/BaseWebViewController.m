@@ -20,6 +20,7 @@
 #import "ShareViewController.h"
 #import <MJRefresh.h>
 #import "MCFShareUtil.h"
+#import "LogInViewController.h"
 
 @interface BaseWebViewController ()<WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler, CommentBarDelegate>
 
@@ -95,7 +96,6 @@
                                             context:nil];
     }
     [super viewWillAppear:animated];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -152,20 +152,26 @@
                 }];
             }
         }
-
     }
     NSLog(@"%@",change);
-    
 }
 
 #pragma mark - CommentBarDelegate
 
 - (void)didSelectCommentIndex:(UIButton *)sender {
     
+    if (![MCFTools isLogined]) {
+        
+        LogInViewController *loginVC = [[LogInViewController alloc] init];
+        loginVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:loginVC animated:YES];
+        return;
+    }
+    
     if (sender.tag == 0 && self.currentPageInfo != nil) {
         CommentViewController *commentVC = [[CommentViewController alloc] initWithDict:self.currentPageInfo];
-        commentVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-        [self presentViewController:commentVC animated:NO completion:NULL];
+        commentVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:commentVC animated:YES];
     } else if (sender.tag == 2) {
         if(sender.selected) {
             [self removeCollect];
@@ -221,6 +227,7 @@
         BaseWebViewController *webVC = [[BaseWebViewController alloc] initWithUrl:url];
         webVC.showCommentBar = YES;
         webVC.hideNavi = YES;
+        webVC.showBarCover = YES;
         webVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:webVC animated:YES];
     }
@@ -229,8 +236,10 @@
         NSString *title = dict[@"title"];
         BaseWebViewController *webVC = [[BaseWebViewController alloc] initWithUrl:url];
         webVC.hidesBottomBarWhenPushed = YES;
+        webVC.hideNavi = title.length == 0;
+        webVC.showBarCover = title.length == 0;
         webVC.title = title;
-        webVC.hideNavi = NO;
+
         [self.navigationController pushViewController:webVC animated:YES];
     }
     if ([message.name isEqualToString:@"switchPages"]) {
@@ -257,6 +266,7 @@
         webVC.hidesBottomBarWhenPushed = YES;
         webVC.showCommentBar = YES;
         webVC.hideNavi = YES;
+        webVC.showBarCover = YES;
         [self.navigationController pushViewController:webVC animated:YES];
     }
     if ([message.name isEqualToString:@"goBack"]) {
@@ -302,9 +312,14 @@
     [self.contentWebView.scrollView.mj_header endRefreshing];
 }
 
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    decisionHandler(WKNavigationActionPolicyAllow);
+    NSLog(@"网页加载链接===%@", navigationAction.request.URL.absoluteString);
+}
+
 // realese the delegate here! to do 
 - (void)dealloc {
-    
+    NSLog(@"内存泄露问题解决了");
 }
 
 - (void)didReceiveMemoryWarning {

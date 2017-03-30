@@ -17,5 +17,7 @@
 @property (nonatomic, readonly, copy) NSString *AppSecretWX;
 @property (nonatomic, readonly, copy) NSString *UMChannel;
 @property (nonatomic, readonly, copy) NSString *AppCollect;
+@property (nonatomic, readonly, copy) NSString *registProtocol;
+
 + (instancetype)cfg;
 @end

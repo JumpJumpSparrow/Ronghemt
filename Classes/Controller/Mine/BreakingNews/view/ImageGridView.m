@@ -61,8 +61,8 @@ NSInteger const kcolumn         = 4.0f;
 - (UIButton *)addButton {
     if (_addButton == nil) {
         _addButton = [[UIButton alloc] init];
-        [_addButton setImage:[UIImage imageNamed:@"del"] forState:UIControlStateNormal];
-        _addButton.backgroundColor = [UIColor redColor];
+        [_addButton setImage:[UIImage imageNamed:@"selectPhoto"] forState:UIControlStateNormal];
+        _addButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
         [_addButton addTarget:self action:@selector(addImage) forControlEvents:UIControlEventTouchUpInside];
     }
     return _addButton;
