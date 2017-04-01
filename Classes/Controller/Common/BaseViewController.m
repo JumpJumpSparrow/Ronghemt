@@ -32,6 +32,7 @@
     _showBarCover = showBarCover;
     
     if (showBarCover) {
+        self.automaticallyAdjustsScrollViewInsets = NO;
         UIView *statusBarCover = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
         statusBarCover.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:statusBarCover];
@@ -39,6 +40,7 @@
         [self.view bringSubviewToFront:statusBarCover];
     } else if (self.statusBarCover) {
         [self.statusBarCover removeFromSuperview];
+        self.automaticallyAdjustsScrollViewInsets = YES;
     }
 }
 

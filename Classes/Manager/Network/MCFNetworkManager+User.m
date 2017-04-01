@@ -435,7 +435,6 @@ static NSString *commentList      = @"comment_list.php";
         return;
     }
     NSDictionary *dict = @{
-                           @"session" : [MCFTools getLoginUser].session,
                            @"globalid" : @(globalId),
                            @"page" : @(page),
                            @"per_num" : @(20)

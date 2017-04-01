@@ -106,6 +106,11 @@
 
 - (void)requestData:(NSInteger)page {
     
+    if (self.isPrivate && ![MCFTools isLogined]) {
+        [self endRefreshing];
+        [self showTip:@"您尚未登录"];
+        return;
+    }
     [self showLoading];
     
     [MCFNetworkManager requestBreakNewsPrivate:self.isPrivate

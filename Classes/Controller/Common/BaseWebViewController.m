@@ -101,7 +101,16 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    self.contentWebView.frame = self.view.bounds;
+    if (self.showBarCover) {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+        CGRect frame = self.view.bounds;
+        frame.origin.y = 20;
+        frame.size.height -= 20;
+        self.contentWebView.frame = frame;
+    } else {
+        self.contentWebView.frame = self.view.bounds;
+    }
+    
     dispatch_once(&_onceToken, ^{
         if (self.url.length > 0) [self loadUrl:self.url];
     });
@@ -160,7 +169,7 @@
 
 - (void)didSelectCommentIndex:(UIButton *)sender {
     
-    if (![MCFTools isLogined]) {
+    if (![MCFTools isLogined] && sender.tag != 1) {
         
         LogInViewController *loginVC = [[LogInViewController alloc] init];
         loginVC.hidesBottomBarWhenPushed = YES;
@@ -312,10 +321,10 @@
     [self.contentWebView.scrollView.mj_header endRefreshing];
 }
 
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+/*- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     decisionHandler(WKNavigationActionPolicyAllow);
     NSLog(@"网页加载链接===%@", navigationAction.request.URL.absoluteString);
-}
+}*/
 
 // realese the delegate here! to do 
 - (void)dealloc {
