@@ -1082,16 +1082,18 @@
 				TargetAttributes = {
 					279354721E542B48004ECB95 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = B82Z6RQ4T3;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = L7H6PXJ824;
+						ProvisioningStyle = Manual;
 					};
 					2793548B1E542B49004ECB95 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = L7H6PXJ824;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 279354721E542B48004ECB95;
 					};
 					279354961E542B49004ECB95 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = L7H6PXJ824;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 279354721E542B48004ECB95;
 					};
@@ -1440,10 +1442,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: miaocf@icloud.com (WL8PSGXZA9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: miaocf@icloud.com (WL8PSGXZA9)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: HuaLvShengShi (Beijing) Culture Communication Co., Ltd. (L7H6PXJ824)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: HuaLvShengShi (Beijing) Culture Communication Co., Ltd. (L7H6PXJ824)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = L7H6PXJ824;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1463,6 +1466,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "68904290-02db-4cda-ad63-ec5f3a79aa22";
 				SDKROOT = iphoneos10.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1489,10 +1493,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: miaocf@icloud.com (WL8PSGXZA9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: miaocf@icloud.com (WL8PSGXZA9)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: HuaLvShengShi (Beijing) Culture Communication Co., Ltd. (L7H6PXJ824)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: HuaLvShengShi (Beijing) Culture Communication Co., Ltd. (L7H6PXJ824)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L7H6PXJ824;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1505,6 +1510,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "68904290-02db-4cda-ad63-ec5f3a79aa22";
 				SDKROOT = iphoneos10.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1517,9 +1523,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = B82Z6RQ4T3;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pei Deng Chen (D9ZV76J9AJ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pei Deng Chen (D9ZV76J9AJ)";
+				DEVELOPMENT_TEAM = L7H6PXJ824;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Classes/Vendor/UMSocial/SocialLibraries/QQ",
@@ -1529,7 +1535,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Ronghemt/PrefixHeader.pch";
 				INFOPLIST_FILE = Ronghemt/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1540,8 +1546,10 @@
 					"$(PROJECT_DIR)/Classes/Vendor/UMSocial/UMSocialSDK",
 				);
 				OTHER_LIBTOOLFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hlss.Ronghemt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hlss.jinriweifang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7c866300-1b13-48da-baa7-da97487a129d";
+				PROVISIONING_PROFILE_SPECIFIER = jinriweifang;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1552,9 +1560,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = B82Z6RQ4T3;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pei Deng Chen (D9ZV76J9AJ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pei Deng Chen (D9ZV76J9AJ)";
+				DEVELOPMENT_TEAM = L7H6PXJ824;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Classes/Vendor/UMSocial/SocialLibraries/QQ",
@@ -1564,7 +1572,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Ronghemt/PrefixHeader.pch";
 				INFOPLIST_FILE = Ronghemt/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1575,8 +1583,10 @@
 					"$(PROJECT_DIR)/Classes/Vendor/UMSocial/UMSocialSDK",
 				);
 				OTHER_LIBTOOLFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hlss.Ronghemt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hlss.jinriweifang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7c866300-1b13-48da-baa7-da97487a129d";
+				PROVISIONING_PROFILE_SPECIFIER = jinriweifang;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

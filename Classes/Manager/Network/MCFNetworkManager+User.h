@@ -111,4 +111,7 @@
                    success:(void(^)(NSInteger page, NSArray *commentList))success
                    failure:(void(^)(NSError *error))failure;
 
++ (void)shareAppToFriendsSuccess:(void(^)(NSDictionary *shareDict))success
+                         failure:(void(^)(NSError *error))failure;
+
 @end

@@ -169,7 +169,7 @@
 
 - (void)didSelectCommentIndex:(UIButton *)sender {
     
-    if (![MCFTools isLogined] && sender.tag != 1) {
+    if (![MCFTools isLogined] && sender.tag != 1 && sender.tag != 3) {
         
         LogInViewController *loginVC = [[LogInViewController alloc] init];
         loginVC.hidesBottomBarWhenPushed = YES;
@@ -194,8 +194,7 @@
         commentListVC.title = @"所有评论";
         [self.navigationController pushViewController:commentListVC animated:YES];
     } else if (sender.tag == 3){
-        NSString *url = self.currentPageInfo[@"loadUrl"];
-        [MCFShareUtil showShareMenuToShareUrl:url];
+        [MCFShareUtil showShareMenuToShareInfo:self.currentPageInfo];
     }
 }
 

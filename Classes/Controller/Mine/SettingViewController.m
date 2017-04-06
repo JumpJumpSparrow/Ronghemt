@@ -99,7 +99,7 @@
 
 - (TitlesButton *)cacheButton {
     if (_cacheButton == nil) {
-        _cacheButton = [[TitlesButton alloc] initWithFrame:CGRectMake(0, self.recommandButton.bottom + 10, SCREEN_WIDTH, 44.0f)];
+        _cacheButton = [[TitlesButton alloc] initWithFrame:CGRectMake(0, 74.0f, SCREEN_WIDTH, 44.0f)];
         _cacheButton.title = @"清除缓存";
         _cacheButton.subTitle = @"0.00M";
         _cacheButton.tag = 1;
@@ -135,7 +135,7 @@
     self.view.backgroundColor = APPGRAY;
     self.title = @"设置";
     [self.view addSubview:self.logoutButton];
-    [self.view addSubview:self.recommandButton];
+    //[self.view addSubview:self.recommandButton];
     [self.view addSubview:self.cacheButton];
     [self.view addSubview:self.editionButton];
     self.logoutButton.hidden = ![MCFTools isLogined];

@@ -11,4 +11,5 @@
 @interface MCFShareUtil : NSObject
 
 + (void)showShareMenuToShareUrl:(NSString *)url;
++ (void)showShareMenuToShareInfo:(NSDictionary *)infoDict;
 @end

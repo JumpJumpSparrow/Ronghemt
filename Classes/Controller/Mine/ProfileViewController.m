@@ -324,11 +324,14 @@
 
 - (void)requestCameraAuthority {
     [MCFPhotoLibrary checkCameraAuthorization:self completion:^(AVAuthorizationStatus status) {
-        if (status == AVAuthorizationStatusAuthorized) {            
-            MCFCameraViewController *cameraVC = [[MCFCameraViewController alloc] init];
-            cameraVC.delegate = self;
-            cameraVC.isCropView = YES;
-            [self.navigationController pushViewController:cameraVC animated:YES];
+        if (status == AVAuthorizationStatusAuthorized) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                MCFCameraViewController *cameraVC = [[MCFCameraViewController alloc] init];
+                cameraVC.delegate = self;
+                cameraVC.isCropView = YES;
+                [self.navigationController pushViewController:cameraVC animated:YES];
+            });
         }
     }];
 }
@@ -336,10 +339,12 @@
 - (void)requestPhotoAuthority {
     [MCFPhotoLibrary checkAuthorization:self completion:^(PHAuthorizationStatus status) {
         if (status == PHAuthorizationStatusAuthorized) {
-            MCFPhotoLibraryViewController *photoVC = [[MCFPhotoLibraryViewController alloc] init];
-            photoVC.selectImageToCrop = YES;
-            photoVC.delegate = self;
-            [self.navigationController pushViewController:photoVC animated:YES];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                MCFPhotoLibraryViewController *photoVC = [[MCFPhotoLibraryViewController alloc] init];
+                photoVC.selectImageToCrop = YES;
+                photoVC.delegate = self;
+                [self.navigationController pushViewController:photoVC animated:YES];
+            });
         }
     }];
 }

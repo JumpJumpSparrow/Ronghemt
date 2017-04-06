@@ -26,6 +26,14 @@
 			<key>index</key>
 			<integer>3</integer>
 			<key>title</key>
+			<string>推荐好友</string>
+			<key>icon</key>
+			<string>img_recommend</string>
+		</dict>
+		<dict>
+			<key>index</key>
+			<integer>4</integer>
+			<key>title</key>
 			<string>设置</string>
 			<key>icon</key>
 			<string>setting</string>

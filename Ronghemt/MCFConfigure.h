@@ -18,6 +18,7 @@
 @property (nonatomic, readonly, copy) NSString *UMChannel;
 @property (nonatomic, readonly, copy) NSString *AppCollect;
 @property (nonatomic, readonly, copy) NSString *registProtocol;
+@property (nonatomic, readonly, copy) NSString *shareUrl;
 
 + (instancetype)cfg;
 @end

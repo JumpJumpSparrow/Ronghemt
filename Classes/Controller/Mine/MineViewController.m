@@ -17,6 +17,8 @@
 #import "RegistViewController.h"
 #import "LogInViewController.h"
 #import "BaseWebViewController.h"
+#import "MCFShareUtil.h"
+#import "MCFNetworkManager+User.h"
 
 @interface MineViewController ()<UITableViewDelegate, UITableViewDataSource, AvatarTapDelegate>
 
@@ -88,6 +90,21 @@
     return YES;
 }
 
+- (void)shareToFriend {
+    [self showLoading];
+    [MCFNetworkManager shareAppToFriendsSuccess:^(NSDictionary *shareDict) {
+        [self hideLoading];
+        if (shareDict) {
+            [MCFShareUtil showShareMenuToShareInfo:shareDict];
+        } else {
+            [self showTip:@"网络错误，请稍后再试"];
+        }
+    } failure:^(NSError *error) {
+        [self hideLoading];
+        [self showTip:@"网络错误，请稍后再试"];
+    }];
+}
+
 #pragma mark - table delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -104,6 +121,8 @@
             feedVc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:feedVc animated:YES];
         } else if (indexPath.row == 1) {
+            [self shareToFriend];
+        } else {
             SettingViewController *settingVc = [[SettingViewController alloc] init];
             settingVc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:settingVc animated:YES];

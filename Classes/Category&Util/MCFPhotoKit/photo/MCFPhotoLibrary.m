@@ -23,7 +23,8 @@ static NSString *MCFPhotoPath = @"MCFPhotoLibrary";
             [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
                 
                 if (completion) {
-                    completion(authStatus);
+                    if (granted) completion(AVAuthorizationStatusAuthorized);
+                    else completion(AVAuthorizationStatusDenied);
                 }
             }];
             break;

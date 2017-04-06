@@ -26,6 +26,7 @@
             cfg.UMChannel         = UMENG_CHANNEL;
             cfg.AppCollect        = APPUserCollect;
             cfg.registProtocol    = registProtocol;
+            cfg.shareUrl          = ShareUrlSTD;
             
         } else if (appType == AppEditionWF) {
             cfg.APPNetHost        = AppWFHost;
@@ -35,9 +36,14 @@
             cfg.UMChannel         = UMENG_CHANNEL_WF;
             cfg.AppCollect        = APPUserCollect;
             cfg.registProtocol    = registProtocolwf;
+            cfg.shareUrl          = ShareUrlWF;
         }
     });
     return cfg;
+}
+
+- (void)setShareUrl:(NSString *)shareUrl {
+    _shareUrl = shareUrl;
 }
 
 - (void)setRegistProtocol:(NSString *)registProtocol {

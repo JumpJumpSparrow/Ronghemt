@@ -563,7 +563,29 @@ static NSString *commentList      = @"comment_list.php";
             failure(error);
         }
     }];
-    
+}
+
++ (void)shareAppToFriendsSuccess:(void (^)(NSDictionary *))success
+                         failure:(void (^)(NSError *))failure {
+
+    [[MCFNetworkManager sharedManager] GET:[MCFConfigure cfg].shareUrl
+                                parameters:nil
+                                   success:^(NSUInteger taskId, id responseObject) {
+                                       NSString *url = responseObject[@"url"];
+                                       if (url.length > 0 || success) {
+                                           NSDictionary *dic = @{
+                                                                 @"loadUrl" : responseObject[@"url"] ? responseObject[@"url"] : @"  ",
+                                                                 @"title" : responseObject[@"summary"] ? responseObject[@"summary"] : @"  ",
+                                                                 @"picPath" : responseObject[@"pic"] ? responseObject[@"pic"] : @"  "
+                                                                 };
+                                           
+                                           success(dic);
+                                       }
+    } failure:^(NSUInteger taskId, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
 }
 
 @end
