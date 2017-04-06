@@ -27,6 +27,7 @@
             cfg.AppCollect        = APPUserCollect;
             cfg.registProtocol    = registProtocol;
             cfg.shareUrl          = ShareUrlSTD;
+            cfg.siteCode          = IdentityCode;
             
         } else if (appType == AppEditionWF) {
             cfg.APPNetHost        = AppWFHost;
@@ -37,9 +38,14 @@
             cfg.AppCollect        = APPUserCollect;
             cfg.registProtocol    = registProtocolwf;
             cfg.shareUrl          = ShareUrlWF;
+            cfg.siteCode          = IdentityCodeWF;
         }
     });
     return cfg;
+}
+
+- (void)setSiteCode:(NSString *)siteCode {
+    _siteCode = siteCode;
 }
 
 - (void)setShareUrl:(NSString *)shareUrl {

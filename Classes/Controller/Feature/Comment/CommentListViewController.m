@@ -19,6 +19,7 @@
 @property (nonatomic, assign) NSInteger page;
 @property (nonatomic, assign) NSInteger globalID;
 @property (nonatomic, strong) UIButton *publishButton;
+@property (nonatomic, strong) NSDictionary *infoDict;
 @end
 
 @implementation CommentListViewController
@@ -45,6 +46,12 @@
     return self;
 }
 
+- (instancetype)initWithPageInfo:(NSDictionary *)infoDict {
+    self = [super init];
+    self.infoDict = infoDict;
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self installParts];
@@ -66,7 +73,7 @@
 - (void)requestData:(NSInteger)page {
     
     [self showLoading];
-    [MCFNetworkManager requestCommentList:self.globalID
+    [MCFNetworkManager requestCommentList:self.infoDict
                                      page:page
                                   success:^(NSInteger page, NSArray *commentList) {
                                       [self hideLoading];

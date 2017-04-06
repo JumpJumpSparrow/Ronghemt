@@ -38,8 +38,8 @@ static NSString *commentList      = @"comment_list.php";
               success:(void (^)(MCFUserModel *, NSString *))success
               failure:(void (^)(NSError *))failure {
 
-    NSDictionary *paramDict = [user mj_keyValues];
-    
+    NSMutableDictionary *paramDict = [user mj_keyValues];
+    [paramDict setValue:[MCFConfigure cfg].siteCode forKey:@"siteCode"];
     [[MCFNetworkManager sharedManager] POST:LogIn
                                  parameters:paramDict
                                     success:^(NSUInteger taskId, id responseObject) {
@@ -81,7 +81,8 @@ static NSString *commentList      = @"comment_list.php";
              success:(void (^)(MCFUserModel *, NSString *))success
              failure:(void (^)(NSError *))failure {
     
-    NSDictionary *paramDict = [user mj_keyValues];
+    NSMutableDictionary *paramDict = [user mj_keyValues];
+    [paramDict setValue:[MCFConfigure cfg].siteCode forKey:@"siteCode"];
     [[MCFNetworkManager sharedManager] POST:Regist
                                  parameters:paramDict
                                     success:^(NSUInteger taskId, id responseObject) {
@@ -124,7 +125,8 @@ static NSString *commentList      = @"comment_list.php";
     NSDictionary *dict = @{ @"phone" : newPassWord.phone,
                             @"code" : @(newPassWord.code),
                             @"new" : newPassWord.password,
-                            @"confirm" : newPassWord.re_password
+                            @"confirm" : newPassWord.re_password,
+                            @"siteCode" : [MCFConfigure cfg].siteCode
                            };
     [[MCFNetworkManager sharedManager] GET:modifyPass
                                 parameters:dict
@@ -163,7 +165,9 @@ static NSString *commentList      = @"comment_list.php";
     if (![MCFTools isLogined]) {
         return;
     }
-    NSDictionary *dict = @{@"session" : [MCFTools getLoginUser] .session};
+    NSDictionary *dict = @{@"session" : [MCFTools getLoginUser] .session,
+                           @"siteCode" : [MCFConfigure cfg].siteCode
+                           };
     [[MCFNetworkManager sharedManager] GET:checkSession
                                 parameters:dict
                                    success:^(NSUInteger taskId, id responseObject) {
@@ -185,8 +189,8 @@ static NSString *commentList      = @"comment_list.php";
                   success:(void (^)(NSString *))success
                   failure:(void (^)(NSError *))failure {
     
-    NSDictionary *dict = [user mj_keyValues];
-    
+    NSMutableDictionary *dict = [user mj_keyValues];
+    [dict setValue:[MCFConfigure cfg].siteCode forKey:@"siteCode"];
     [[MCFNetworkManager sharedManager] POST:updateProfile
                                  parameters:dict
                                     success:^(NSUInteger taskId, id responseObject) {
@@ -211,7 +215,9 @@ static NSString *commentList      = @"comment_list.php";
     MCFUserModel *user = [MCFTools getLoginUser];
     NSDictionary *dict = @{@"phone" : number ,
                            @"code" : code,
-                           @"session" : user.session};
+                           @"session" : user.session,
+                           @"siteCode" : [MCFConfigure cfg].siteCode
+                           };
     
     [[MCFNetworkManager sharedManager] POST:bindPhone parameters:dict
                                     success:^(NSUInteger taskId, id responseObject) {
@@ -233,7 +239,9 @@ static NSString *commentList      = @"comment_list.php";
     
     MCFUserModel *user = [MCFTools getLoginUser];
     NSDictionary *dict = @{@"type" : @(1) ,
-                           @"session" : user.session};
+                           @"session" : user.session,
+                           @"siteCode" : [MCFConfigure cfg].siteCode
+                           };
     
     [[MCFNetworkManager sharedManager] POST:rebindPhone
                                  parameters:dict
@@ -261,7 +269,9 @@ static NSString *commentList      = @"comment_list.php";
     MCFUserModel *user = [MCFTools getLoginUser];
     NSDictionary *dict = @{@"contact" : contact == nil ? @"null" :  contact,
                            @"content" : content,
-                           @"session" : user.session};
+                           @"session" : user.session,
+                           @"siteCode" : [MCFConfigure cfg].siteCode
+                           };
     
     [[MCFNetworkManager sharedManager] POST:feedback parameters:dict
                                     success:^(NSUInteger taskId, id responseObject) {
@@ -285,6 +295,7 @@ static NSString *commentList      = @"comment_list.php";
     if (isPrivat && [MCFTools isLogined]) {
         [dict setObject:[MCFTools getLoginUser].session forKey:@"session"];
     }
+    [dict setValue:[MCFConfigure cfg].siteCode forKey:@"siteCode"];
     [dict setValue:@(page) forKey:@"page"];
     [[MCFNetworkManager sharedManager] GET:breakNews
                                 parameters:dict
@@ -336,8 +347,11 @@ static NSString *commentList      = @"comment_list.php";
     [paramDict setValue:dict[@"globalId"] forKey:@"globalid"];
     [paramDict setValue:content forKey:@"content"];
     [paramDict setValue:dict[@"loadUrl"] forKey:@"url"];
+    [paramDict setValue:dict[@"siteCode"] ? dict[@"siteCode"] : [MCFConfigure cfg].siteCode forKey:@"siteCode"];
     
-    [[MCFNetworkManager sharedManager] POST:commitComment parameters:paramDict success:^(NSUInteger taskId, id responseObject) {
+    [[MCFNetworkManager sharedManager] POST:commitComment
+                                 parameters:paramDict
+                                    success:^(NSUInteger taskId, id responseObject) {
         
         NSString *sting = [responseObject objectForKey:@"message"];
         if (success) {
@@ -363,6 +377,7 @@ static NSString *commentList      = @"comment_list.php";
     [paramDict setValue:dict[@"globalId"] forKey:@"id"];
     [paramDict setValue:@([[dict objectForKey:@"conType"] integerValue]) forKey:@"type"];
     [paramDict setValue:dict[@"loadUrl"] forKey:@"url"];
+    [paramDict setValue:dict[@"siteCode"] ? dict[@"siteCode"] : [MCFConfigure cfg].siteCode forKey:@"siteCode"];
     
     [[MCFNetworkManager sharedManager] POST:collectItem parameters:paramDict success:^(NSUInteger taskId, id responseObject) {
         
@@ -386,6 +401,7 @@ static NSString *commentList      = @"comment_list.php";
     NSMutableDictionary *paramDict = [[NSMutableDictionary alloc] init];
     [paramDict setValue:[MCFTools getLoginUser].session forKey:@"session"];
     [paramDict setValue:dict[@"globalId"] forKey:@"globalid"];
+    [paramDict setValue:dict[@"siteCode"] ? dict[@"siteCode"] : [MCFConfigure cfg].siteCode forKey:@"siteCode"];
     
     [[MCFNetworkManager sharedManager] POST:removeCollect
                                  parameters:paramDict
@@ -411,7 +427,7 @@ static NSString *commentList      = @"comment_list.php";
     NSMutableDictionary *paramDict = [[NSMutableDictionary alloc] init];
     [paramDict setValue:[MCFTools getLoginUser].session forKey:@"session"];
     [paramDict setValue:dict[@"globalId"] forKey:@"id"];
-    
+    [paramDict setValue:dict[@"siteCode"] ? dict[@"siteCode"] : [MCFConfigure cfg].siteCode forKey:@"siteCode"];
     [[MCFNetworkManager sharedManager] POST:chechCollect
                                  parameters:paramDict
                                     success:^(NSUInteger taskId, id responseObject) {
@@ -427,15 +443,16 @@ static NSString *commentList      = @"comment_list.php";
                                     }];
 }
 
-+ (void)requestCommentList:(NSInteger)globalId
++ (void)requestCommentList:(NSDictionary *)infoDict
                       page:(NSInteger)page
                    success:(void (^)(NSInteger, NSArray *))success
                    failure:(void (^)(NSError *))failure {
-    if (globalId == 0 || page == 0) {
+    if (page == 0) {
         return;
     }
     NSDictionary *dict = @{
-                           @"globalid" : @(globalId),
+                           @"globalid" : @([infoDict[@"globalId"] integerValue]),
+                           @"siteCode" : infoDict[@"siteCode"] ? infoDict[@"siteCode"] : [MCFConfigure cfg].siteCode,
                            @"page" : @(page),
                            @"per_num" : @(20)
                            };

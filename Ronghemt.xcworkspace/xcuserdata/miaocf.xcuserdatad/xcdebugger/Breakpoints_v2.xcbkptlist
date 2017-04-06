@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/Manager/Network/MCFNetworkManager+User.m"
-            timestampString = "512534149.591873"
+            timestampString = "513156623.523893"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "477"
-            endingLineNumber = "477"
+            startingLineNumber = "494"
+            endingLineNumber = "494"
             landmarkName = "+uploadImages:urls:completion:"
             landmarkType = "7">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/Manager/Network/MCFNetworkManager+User.m"
-            timestampString = "512534149.591873"
+            timestampString = "513156623.523893"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "464"
-            endingLineNumber = "464"
+            startingLineNumber = "481"
+            endingLineNumber = "481"
             landmarkName = "+uploadImages:completion:"
             landmarkType = "7">
          </BreakpointContent>
@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/Manager/Network/MCFNetworkManager+User.m"
-            timestampString = "512534149.591873"
+            timestampString = "513156623.523893"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "491"
-            endingLineNumber = "491"
+            startingLineNumber = "508"
+            endingLineNumber = "508"
             landmarkName = "+uploadImages:urls:completion:"
             landmarkType = "7">
          </BreakpointContent>
@@ -99,22 +99,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Classes/Controller/Mine/MineViewController.m"
-            timestampString = "513075509.422999"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "-shareToFriend"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Classes/Controller/Mine/ProfileViewController.m"
             timestampString = "513135260.862203"
             startingColumnNumber = "9223372036854775807"
@@ -132,7 +116,7 @@
                   moduleName = "Ronghemt"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/miaocf/Ronghemt_ios/Ronghemt/Classes/Controller/Mine/ProfileViewController.m"
-                  timestampString = "513135261.090404"
+                  timestampString = "513157356.678062"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "342"
@@ -147,7 +131,7 @@
                   moduleName = "Ronghemt"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/miaocf/Ronghemt_ios/Ronghemt/Classes/Controller/Mine/ProfileViewController.m"
-                  timestampString = "513135261.092269"
+                  timestampString = "513157356.679859"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "342"

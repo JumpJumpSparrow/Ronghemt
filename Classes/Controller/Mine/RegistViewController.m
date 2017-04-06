@@ -165,7 +165,7 @@ static CGFloat ProtocolFont = 13.0f;
 
 - (void)didSelectProtocol {
     
-    BaseWebViewController *protocolVC = [[BaseWebViewController alloc] initWithUrl:[MCFConfigure cfg].registProtocol];
+    BaseWebViewController *protocolVC = [[BaseWebViewController alloc] initWithUrl:[NSString stringWithFormat:@"%@%@", [MCFConfigure cfg].registProtocol, [MCFConfigure cfg].siteCode]];
     protocolVC.title = @"注册协议";
     protocolVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:protocolVC animated:YES];

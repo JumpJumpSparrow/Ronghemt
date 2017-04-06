@@ -11,4 +11,5 @@
 @interface CommentListViewController : BaseViewController
 
 - (instancetype)initWithGlobalId:(NSInteger)globalId;
+- (instancetype)initWithPageInfo:(NSDictionary *)infoDict;
 @end

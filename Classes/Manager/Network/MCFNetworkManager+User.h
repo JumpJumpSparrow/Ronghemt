@@ -106,7 +106,7 @@
                       success:(void(^)(BOOL isCollected))success
                       failure:(void(^)(NSError *error))failure;
 // 评论列表
-+ (void)requestCommentList:(NSInteger)globalId
++ (void)requestCommentList:(NSDictionary *)pageInfo
                       page:(NSInteger)page
                    success:(void(^)(NSInteger page, NSArray *commentList))success
                    failure:(void(^)(NSError *error))failure;

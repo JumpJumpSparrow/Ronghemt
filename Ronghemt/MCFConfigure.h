@@ -19,6 +19,7 @@
 @property (nonatomic, readonly, copy) NSString *AppCollect;
 @property (nonatomic, readonly, copy) NSString *registProtocol;
 @property (nonatomic, readonly, copy) NSString *shareUrl;
+@property (nonatomic, readonly, copy) NSString *siteCode;
 
 + (instancetype)cfg;
 @end

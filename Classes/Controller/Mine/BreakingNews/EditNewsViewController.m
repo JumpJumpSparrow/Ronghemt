@@ -130,7 +130,8 @@ NSInteger imageCountLimit = 3;
                                                     @"content" : self.inputView.text,
                                                     @"title" : @"breakNews",
                                                     @"type" : @(type),
-                                                    @"file" : finalStr
+                                                    @"file" : finalStr,
+                                                    @"siteCode" : [MCFConfigure cfg].siteCode
                                                     };
                              [self publishBreakNews:dict];
     }];
