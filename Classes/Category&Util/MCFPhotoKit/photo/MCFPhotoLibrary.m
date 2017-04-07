@@ -23,8 +23,10 @@ static NSString *MCFPhotoPath = @"MCFPhotoLibrary";
             [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
                 
                 if (completion) {
-                    if (granted) completion(AVAuthorizationStatusAuthorized);
-                    else completion(AVAuthorizationStatusDenied);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if (granted) completion(AVAuthorizationStatusAuthorized);
+                        else completion(AVAuthorizationStatusDenied);
+                    });
                 }
             }];
             break;
@@ -92,9 +94,12 @@ static NSString *MCFPhotoPath = @"MCFPhotoLibrary";
     switch (status) {
         case PHAuthorizationStatusNotDetermined: {
             [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-                if (completion) {
-                    completion(status);
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+
+                    if (completion) {
+                        completion(status);
+                    }
+                });
             }];
             break;
         }

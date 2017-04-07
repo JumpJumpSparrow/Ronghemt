@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>zh_CN</string>
 	<key>CFBundleDisplayName</key>
-	<string>今日潍坊</string>
+	<string>新华融媒</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -27,7 +27,7 @@
 			<string>WX</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wx709965163d15c292</string>
+				<string>wx8b0671c98908cef7</string>
 			</array>
 		</dict>
 	</array>

@@ -13,7 +13,6 @@
 - (NSUInteger)POST:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSUInteger, id))success failure:(void (^)(NSUInteger, NSError *))failure {
    
     NSString *requestUrlString = [MCFNetworkManager getHost:URLString];
-
     NSUInteger taskId = [super POST:requestUrlString
                          parameters:parameters
                             success:^(NSUInteger taskId, id responseObject){

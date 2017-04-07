@@ -10,4 +10,5 @@
 
 @interface EditNewsViewController : BaseViewController
 
+@property (nonatomic, copy) void(^refreshData)();
 @end

@@ -95,11 +95,11 @@
               failure:(void(^)(NSError *error))failure;
 //移除收藏
 + (void)removeCollectItem:(NSDictionary *)dict
-                  success:(void(^)(NSString *tip))success
+                  success:(void(^)(NSString *tip, BOOL isSuccessed))success
                   failure:(void(^)(NSError *error))failure;
 // 添加收藏
 + (void)collectItem:(NSDictionary *)dict
-            success:(void(^)(NSString *tip))success
+            success:(void(^)(NSString *tip, BOOL isSuccessed))success
             failure:(void(^)(NSError *error))failure;
 // 检测是否收藏
 + (void)checkHasCollectedItem:(NSDictionary *)dict

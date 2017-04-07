@@ -106,7 +106,7 @@
 - (void)bindPhone {
 
     [MCFNetworkManager bindPhoneNumber:self.userRegist.phone
-                                  code:[NSString stringWithFormat:@"%ld",self.userRegist.code]
+                                  code:[NSString stringWithFormat:@"%ld",(long)self.userRegist.code]
                                success:^(NSInteger staus, NSString *tip) {
                                    [self hideLoading];
                                    [self showTip:tip];
@@ -135,7 +135,7 @@
     __block NSInteger times = 40;
     sender.enabled = NO;
     [NSTimer scheduledTimerWithTimeInterval:1 block:^(NSTimer * _Nonnull timer) {
-        [sender setTitle:[NSString stringWithFormat:@"%ldS",times] forState:UIControlStateDisabled];
+        [sender setTitle:[NSString stringWithFormat:@"%ldS",(long)times] forState:UIControlStateDisabled];
         if (times == 0) {
             times = 40;
             sender.enabled = YES;

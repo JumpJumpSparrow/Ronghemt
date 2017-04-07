@@ -159,6 +159,9 @@
         
         EditNewsViewController *newsVC = [[EditNewsViewController alloc] init];
         newsVC.hidesBottomBarWhenPushed = YES;
+        newsVC.refreshData = ^{
+            [self requestData:1];
+        };
         [self.navigationController pushViewController:newsVC animated:YES];
     } else {
         LogInViewController *logVC = [[LogInViewController alloc] init];
@@ -172,6 +175,8 @@
     CGPoint newPoint = [[change objectForKey:@"new"] CGPointValue];
     
     CGRect frame = self.publishButton.frame;
+    CGFloat gap = self.contentCollectionView.contentSize.height - newPoint.y;
+    NSLog(@"===========%f",gap);
     if (newPoint.y > 100) { // up
         if (frame.origin.y < SCREEN_HEIGHT) {
             frame.origin.y = SCREEN_HEIGHT + 10.0f;

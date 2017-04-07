@@ -115,14 +115,18 @@ NSInteger imageCountLimit = 3;
     [MCFNetworkManager uploadImages:self.selectedImages
                          completion:^(NSArray<NSString *> *urls) {
                              [self hideLoading];
-                             if (urls.count == 0) return ;
                              
-                             NSMutableString *file = [[NSMutableString alloc] init];
-                             for (NSString *url in urls) {
-                                 [file appendString:url];
-                                 [file appendString:@","];
+                             NSString *finalStr;
+                             if (urls.count == 0) {
+                                 finalStr = @"null";
+                             } else {
+                                 NSMutableString *file = [[NSMutableString alloc] init];
+                                 for (NSString *url in urls) {
+                                     [file appendString:url];
+                                     [file appendString:@","];
+                                 }
+                                 finalStr = [file substringToIndex:file.length - 1];
                              }
-                             NSString *finalStr = [file substringToIndex:file.length - 1];
                              
                              NSInteger type = urls.count == 0 ? 0 : 1;
                              NSDictionary *dict = @{
@@ -144,6 +148,9 @@ NSInteger imageCountLimit = 3;
         [self showTip:tip];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.navigationController popViewControllerAnimated:YES];
+            if (self.refreshData) {
+                self.refreshData();
+            }
         });
     } failure:^(NSError *error) {
         [self hideLoading];
@@ -187,7 +194,7 @@ NSInteger imageCountLimit = 3;
 - (void)cameraDidSelectImage:(UIImage *)image {
     
     if ((self.selectedImages.count + 1) > imageCountLimit) {
-        [self showTip:[NSString stringWithFormat:@"最多选择%ld张",imageCountLimit]];
+        [self showTip:[NSString stringWithFormat:@"最多选择%ld张",(long)imageCountLimit]];
         return;
     }
     [self.selectedImages addObject:image];
@@ -197,7 +204,7 @@ NSInteger imageCountLimit = 3;
 - (void)MCFPhotoLibraryDidSelectImages:(NSArray *)images {
     
     if ((self.selectedImages.count + images.count) > imageCountLimit) {
-        [self showTip:[NSString stringWithFormat:@"最多选择%ld张",imageCountLimit]];
+        [self showTip:[NSString stringWithFormat:@"最多选择%ld张",(long)imageCountLimit]];
         return;
     }
 
@@ -213,7 +220,6 @@ NSInteger imageCountLimit = 3;
 - (void)requestCameraAuthority {
     [MCFPhotoLibrary checkCameraAuthorization:self completion:^(AVAuthorizationStatus status) {
         if (status == AVAuthorizationStatusAuthorized) {
-            
             MCFCameraViewController *cameraVC = [[MCFCameraViewController alloc] init];
             cameraVC.delegate = self;
             [self.navigationController pushViewController:cameraVC animated:YES];
@@ -238,7 +244,7 @@ NSInteger imageCountLimit = 3;
         [self showTip:@"输入内容限制在160字"];
         return NO;
     }
-    self.countLabel.text = [NSString stringWithFormat:@"%ld/160字", toBeString.length];
+    self.countLabel.text = [NSString stringWithFormat:@"%ld/160字", (unsigned long)toBeString.length];
     return YES;
 }
 

@@ -1546,10 +1546,10 @@
 					"$(PROJECT_DIR)/Classes/Vendor/UMSocial/UMSocialSDK",
 				);
 				OTHER_LIBTOOLFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hlss.jinriweifang;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hualvss.ronghemt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7c866300-1b13-48da-baa7-da97487a129d";
-				PROVISIONING_PROFILE_SPECIFIER = jinriweifang;
+				PROVISIONING_PROFILE = "8ecf86f1-9833-4ec9-a916-cb3ead7f9b25";
+				PROVISIONING_PROFILE_SPECIFIER = xinhuarongmeiDev;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1583,10 +1583,10 @@
 					"$(PROJECT_DIR)/Classes/Vendor/UMSocial/UMSocialSDK",
 				);
 				OTHER_LIBTOOLFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hlss.jinriweifang;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hualvss.ronghemt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7c866300-1b13-48da-baa7-da97487a129d";
-				PROVISIONING_PROFILE_SPECIFIER = jinriweifang;
+				PROVISIONING_PROFILE = "8ecf86f1-9833-4ec9-a916-cb3ead7f9b25";
+				PROVISIONING_PROFILE_SPECIFIER = xinhuarongmeiDev;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

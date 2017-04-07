@@ -51,6 +51,7 @@
         [_configuration.userContentController addScriptMessageHandler:self name:@"goBack"];
         [_configuration.userContentController addScriptMessageHandler:self name:@"getValue"];
         [_configuration.userContentController addScriptMessageHandler:self name:@"getJs"];
+        [_configuration.userContentController addScriptMessageHandler:self name:@"share"];
     }
     return _configuration;
 }
@@ -105,7 +106,11 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
         CGRect frame = self.view.bounds;
         frame.origin.y = 20;
-        frame.size.height -= 20;
+        frame.size.height -= self.showCommentBar ? 75 : 20;
+        self.contentWebView.frame = frame;
+    } else if (self.showCommentBar) {
+        CGRect frame = self.view.bounds;
+        frame.size.height -= 55;
         self.contentWebView.frame = frame;
     } else {
         self.contentWebView.frame = self.view.bounds;
@@ -162,7 +167,7 @@
             }
         }
     }
-    NSLog(@"%@",change);
+   // NSLog(@"%@",change);
 }
 
 #pragma mark - CommentBarDelegate
@@ -201,9 +206,10 @@
 - (void)collectItem {
     [self showLoading];
     [MCFNetworkManager collectItem:self.currentPageInfo
-                           success:^(NSString *tip) {
+                           success:^(NSString *tip, BOOL isSuccessed) {
         [self hideLoading];
         [self showTip:@"收藏成功"];
+                               [self.commentBar setCollectButtonSellected:isSuccessed];
     } failure:^(NSError *error) {
         [self hideLoading];
         [self showTip:@"请求失败"];
@@ -213,9 +219,9 @@
 - (void)removeCollect {
     [self showLoading];
     [MCFNetworkManager removeCollectItem:self.currentPageInfo
-                                 success:^(NSString *tip) {
+                                 success:^(NSString *tip, BOOL isSuccessed) {
         [self hideLoading];
-        [self showTip:@"已移除收藏"];
+        [self showTip:tip];
     } failure:^(NSError *error) {
         [self hideLoading];
         [self showTip:@"请求失败"];
@@ -227,7 +233,7 @@
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
     NSLog(@"%@ == %@", message.name, message.body);
     
-    NSDictionary *dict = message.body;
+    NSDictionary *dict = (NSDictionary *)message.body;
     if (dict == nil) return;
     
     if ([message.name isEqualToString:@"goDetail"]) {
@@ -272,7 +278,7 @@
         NSString *url = dict[@"loadUrl"];
         BaseWebViewController *webVC = [[BaseWebViewController alloc] initWithUrl:url];
         webVC.hidesBottomBarWhenPushed = YES;
-        webVC.showCommentBar = YES;
+        
         webVC.hideNavi = YES;
         webVC.showBarCover = YES;
         [self.navigationController pushViewController:webVC animated:YES];
@@ -284,9 +290,18 @@
         self.currentPageInfo = dict;
         [self checkCollectStatus];
     }
+    if ([message.name isEqualToString:@"share"]) {
+        NSDictionary *dict = @{
+                               @"picPath" : @"nil",
+                               @"title" : @"欢迎查看",
+                               @"loadUrl": @"www.baidu.com"
+                               };
+        [MCFShareUtil showShareMenuToShareInfo:dict];
+    }
 }
 
 - (void)checkCollectStatus {
+    
     [MCFNetworkManager checkHasCollectedItem:self.currentPageInfo
                                      success:^(BOOL isCollected) {
                                          [self.commentBar setCollectButtonSellected:isCollected];

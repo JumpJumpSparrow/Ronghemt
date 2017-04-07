@@ -87,7 +87,6 @@
 - (void)didSelectButton:(UIButton *)sender {
     if([self.delegate respondsToSelector:@selector(didSelectCommentIndex:)]) {
         [self.delegate didSelectCommentIndex:sender];
-        if(sender.tag == 2) sender.selected = !sender.selected;
     }
 }
 
