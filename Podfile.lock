@@ -21,6 +21,9 @@ PODS:
   - MJExtension (3.0.13)
   - MJRefresh (3.1.12)
   - RSKImageCropper (1.6.0)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
   - WMPageController (2.2.1)
   - YPTabBarController (2.2.3)
   - YYKit (1.0.9):
@@ -34,6 +37,7 @@ DEPENDENCIES:
   - MJExtension (~> 3.0.13)
   - MJRefresh (~> 3.1.12)
   - RSKImageCropper (~> 1.6.0)
+  - SDWebImage (~> 3.8)
   - WMPageController (~> 2.2.1)
   - YPTabBarController (~> 2.2.3)
   - YYKit (~> 1.0.9)
@@ -45,10 +49,11 @@ SPEC CHECKSUMS:
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   RSKImageCropper: 6903235c7a8a79acb1e1f3490e2c911b858f8208
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   WMPageController: 181bcc9b1fb7c9c3466bff66012552953a547d28
   YPTabBarController: 2e0e97b2d9d4b28b722ecb57700b7cd4d1b38a47
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 03d0719a55df43b2cbc31249bdbebc84b614af2e
+PODFILE CHECKSUM: 7db025ecd080aa6fba211e7288ae2a42ab852aa3
 
 COCOAPODS: 1.2.0

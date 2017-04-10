@@ -75,7 +75,7 @@
     [self showLoading];
     [MCFNetworkManager requestCommentList:self.infoDict
                                      page:page
-                                  success:^(NSInteger page, NSArray *commentList) {
+                                  success:^(NSInteger page, NSInteger total, NSArray *commentList) {
                                       [self hideLoading];
                                       [self endRefreshing];
                                       if (page == 1) {

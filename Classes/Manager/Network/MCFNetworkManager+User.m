@@ -447,7 +447,7 @@ static NSString *commentList      = @"comment_list.php";
 
 + (void)requestCommentList:(NSDictionary *)infoDict
                       page:(NSInteger)page
-                   success:(void (^)(NSInteger, NSArray *))success
+                   success:(void (^)(NSInteger, NSInteger totale, NSArray *))success
                    failure:(void (^)(NSError *))failure {
     if (page == 0) {
         return;
@@ -465,10 +465,11 @@ static NSString *commentList      = @"comment_list.php";
         
                                        NSDictionary *resultDict = [responseObject objectForKey:@"result"];
                                        NSInteger page = [resultDict[@"page"] integerValue];
+                                       NSInteger total = [resultDict[@"toal"] integerValue];
                                        NSArray *dataList = resultDict[@"list"];
                                        NSArray *modleList = [CommentModel mj_objectArrayWithKeyValuesArray:dataList];
                                        if (success) {
-                                           success(page, modleList);
+                                           success(page, total, modleList);
                                        }
     } failure:^(NSUInteger taskId, NSError *error) {
         if (failure) {
@@ -550,7 +551,7 @@ static NSString *commentList      = @"comment_list.php";
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html", @"text/json", @"text/javascript", @"text/plain", nil];
     //2.上传文件
-    NSString *url = [NSString stringWithFormat:@"http://user.dev.ctvcloud.com/api/%@",uploadFile];
+    NSString *url = [NSString stringWithFormat:@"%@%@", [MCFConfigure cfg].APPNetHost,uploadFile];
     
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@" ", @"file", nil];
     [manager POST:url parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {

@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/Manager/Network/MCFNetworkManager+User.m"
-            timestampString = "513246548.507241"
+            timestampString = "513507524.583565"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "510"
-            endingLineNumber = "510"
+            startingLineNumber = "511"
+            endingLineNumber = "511"
             landmarkName = "+uploadImages:urls:completion:"
             landmarkType = "7">
          </BreakpointContent>
@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/Manager/Network/MCFNetworkManager+User.m"
-            timestampString = "513246548.507241"
+            timestampString = "513507524.583565"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "501"
-            endingLineNumber = "501"
+            startingLineNumber = "502"
+            endingLineNumber = "502"
             landmarkName = "+uploadImages:urls:completion:"
             landmarkType = "7">
          </BreakpointContent>
@@ -84,44 +84,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/Manager/Network/MCFNetworkManager+User.m"
-            timestampString = "513246548.507241"
+            timestampString = "513507524.583565"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "498"
-            endingLineNumber = "498"
+            startingLineNumber = "499"
+            endingLineNumber = "499"
             landmarkName = "+uploadImages:urls:completion:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Classes/Manager/Network/MCFNetworkManager+User.m"
-            timestampString = "513237074.298867"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
-            landmarkName = "+rebindPhoneSuccess:failure:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Classes/Manager/Network/MCFNetworkManager+User.m"
-            timestampString = "513237077.365922"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "256"
-            endingLineNumber = "256"
-            landmarkName = "+rebindPhoneSuccess:failure:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -179,22 +147,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Classes/Manager/Network/MCFNetworkManager+User.m"
-            timestampString = "513238014.007397"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
-            landmarkName = "+rebindPhoneSuccess:failure:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Classes/Controller/Feature/Comment/CommentViewController.m"
             timestampString = "513238740.079218"
             startingColumnNumber = "9223372036854775807"
@@ -211,46 +163,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Classes/Manager/Network/MCFNetworkManager+User.m"
-            timestampString = "513245471.015205"
+            filePath = "Classes/Controller/Mine/ProfileViewController.m"
+            timestampString = "513503655.722566"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "381"
-            endingLineNumber = "381"
-            landmarkName = "+collectItem:success:failure:"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
+            landmarkName = "-updateUser:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "+[MCFNetworkManager(User) collectItem:success:failure:]"
-                  moduleName = "Ronghemt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/miaocf/Ronghemt_ios/Ronghemt/Classes/Manager/Network/MCFNetworkManager+User.m"
-                  timestampString = "513258961.170573"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "382"
-                  endingLineNumber = "382"
-                  offsetFromSymbolStart = "1260">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__55+[MCFNetworkManager(User) collectItem:success:failure:]_block_invoke"
-                  moduleName = "Ronghemt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/miaocf/Ronghemt_ios/Ronghemt/Classes/Manager/Network/MCFNetworkManager+User.m"
-                  timestampString = "513258961.172301"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "382"
-                  endingLineNumber = "382"
-                  offsetFromSymbolStart = "24">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -259,13 +179,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Classes/Manager/Network/MCFNetworkManager+User.m"
-            timestampString = "513245472.584521"
+            filePath = "Classes/Controller/Mine/ProfileViewController.m"
+            timestampString = "513498548.344311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "384"
-            endingLineNumber = "384"
-            landmarkName = "+collectItem:success:failure:"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
+            landmarkName = "-cameraDidSelectImage:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Classes/Controller/Mine/ProfileViewController.m"
+            timestampString = "513498548.344311"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "301"
+            endingLineNumber = "301"
+            landmarkName = "-cameraDidSelectImage:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Classes/Controller/Mine/ProfileViewController.m"
+            timestampString = "513498548.344311"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
+            landmarkName = "-updateUser:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

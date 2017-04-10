@@ -56,7 +56,6 @@
     } else {
         MCFUserModel *user = [[MCFUserModel alloc] init];
         user.username = @"点击头像进行登录";
-        user.avatar = @"http://app1.dev.ctvcloud.com/img/img_moren.png";
         return user;
     }
 }
@@ -67,8 +66,7 @@
 
 + (void)clearLoginUser {
     MCFUserModel *user = [[MCFUserModel alloc] init];
-    user.username = @"点击头像进行登录";
-    user.avatar = @"http://app1.dev.ctvcloud.com/img/img_moren.png";
+    user.username = @"点击头像进行";
     [MCFTools setObjectForKey:AppUserKey value:[NSKeyedArchiver archivedDataWithRootObject:user]];
 }
 

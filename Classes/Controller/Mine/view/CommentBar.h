@@ -17,4 +17,5 @@
 
 @property (nonatomic, weak) id<CommentBarDelegate>delegate;
 - (void)setCollectButtonSellected:(BOOL)isSellected;
+- (void)showCommentCount:(NSInteger)count;
 @end

@@ -12,6 +12,7 @@
 #import "BindPhoneViewController.h"
 #import "MCFNetworkManager+User.h"
 #import <YYKit.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface TitleInputProfileView : UIView<UITextFieldDelegate>
 
@@ -146,7 +147,6 @@
         _subTilteLabel = [[UILabel alloc] init];
         _subTilteLabel.textColor = [UIColor colorWithHexString:AppColorNormal];
         _subTilteLabel.font = [UIFont systemFontOfSize:15.0f];
-        _subTilteLabel.text = @"182****9238";
     }
     return _subTilteLabel;
 }
@@ -192,7 +192,6 @@
 - (AvatarButton *)avatarButton {
     if (_avatarButton == nil) {
         _avatarButton = [[AvatarButton alloc] initWithFrame:CGRectMake(0, 64.0f + 10.0f, SCREEN_WIDTH, 100)];
-        [_avatarButton.avatarView setImageURL:[NSURL URLWithString:[MCFTools getLoginUser].avatar]];
         [_avatarButton addTarget:self action:@selector(didSelectAvatarButton) forControlEvents:UIControlEventTouchUpInside];
     }
     return _avatarButton;
@@ -237,7 +236,6 @@
     self.inputNameView.backgroundColor  = [UIColor whiteColor];
     self.phoneButton.backgroundColor = [UIColor whiteColor];
     
-    
     self.phoneButton.subTilteLabel.text = [MCFTools securityText:[MCFTools getLoginUser].phone];
     
     self.rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -255,6 +253,13 @@
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillAppear:animated];
+    
+    if ([MCFTools getLoginUser].avatar.length > 0) {
+        [self.avatarButton.avatarView sd_setImageWithURL:[NSURL URLWithString:[MCFTools getLoginUser].avatar]
+                                        placeholderImage:[UIImage imageNamed:@"defaultAvatar"]];
+    } else {
+        self.avatarButton.avatarView.image = [UIImage imageNamed:@"defaultAvatar"];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -275,6 +280,7 @@
     [MCFNetworkManager updateUserProfile:user success:^(NSString *tip) {
         [self hideLoading];
         [self showTip:tip];
+        self.rightButton.enabled = NO;
     } failure:^(NSError *error) {
         [self hideLoading];
         [self showTip:@"网络错误"];
@@ -293,6 +299,7 @@
         [self updateUser:user];
     } failure:^(NSError *error) {
         [self hideLoading];
+        [self showTip:@"网络错误"];
     }];
 }
 

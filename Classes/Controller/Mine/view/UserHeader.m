@@ -10,6 +10,7 @@
 #import <YYKit.h>
 #import "MCFUserModel.h"
 #import "MCFTools.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 @interface UserHeader ()
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
@@ -31,10 +32,10 @@
 
 - (UIImageView *)avatarImageView {
     if (_avatarImageView == nil) {
-        self.avatarImageView = [[UIImageView alloc] init];
-        self.avatarImageView.contentMode = UIViewContentModeScaleAspectFill;
-        self.avatarImageView.clipsToBounds = YES;
-        self.avatarImageView.userInteractionEnabled = YES;
+        _avatarImageView = [[UIImageView alloc] init];
+        _avatarImageView.contentMode = UIViewContentModeScaleAspectFill;
+        _avatarImageView.clipsToBounds = YES;
+        _avatarImageView.userInteractionEnabled = YES;
     }
     return _avatarImageView;
 }
@@ -62,25 +63,35 @@
 - (void)bindWithModel:(id)model {
     [super bindWithModel:model];
     MCFUserModel *user = (MCFUserModel *)model;
+    
+    UIImage *image =  [[UIImage imageNamed:@"defaultAvatar"] imageByBlurRadius:60
+                                                                     tintColor:[UIColor colorWithWhite:0.84 alpha:0.16]
+                                                                      tintMode:kCGBlendModeNormal
+                                                                    saturation:1.8 maskImage:nil];
     @weakify(self)
-    [self.backgroundImageView setImageWithURL:[NSURL URLWithString:user.avatar]
-                                  placeholder:[UIImage imageNamed:@"defaultAvatar"]
-                                      options:YYWebImageOptionProgressiveBlur
-                                   completion:^(UIImage * _Nullable image,
-                                                NSURL * _Nonnull url,
-                                                YYWebImageFromType from,
-                                                YYWebImageStage stage,
-                                                NSError * _Nullable error) {
-                                       
-                                       @strongify(self)
-                                       self.backgroundImageView.image = [image imageByBlurRadius:60
-                                                                                       tintColor:[UIColor colorWithWhite:0.84 alpha:0.16]
-                                                                                        tintMode:kCGBlendModeNormal
-                                                                                      saturation:1.8 maskImage:nil];
-    }];
-   
-    [self.avatarImageView setImageWithURL:[NSURL URLWithString:user.avatar]
-                                  options:YYWebImageOptionProgressiveBlur];
+    [self.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar]
+                                placeholderImage:image
+                                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                           @strongify(self)
+                                           if (image) {
+                                               self.backgroundImageView.image = [image imageByBlurRadius:60
+                                                                                               tintColor:[UIColor colorWithWhite:0.84 alpha:0.16]
+                                                                                                tintMode:kCGBlendModeNormal
+                                                                                              saturation:1.8 maskImage:nil];
+                                               self.avatarImageView.image = image;
+                                           } else {
+                                               
+                                               self.backgroundImageView.image = [[UIImage imageNamed:@"defaultAvatar"] imageByBlurRadius:60
+                                                                                                                               tintColor:[UIColor colorWithWhite:0.84 alpha:0.16]
+                                                                                                                                tintMode:kCGBlendModeNormal
+                                                                                                                              saturation:1.8 maskImage:nil];
+                                               self.avatarImageView.image = [UIImage imageNamed:@"defaultAvatar"];
+                                           }
+                                           
+                                       }];
+    if(user.avatar.length > 0) {
+    
+    }
     self.nameLabel.text = user.username;
     [self setNeedsLayout];
 }

@@ -108,7 +108,7 @@
 // 评论列表
 + (void)requestCommentList:(NSDictionary *)pageInfo
                       page:(NSInteger)page
-                   success:(void(^)(NSInteger page, NSArray *commentList))success
+                   success:(void(^)(NSInteger page, NSInteger totale, NSArray *commentList))success
                    failure:(void(^)(NSError *error))failure;
 
 + (void)shareAppToFriendsSuccess:(void(^)(NSDictionary *shareDict))success

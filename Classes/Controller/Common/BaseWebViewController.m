@@ -22,6 +22,7 @@
 #import "MCFShareUtil.h"
 #import "LogInViewController.h"
 
+
 @interface BaseWebViewController ()<WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler, CommentBarDelegate>
 
 @property (nonatomic, assign) dispatch_once_t onceToken;
@@ -52,6 +53,7 @@
         [_configuration.userContentController addScriptMessageHandler:self name:@"getValue"];
         [_configuration.userContentController addScriptMessageHandler:self name:@"getJs"];
         [_configuration.userContentController addScriptMessageHandler:self name:@"share"];
+        [_configuration.userContentController addScriptMessageHandler:self name:@"goZhuanTiDetail"];
     }
     return _configuration;
 }
@@ -207,25 +209,26 @@
     [self showLoading];
     [MCFNetworkManager collectItem:self.currentPageInfo
                            success:^(NSString *tip, BOOL isSuccessed) {
-        [self hideLoading];
-        [self showTip:@"收藏成功"];
+                               [self hideLoading];
+                               [self showTip:@"收藏成功"];
                                [self.commentBar setCollectButtonSellected:isSuccessed];
-    } failure:^(NSError *error) {
-        [self hideLoading];
-        [self showTip:@"请求失败"];
-    }];
+                           } failure:^(NSError *error) {
+                               [self hideLoading];
+                               [self showTip:@"请求失败"];
+                           }];
 }
 
 - (void)removeCollect {
     [self showLoading];
     [MCFNetworkManager removeCollectItem:self.currentPageInfo
                                  success:^(NSString *tip, BOOL isSuccessed) {
-        [self hideLoading];
-        [self showTip:tip];
-    } failure:^(NSError *error) {
-        [self hideLoading];
-        [self showTip:@"请求失败"];
-    }];
+                                     [self.commentBar setCollectButtonSellected:!isSuccessed];
+                                     [self hideLoading];
+                                     [self showTip:tip];
+                                 } failure:^(NSError *error) {
+                                     [self hideLoading];
+                                     [self showTip:@"请求失败"];
+                                 }];
 }
 
 #pragma mark - WKWebViewDelegate
@@ -245,6 +248,7 @@
         webVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:webVC animated:YES];
     }
+    
     if ([message.name isEqualToString:@"goNavigationDetail"]) {
         NSString *url = dict[@"loadUrl"];
         NSString *title = dict[@"title"];
@@ -256,6 +260,19 @@
 
         [self.navigationController pushViewController:webVC animated:YES];
     }
+    
+    if ([message.name isEqualToString:@"goZhuanTiDetail"]) {
+        NSString *url = dict[@"loadUrl"];
+        NSString *title = dict[@"title"];
+        BaseWebViewController *webVC = [[BaseWebViewController alloc] initWithUrl:url];
+        webVC.hidesBottomBarWhenPushed = YES;
+        webVC.hideNavi = title.length == 0;
+        webVC.showBarCover = title.length == 0;
+        webVC.title = title;
+        
+        [self.navigationController pushViewController:webVC animated:YES];
+    }
+    
     if ([message.name isEqualToString:@"switchPages"]) {
         NSInteger index = [dict[@"firstMenu"] integerValue];
         NSInteger subIndex = [dict[@"secMenu"] integerValue];
@@ -289,6 +306,7 @@
     if ([message.name isEqualToString:@"getJs"]) {
         self.currentPageInfo = dict;
         [self checkCollectStatus];
+        [self checkCommentCount];
     }
     if ([message.name isEqualToString:@"share"]) {
         NSDictionary *dict = @{
@@ -297,6 +315,22 @@
                                @"loadUrl": @"www.baidu.com"
                                };
         [MCFShareUtil showShareMenuToShareInfo:dict];
+    }
+}
+
+- (void)checkCommentCount {
+    if (self.showCommentBar) {
+        
+        [MCFNetworkManager requestCommentList:self.currentPageInfo
+                                         page:1
+                                      success:^(NSInteger page, NSInteger total, NSArray *commentList) {
+                                          if (commentList.count > 0) {
+                                              [self.commentBar showCommentCount:total];
+                                          }
+                                          
+                                      } failure:^(NSError *error) {
+                                          
+                                      }];
     }
 }
 

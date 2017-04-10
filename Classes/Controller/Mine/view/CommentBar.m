@@ -84,6 +84,27 @@
     self.collectButton.selected = isSellected;
 }
 
+- (void)showCommentCount:(NSInteger)count {
+    if (count > 0) {
+        UILabel *countLabel = [[UILabel alloc] init];
+        countLabel.textColor = [UIColor whiteColor];
+        countLabel.backgroundColor = [UIColor redColor];
+        countLabel.font = [UIFont systemFontOfSize:11.0f];
+        countLabel.textAlignment = NSTextAlignmentCenter;
+        countLabel.text = [NSString stringWithFormat:@"%ld", count];
+        [countLabel sizeToFit];
+        CGSize size = countLabel.bounds.size;
+        size.width += 10;
+        size.height += 10;
+        countLabel.frame = CGRectMake(0, 0, size.width, size.height);
+        countLabel.center = CGPointMake(self.commentListButton.right, self.commentListButton.top);
+        countLabel.layer.cornerRadius = size.height/2.0f;
+        [self.commentListButton addSubview:countLabel];
+    } else {
+        [self.commentListButton removeAllSubviews];
+    }
+}
+
 - (void)didSelectButton:(UIButton *)sender {
     if([self.delegate respondsToSelector:@selector(didSelectCommentIndex:)]) {
         [self.delegate didSelectCommentIndex:sender];
